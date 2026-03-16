@@ -1,204 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My-Business - Offline CRM</title>
-    <style>
-        /* Общие стили */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #343a40;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-        }
-
-        nav a:hover {
-            background-color: #555;
-        }
-
-        main {
-            padding: 20px;
-            background-color: #fff;
-            margin: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        footer {
-            background-color: #343a40;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Стили для главной страницы */
-        .hero {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .feature {
-            width: 30%;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .feature img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        /* Стили для страницы документации */
-        .documentation {
-            margin-top: 20px;
-        }
-
-        .documentation h2 {
-            margin-bottom: 10px;
-        }
-
-        .documentation ul {
-            list-style: disc;
-            margin-left: 20px;
-        }
-
-        /* Стили для страницы скачивания */
-        .download {
-            text-align: center;
-        }
-
-        .download h2 {
-            margin-bottom: 10px;
-        }
-
-        .download button {
-            background-color: #28a745;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-
-        .download button:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My-Business - Offline CRM</title>
+  <style>
+    /* Basic Styling - Move to a separate CSS file for production */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    header {
+      background-color: #007bff; /* Primary Color */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #007bff;
+    }
+    .button {
+      background-color: #28a745; /* Success Color */
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .feature-list {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>My-Business - Offline CRM</h1>
-        <p>Простая и многофункциональная CRM система для вашего бизнеса.</p>
-    </header>
+  <header>
+    <h1>My-Business - Ваша Offline CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами.</p>
+  </header>
 
-    <nav>
-        <a href="index.html">Главная</a>
-        <a href="documentation.html">Документация</a>
-        <a href="download.html">Скачать</a>
-    </nav>
+  <div class="container">
 
-    <main>
-        <!-- Содержимое главной страницы -->
-        <section class="hero">
-            <h1>My-Business</h1>
-            <p>Оптимизируйте свои продажи с помощью нашей мощной и простой в использовании CRM системы.</p>
-        </section>
+    <section id="overview">
+      <h2>Обзор</h2>
+      <p>My-Business - это CRM система, разработанная для того, чтобы помочь вам организовать продажи и улучшить взаимодействие с клиентами.  Она идеально подходит для малого и среднего бизнеса, а также для индивидуальных предпринимателей.</p>
+      <p><strong>Ключевое преимущество:</strong>  Вы платите один раз и используете программу неограниченно, без ежемесячной подписки!</p>
+    </section>
 
-        <section class="features">
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="SQLite/MySQL">
-                <h3>Поддержка баз данных</h3>
-                <p>Работает с SQLite (без интернета) и MySQL.</p>
-            </div>
+    <section id="features">
+      <h2>Основные возможности</h2>
+      <ul class="feature-list">
+        <li><strong>Поддержка баз данных:</strong> SQLite (без интернета) и MySQL (для совместной работы).</li>
+        <li><strong>Мессенджеры:</strong>  Отправляйте сообщения клиентам прямо из CRM через WhatsApp и Telegram.</li>
+        <li><strong>Аналитика:</strong>  Отслеживайте суммы сборов и анализируйте динамику продаж за любой период времени.</li>
+        <li><strong>Простота использования:</strong>  Интуитивно понятный интерфейс, не требующий специальных навыков.</li>
+        <li><strong>Базовый функционал:</strong>  Всё необходимое для начала продаж: ведение клиентов, фиксация звонков, комментарии.</li>
+        <li><strong>Работа в команде:</strong>  Поддержка работы с коллегами через CRM.</li>
+        <li><strong>Структурирование клиентов:</strong>  Сортировка по дате звонка, ФИО, типу контакта.</li>
+        <li><strong>Быстрый старт:</strong>  Не требует настроек или создания учётных записей (кроме MySQL).</li>
+      </ul>
+    </section>
 
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="SIP">
-                <h3>SIP интеграция</h3>
-                <p>В платной версии - поддержка SIP через microsip.</p>
-            </div>
+    <section id="versions">
+      <h2>Версии</h2>
+      <h3>Бесплатная версия</h3>
+      <p>Включает в себя базовый функционал CRM, поддержку SQLite и интеграцию с мессенджерами.</p>
 
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="Мессенджеры">
-                <h3>Интеграция с мессенджерами</h3>
-                <p>Отправляйте сообщения клиентам через WhatsApp и Telegram.</p>
-            </div>
+      <h3>Платная версия</h3>
+      <p>Включает все возможности бесплатной версии, а также:</p>
+      <ul class="feature-list">
+        <li><strong>Поддержка SIP телефонии:</strong>  Интеграция с программой MicroSIP для совершения звонков прямо из CRM.</li>
+      </ul>
+      <p><strong>Для работы телефонии в платной версии необходимо установить MicroSIP и настроить ассоциацию звонков через протокол tel.</strong></p>
+    </section>
 
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="Аналитика">
-                <h3>Аналитика</h3>
-                <p>Ведение аналитики по суммам сбора за период времени.</p>
-            </div>
+    <section id="call-to-action">
+      <h2>Начните использовать My-Business сегодня!</h2>
+      <a href="#" class="button">Скачать бесплатную версию</a>
+      <a href="#" class="button">Купить платную версию</a>
+    </section></div>
 
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="Простота">
-                <h3>Простота использования</h3>
-                <p>Интуитивно понятный интерфейс, не требует специальных навыков.</p>
-            </div>
-
-            <div class="feature">
-                <img src="https://via.placeholder.com/150" alt="Одноразовая оплата">
-                <h3>Одноразовая оплата</h3>
-                <p>Платная версия приобретается один раз, без ежемесячной подписки.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>О My-Business</h2>
-            <p>My-Business - это offline CRM система, разработанная для малого и среднего бизнеса.  Она предоставляет весь базовый набор функций для начала продаж, не требуя при этом ежемесячной подписки или сложной настройки.</p>
-            <p>Благодаря возможности использования базы SQLite, CRM можно использовать без подключения к интернету.  Также предусмотрена возможность совместной работы с коллегами через сторонних менеджеров.</p>
-            <p>В CRM можно фиксировать результаты звонков, оставлять комментарии о клиентах, структурировать клиентов по дате звонка, ФИО и типу контакта.</p>
-            <p>Для начала работы не требуется никаких настроек или создания учётных записей (кроме MySQL). Для работы телефонии в платной версии необходимо установить microsip и настроить ассоциацию звонков через протокол tel.</p>
-            <p>Последняя версия программы доступна на <a href="http://my-business.su">официальном сайте my-business.su</a>.</p>
-        </section>
-    </main>
-
-    <footer>
-        &copy; 2023 My-Business CRM
-    </footer>
+  <footer>
+    <p>&copy; 2023 My-Business CRM. Все права защищены.</p>
+  </footer>
 
 </body>
 </html>
+
+

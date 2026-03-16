@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покупка My-Business CRM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .price-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+        }
+        
+        .selected-price {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Покупка My-Business CRM</h1>
+    
+    <p>Выберите подходящий диапазон цены:</p>
+    
+    <!-- Диапазон цен -->
+    <div class="price-range">
+        <span class="price-label">Минимальная цена: 10$</span>
+        <input type="range" min="10" max="100" value="50" step="1" id="priceRange">
+        <span class="price-label">Максимальная цена: 100$</span>
+    </div>
+    
+    <!-- Текущая выбранная цена -->
+    <div class="selected-price">
+        Выбранная цена: <span id="currentPrice">50$</span>
+    </script>
+    </div>
+    
+    <!-- Кнопка покупки -->
+    <button onclick="purchase()">Купить программу</button>
+</div>
+
+<script>
+    // Обработка выбора цены
+    const priceRange = document.getElementById('priceRange');
+    const currentPrice = document.getElementById('currentPrice');
+    
+    priceRange.addEventListener('input', () => {
+        currentPrice.textContent = `${priceRange.value}$`;
+    });
+    
+    // Функция покупки (демо)
+    function purchase() {
+        alert(`Вы выбрали цену ${priceRange.value}$. Спасибо за покупку!`);
+    }
+</script>
+
+</body>
+</html>

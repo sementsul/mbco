@@ -36,7 +36,16 @@
             margin-bottom: 20px;
         }
         
-        button {
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        input[type="submit"] {
             padding: 10px 20px;
             font-size: 1em;
             background-color: #007BFF;
@@ -47,7 +56,7 @@
             transition: background-color 0.3s ease;
         }
         
-        button:hover {
+        input[type="submit"]:hover {
             background-color: #0056b3;
         }
         
@@ -71,6 +80,10 @@
             margin-top: 10px;
             font-weight: bold;
         }
+        
+        form {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -78,38 +91,50 @@
 <div class="container">
     <h1>Покупка My-Business CRM</h1>
     
-    <p>Выберите подходящий диапазон цены:</p>
+    <p>Выберите подходящую цену:</p>
     
-    <!-- Диапазон цен -->
+    <!-- Выбор цены -->
     <div class="price-range">
         <span class="price-label">Минимальная цена: 10$</span>
         <input type="range" min="10" max="100" value="50" step="1" id="priceRange">
         <span class="price-label">Максимальная цена: 100$</span>
     </div>
     
-    <!-- Текущая выбранная цена -->
+    <!-- Отображение выбранной цены -->
     <div class="selected-price">
-        Выбранная цена: <span id="currentPrice">50$</span>
-    </script>
+        Ваша цена: <span id="currentPrice">50$</span>
     </div>
     
-    <!-- Кнопка покупки -->
-    <button onclick="purchase()">Купить программу</button>
+    <!-- Форма оплаты YooMoney -->
+    <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
+        <!-- Скрытые поля -->
+        <input type="hidden" name="receiver" value="41001xxxxxxxxxxxx"/>
+        <input type="hidden" name="label" value="$order_id"/>
+        <input type="hidden" name="quickpay-form" value="button"/>
+        
+        <!-- Сумма платежа -->
+        <input type="hidden" name="sum" id="sumField" value="50" data-type="number"/>
+        
+        <!-- Методы оплаты -->
+        <label><input type="radio" name="paymentType" value="PC" checked/>ЮMoney</label>
+        <label><input type="radio" name="paymentType" value="AC"/>Банковская карта</label>
+        
+        <!-- Кнопка отправки -->
+        <input type="submit" value="Оплатить"/>
+    </form>
 </div>
 
 <script>
-    // Обработка выбора цены
+    // Синхронизация выбранного значения цены с формой
     const priceRange = document.getElementById('priceRange');
     const currentPrice = document.getElementById('currentPrice');
-    
+    const sumField = document.getElementById('sumField'); // Поле суммы в форме
+
     priceRange.addEventListener('input', () => {
-        currentPrice.textContent = `${priceRange.value}$`;
+        const selectedValue = parseFloat(priceRange.value);
+        currentPrice.textContent = `${selectedValue.toFixed(2)}$`;
+        sumField.value = selectedValue; // Устанавливаем значение суммы в форму
     });
-    
-    // Функция покупки (демо)
-    function purchase() {
-        alert(`Вы выбрали цену ${priceRange.value}$. Спасибо за покупку!`);
-    }
 </script>
 
 </body>

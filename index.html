@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My-Business - Offline CRM</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Стили для главной страницы */
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            width: 30%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feature img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Стили для страницы документации */
+        .documentation {
+            margin-top: 20px;
+        }
+
+        .documentation h2 {
+            margin-bottom: 10px;
+        }
+
+        .documentation ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        /* Стили для страницы скачивания */
+        .download {
+            text-align: center;
+        }
+
+        .download h2 {
+            margin-bottom: 10px;
+        }
+
+        .download button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .download button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My-Business - Offline CRM</h1>
+        <p>Простая и многофункциональная CRM система для вашего бизнеса.</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="documentation.html">Документация</a>
+        <a href="download.html">Скачать</a>
+    </nav>
+
+    <main>
+        <!-- Содержимое главной страницы -->
+        <section class="hero">
+            <h1>My-Business</h1>
+            <p>Оптимизируйте свои продажи с помощью нашей мощной и простой в использовании CRM системы.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="SQLite/MySQL">
+                <h3>Поддержка баз данных</h3>
+                <p>Работает с SQLite (без интернета) и MySQL.</p>
+            </div>
+
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="SIP">
+                <h3>SIP интеграция</h3>
+                <p>В платной версии - поддержка SIP через microsip.</p>
+            </div>
+
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="Мессенджеры">
+                <h3>Интеграция с мессенджерами</h3>
+                <p>Отправляйте сообщения клиентам через WhatsApp и Telegram.</p>
+            </div>
+
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="Аналитика">
+                <h3>Аналитика</h3>
+                <p>Ведение аналитики по суммам сбора за период времени.</p>
+            </div>
+
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="Простота">
+                <h3>Простота использования</h3>
+                <p>Интуитивно понятный интерфейс, не требует специальных навыков.</p>
+            </div>
+
+            <div class="feature">
+                <img src="https://via.placeholder.com/150" alt="Одноразовая оплата">
+                <h3>Одноразовая оплата</h3>
+                <p>Платная версия приобретается один раз, без ежемесячной подписки.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>О My-Business</h2>
+            <p>My-Business - это offline CRM система, разработанная для малого и среднего бизнеса.  Она предоставляет весь базовый набор функций для начала продаж, не требуя при этом ежемесячной подписки или сложной настройки.</p>
+            <p>Благодаря возможности использования базы SQLite, CRM можно использовать без подключения к интернету.  Также предусмотрена возможность совместной работы с коллегами через сторонних менеджеров.</p>
+            <p>В CRM можно фиксировать результаты звонков, оставлять комментарии о клиентах, структурировать клиентов по дате звонка, ФИО и типу контакта.</p>
+            <p>Для начала работы не требуется никаких настроек или создания учётных записей (кроме MySQL). Для работы телефонии в платной версии необходимо установить microsip и настроить ассоциацию звонков через протокол tel.</p>
+            <p>Последняя версия программы доступна на <a href="http://my-business.su">официальном сайте my-business.su</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2023 My-Business CRM
+    </footer>
+
+</body>
+</html>

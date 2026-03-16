@@ -91,18 +91,18 @@
 <div class="container">
     <h1>Покупка My-Business CRM</h1>
     
-    <p>Выберите подходящую цену:</p>
+    <p>Выберите стоимость лицензии:</p>
     
-    <!-- Выбор цены -->
+    <!-- Выбор стоимости -->
     <div class="price-range">
-        <span class="price-label">Минимальная цена: 10$</span>
-        <input type="range" min="10" max="100" value="50" step="1" id="priceRange">
-        <span class="price-label">Максимальная цена: 100$</span>
+        <span class="price-label">Минимально: ₽4000</span>
+        <input type="range" min="4000" max="10000" value="5000" step="100" id="priceRange">
+        <span class="price-label">Максимально: ₽10000</span>
     </div>
     
-    <!-- Отображение выбранной цены -->
+    <!-- Показ текущей стоимости -->
     <div class="selected-price">
-        Ваша цена: <span id="currentPrice">50$</span>
+        Стоимость: <span id="currentPrice">₽5000</span>
     </div>
     
     <!-- Форма оплаты YooMoney -->
@@ -113,27 +113,27 @@
         <input type="hidden" name="quickpay-form" value="button"/>
         
         <!-- Сумма платежа -->
-        <input type="hidden" name="sum" id="sumField" value="50" data-type="number"/>
+        <input type="hidden" name="sum" id="sumField" value="5000" data-type="number"/>
         
-        <!-- Методы оплаты -->
+        <!-- Способы оплаты -->
         <label><input type="radio" name="paymentType" value="PC" checked/>ЮMoney</label>
         <label><input type="radio" name="paymentType" value="AC"/>Банковская карта</label>
         
-        <!-- Кнопка отправки -->
-        <input type="submit" value="Оплатить"/>
+        <!-- Кнопка оплаты -->
+        <input type="submit" value="Оформить заказ"/>
     </form>
 </div>
 
 <script>
-    // Синхронизация выбранного значения цены с формой
+    // Связываем выбор стоимости с полем суммы в форме
     const priceRange = document.getElementById('priceRange');
     const currentPrice = document.getElementById('currentPrice');
-    const sumField = document.getElementById('sumField'); // Поле суммы в форме
+    const sumField = document.getElementById('sumField');
 
     priceRange.addEventListener('input', () => {
-        const selectedValue = parseFloat(priceRange.value);
-        currentPrice.textContent = `${selectedValue.toFixed(2)}$`;
-        sumField.value = selectedValue; // Устанавливаем значение суммы в форму
+        const selectedValue = parseInt(priceRange.value);
+        currentPrice.textContent = `₽${selectedValue}`;
+        sumField.value = selectedValue; // Автоматически устанавливаем сумму в форму
     });
 </script>
 

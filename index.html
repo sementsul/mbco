@@ -49,6 +49,19 @@
       text-align: center;
       padding: 10px;
     }
+    .screenshot {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      display: block;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .screenshot-caption {
+      text-align: center;
+      margin-top: 5px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -80,6 +93,22 @@
       </ul>
     </section>
 
+    <section id="screenshots">
+      <h2>Скриншоты</h2>
+
+      <img src="placeholder_screenshot1.png" alt="Главное окно CRM" class="screenshot">
+      <p class="screenshot-caption">Главное окно CRM: Общий вид и навигация.</p>
+
+      <img src="placeholder_screenshot2.png" alt="Карточка клиента" class="screenshot">
+      <p class="screenshot-caption">Карточка клиента: Подробная информация и история взаимодействий.</p>
+
+      <img src="placeholder_screenshot3.png" alt="Аналитика продаж" class="screenshot">
+      <p class="screenshot-caption">Аналитика продаж: Отслеживание сумм сборов и динамики продаж.</p>
+
+      <img src="placeholder_screenshot4.png" alt="Интеграция с мессенджерами" class="screenshot">
+      <p class="screenshot-caption">Интеграция с мессенджерами: Отправка сообщений клиентам через WhatsApp и Telegram.</p>
+    </section>
+
     <section id="versions">
       <h2>Версии</h2>
       <h3>Бесплатная версия</h3>
@@ -95,9 +124,11 @@
 
     <section id="call-to-action">
       <h2>Начните использовать My-Business сегодня!</h2>
-      <a href="#" class="button">Скачать бесплатно</a>
-      <a href="#" class="button">Купить Pro версию</a>
-    </section></div>
+      <a href="#" class="button">Скачать бесплатную версию</a>
+      <a href="#" class="button">Купить платную версию</a>
+    </section>
+
+  </div>
 
   <footer>
     <p>&copy; 2023 My-Business CRM. Все права защищены.</p>

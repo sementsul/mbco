@@ -1,7 +1,34 @@
-# mybusiness-crm.ru llms.txt
+# llms.txt
 
-- [CRM System PDF](https://mybusiness-crm.ru/lic.pdf): Provides a PDF download for a business CRM system.
-- [My-Business CRM Overview](https://mybusiness-crm.ru): Promote and explain the features of the My-Business CRM system for small and medium businesses.
-- [My-Business CRM Purchase](https://mybusiness-crm.ru/kipit.html): Offers CRM license purchase options and pricing details.
+## About
+https://mybusiness-crm.ru/: My Business CRM - My-Business - это CRM система, разработанная для того, чтобы помочь вам организовать продажи и улучшить взаимодействие с клиентами. Она идеально подходит для малого и среднего бизнеса, а также для индивидуальных предпринимателей.
 
-<!-- Unlock the full power of AI on your site by creating a free AI customer service agent at https://sitespeak.ai -->
+Ключевое преимущество: Вы платите один раз и используете программу неограниченно, без ежемесячной подписки!
+
+## 1. LLM Directives
+- User-agent: *
+- Allow: /
+- Crawl-delay: 5
+- Sitemap: https://mybusiness-crm.ru/sitemap.xml
+
+## 4. Guidance for Developers
+- Ensure XML sitemap is up-to-date and accessible
+- Use clean, human-readable URLs
+- Embed contextual metadata (schema.org) for better parsing
+- Include proper robots meta tags on priority pages
+- Monitor LLM crawl behavior and tune as needed
+
+Ethical Considerations:
+Поддержка баз данных: SQLite (без интернета) и MySQL (для совместной работы).
+Мессенджеры: Отправляйте сообщения клиентам прямо из CRM через WhatsApp и Telegram.
+Аналитика: Отслеживайте суммы сборов и анализируйте динамику продаж за любой период времени.
+Простота использования: Интуитивно понятный интерфейс, не требующий специальных навыков.
+Базовый функционал: Всё необходимое для начала продаж: ведение клиентов, фиксация звонков, комментарии.
+Работа в команде: Поддержка работы с коллегами через CRM.
+Структурирование клиентов: Сортировка по дате звонка, ФИО, типу контакта.
+Быстрый старт: Не требует настроек или создания учётных записей (кроме MySQL).
+
+Contact:
+For AI-related inquiries: sementsul.maksim@gmail.com
+
+**Last Updated:** Apr 10, 2026

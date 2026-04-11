@@ -120,7 +120,6 @@ function closePopup() {
 }
 
 
-document.getElementById("year").innerHTML = new Date().getFullYear();
 </script>
 
 <script>
@@ -307,7 +306,10 @@ function openFullscreenimg4() {
   <footer>
     <p>&copy; <span id="year"> My-Business CRM. Все права защищены. ИНН: <a href="Inquiry.pdf">381616884622</a></p>
   </footer>
-
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+  </script>
+  
 </body>
 </html>
 

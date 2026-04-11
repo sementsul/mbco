@@ -72,8 +72,8 @@
     
   </style>
 
-  <style>
-.modal {
+<style>
+.popup {
     display: none; 
     position: fixed; 
     z-index: 1000; 
@@ -85,13 +85,14 @@
     background-color: rgba(0, 0, 0, 0.8); 
 }
 
-.modal-content {
+.popup-content {
     background-color: white; 
     margin: 15% auto; 
     padding: 20px; 
     border: 1px solid #888; 
     width: 80%; 
     max-width: 600px; 
+    position: relative; 
 }
 
 .close {
@@ -110,16 +111,25 @@
 </style>
 
 <script>
-function openModal(title, text) {
-    document.getElementById("modalTitle").innerText = title;
-    document.getElementById("modalText").innerText = text;
-    document.getElementById("modal").style.display = "block";
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
 }
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function button1Action() {
+    alert("Вы нажали кнопку 1!");
+    closePopup(); // Закрыть окно после действия
+}
+
+function button2Action() {
+    alert("Вы нажали кнопку 2!");
+    closePopup(); // Закрыть окно после действия
 }
 </script>
+  
   
 </head>
 <body>
@@ -134,18 +144,21 @@ function closeModal() {
 </button>
 <dialog id="myDialog"><a href="https://mybusiness-crm.ru/download/SetupFMySQL.exe" class="button">Скачать бесплатно версию с MySQL</a>  <a href="https://mybusiness-crm.ru/download/SetupFSQLite.exe" class="button">Скачать бесплатно версию с SQLite</a>  </dialog>
 
-<button type="button" onclick="window.modal.show()">Открыть модальное окно</button>
 
 
 
-    
-    <div id="modal" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle">Заголовок модального окна</h2>
-        <p id="modalText">Здесь может быть ваш текст.</p>
+    <button type="button" onclick="openPopup()">Открыть всплывающее окно</button>
+
+<div id="popup" class="popup" style="display:none;">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>Заголовок всплывающего окна</h2>
+        <p>Это текст во всплывающем окне.</p>
+        <button onclick="button1Action()">Кнопка 1</button>
+        <button onclick="button2Action()">Кнопка 2</button>
     </div>
 </div>
+    
       
     
   

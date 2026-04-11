@@ -70,6 +70,26 @@
 
 
   </style>
+
+  <script>
+const imageElement = document.querySelector('img');
+
+imageElement.addEventListener('click', () => {
+  // Проверяем, поддерживает ли элемент метод requestFullscreen
+  if (imageElement.requestFullscreen) {
+    imageElement.requestFullscreen();
+  } else if (imageElement.mozRequestFullScreen) {
+    // Для Firefox
+    imageElement.mozRequestFullScreen();
+  } else if (imageElement.webkitRequestFullscreen) {
+    // Для Chrome, Safari и Opera
+    imageElement.webkitRequestFullscreen();
+  } else if (imageElement.msRequestFullscreen) {
+    // Для IE/Edge
+    imageElement.msRequestFullscreen();
+  }
+});
+    </script>
 </head>
 <body>
 

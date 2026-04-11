@@ -12,3 +12,117 @@
     })(document, window, 'Chatra');
 </script>
 <!-- /Chatra {/literal} -->
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматическое всплывающее окно</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Подписка на новости</h2>
+            <p>Пожалуйста, укажите вашу электронную почту:</p>
+            <input type="email" id="emailInput" placeholder="Введите вашу почту" required>
+            <button onclick="submitEmail()">Подписаться</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Функция для открытия модального окна
+        function openModal() {
+            document.getElementById("emailModal").style.display = "block";
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById("emailModal").style.display = "none";
+        }
+
+        // Функция для отправки электронной почты в Chatra
+        function submitEmail() {
+            const email = document.getElementById("emailInput").value;
+
+            if (email) {
+                // Отправка данных в Chatra API
+                $.ajax({
+                    url: 'https://api.chatra.io/v1/messages',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    headers: {
+                        'Authorization': 'Bearer BWzNWh4LFBTmhtFTf' // Замените на ваш API ключ Chatra
+                    },
+                    data: JSON.stringify({
+                        type: 'message',
+                        text: `Новая подписка на новости: ${email}`
+                    }),
+                    success: function () {
+                        alert("Спасибо за подписку! Ваша почта: " + email);
+                        closeModal();
+                    },
+                    error: function () {
+                        alert("Произошла ошибка при отправке. Попробуйте еще раз.");
+                    }
+                });
+            } else {
+                alert("Пожалуйста, введите корректный адрес электронной почты.");
+            }
+        }
+// Открытие модального окна через 5 секунд после загрузки страницы
+        window.onload = function () {
+            setTimeout(openModal, 5000); // 5000 мс = 5 секунд
+        };
+    </script>
+
+</body>
+
+</html>
+

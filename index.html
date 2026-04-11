@@ -119,15 +119,8 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
-function button1Action() {
-    alert("Вы нажали кнопку 1!");
-    closePopup(); // Закрыть окно после действия
-}
 
-function button2Action() {
-    alert("Вы нажали кнопку 2!");
-    closePopup(); // Закрыть окно после действия
-}
+document.getElementById("year").innerHTML = new Date().getFullYear();
 </script>
 
 <script>
@@ -312,7 +305,7 @@ function openFullscreenimg4() {
   </div>
 
   <footer>
-    <p>&copy; 2023 My-Business CRM. Все права защищены. ИНН: <a href="Inquiry.pdf">381616884622</a></p>
+    <p>&copy; <span id="year"> My-Business CRM. Все права защищены. ИНН: <a href="Inquiry.pdf">381616884622</a></p>
   </footer>
 
 </body>

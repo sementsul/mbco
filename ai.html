@@ -1,96 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Консультант</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #chat {
-            width: 300px;
-            height: 400px;
-            border: 1px solid #ccc;
-            overflow-y: auto;
-            padding: 10px;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .message {
-            margin: 5px 0;
-        }
-        .user-message {
-            text-align: right;
-            color: blue;
-        }
-        .bot-message {
-            text-align: left;
-            color: green;
-        }
-        input[type="text"] {
-            width: calc(100% - 60px);
-            padding: 10px;
-            margin: 5px 0;
-        }
-        button {
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-
-<div id="chat"></div>
-<input type="text" id="userInput" placeholder="Введите ваше сообщение...">
-<button onclick="sendMessage()">Отправить</button>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Chatra {literal} -->
 <script>
-    const chat = document.getElementById('chat');
-    const apiKey = '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'; // Замените на ваш API-ключ
-
-    function appendMessage(text, type) {
-        const message = document.createElement('div');
-        message.className = 'message ' + type;
-        message.textContent = text;
-        chat.appendChild(message);
-        chat.scrollTop = chat.scrollHeight; // Прокрутка вниз
-    }
-
-    function sendMessage() {
-        const userInput = document.getElementById('userInput');
-        const message = userInput.value;
-
-        if (message.trim() === '') return;
-
-        appendMessage(message, 'user-message');
-        userInput.value = '';
-
-        // Вызов API GPT
-        $.ajax({
-            url: 'https://api.openai.com/v1/chat/completions',
-            method: 'POST',
-            contentType: 'application/json',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`
-            },
-            data: JSON.stringify({
-                model: "gpt-3.5-turbo", // Используйте нужную модель
-                messages: [{ role: "user", content: message }]
-            }),
-            success: function(response) {
-                const botResponse = response.choices[0].message.content;
-                appendMessage(botResponse, 'bot-message');
-            },
-            error: function() {
-                appendMessage('Произошла ошибка. Попробуйте еще раз.', 'bot-message');
-            }
-        });
-    }
+    (function(d, w, c) {
+        w.ChatraID = 'BWzNWh4LFBTmhtFTf';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        s.async = true;
+        s.src = 'https://call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
 </script>
-
-</body>
-</html>
+<!-- /Chatra {/literal} -->

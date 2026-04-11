@@ -120,8 +120,8 @@
 
 
       
-      <img src="img/img1.png" alt="Главное окно CRM" class="screenshot">
-      <p class="screenshot-caption">Главное окно CRM: Общий вид и навигация.</p>
+      <img src="img/img1.png" alt="Главное окно CRM" class="screenshot" controls id="img1">
+      <p class="screenshot-caption">Главное окно CRM: Общий вид и навигация.</p><button onclick="openFullscreenimg1();">
 
       <img src="img/img3.png" alt="Карточка клиента" class="screenshot">
       <p class="screenshot-caption">Карточка клиента: Подробная информация и история взаимодействий.</p>
@@ -132,6 +132,28 @@
       <img src="img/img5.png" alt="Интеграция с мессенджерами" class="screenshot">
       <p class="screenshot-caption">Экспорт данных о сделках.</p>
     </section>
+
+
+<script>
+var elem = document.getElementById("img1");
+function openFullscreenimg1() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+</script>
+
+
+
+
+
+    
 
     <section id="versions">
       <h2>Версии</h2>

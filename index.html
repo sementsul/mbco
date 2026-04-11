@@ -123,8 +123,9 @@
       <img src="img/img1.png" alt="Главное окно CRM" class="screenshot" controls id="img1">
       <p class="screenshot-caption">Главное окно CRM: Общий вид и навигация.</p></a>
 
-      <img src="img/img3.png" alt="Карточка клиента" class="screenshot">
-      <p class="screenshot-caption">Карточка клиента: Подробная информация и история взаимодействий.</p>
+      <a href="#" onclick="openFullscreenimg2();">
+      <img src="img/img3.png" alt="Карточка клиента" class="screenshot" controls id="img2">
+      <p class="screenshot-caption">Карточка клиента: Подробная информация и история взаимодействий.</p></a>
 
       <img src="img/img4.png" alt="Аналитика продаж" class="screenshot">
       <p class="screenshot-caption">Аналитика продаж: Отслеживание сумм сборов и динамики продаж.</p>
@@ -151,7 +152,20 @@ function openFullscreenimg1() {
 
 
 
-
+<script>
+var elem = document.getElementById("img2");
+function openFullscreenimg2() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+</script>
 
     
 

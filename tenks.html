@@ -3,73 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка My-Business CRM</title>
+    <title>Спасибо за покупку | My-Business CRM</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Спасибо за приобретение лицензии My-Business CRM. Скачайте лицензионный ключ и активируйте программу." />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
         }
-        
-        .container {
-            width: 80%;
-            max-width: 600px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        /* Стиль хедера как на главной странице */
+        header {
+            background-color: #007bff;
+            color: #fff;
             padding: 20px;
             text-align: center;
+            width: 100%;
         }
-        
-        h1 {
-            color: #333;
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
         }
-        
+
+        header p {
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 35px 30px;
+            text-align: center;
+            margin: 40px auto;
+        }
+
+        /* Иконка успеха */
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #007bff;
+            margin: 20px 0 15px;
+            font-size: 1.2rem;
+        }
+
         p {
             line-height: 1.6;
             margin-bottom: 20px;
+            color: #555;
         }
-        
-        a.download-link {
+
+        /* Ключ */
+        .license-key {
+            background: #f0f7ff;
+            border: 2px dashed #007bff;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 25px 0;
+        }
+
+        .license-key code {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #0056b3;
+            background: #e8f0fe;
+            padding: 8px 16px;
+            border-radius: 8px;
             display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #007BFF;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Кнопка */
+        .download-link {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            margin: 10px 0;
         }
-        
-        a.download-link:hover {
-            background-color: #0056b3;
+
+        .download-link:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Дополнительные кнопки */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button-secondary {
+            background-color: #6c757d;
+        }
+
+        .button-secondary:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .button-outline:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+                margin: 20px;
+            }
+            .license-key code {
+                font-size: 0.9rem;
+                word-break: break-all;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Спасибо за покупку!</h1>
-    
-    <p>Ваш заказ успешно оформлен. Нажмите кнопку ниже, чтобы скачать My-Business CRM.</p>
-    
-    <!-- Скачать файл -->
-    <a href="downver/Key.txt" class="download-link" download>
-        Скачать лицензионный ключ
-    </a>
+<header>
+    <h1>My-Business - Ваша Offline CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами.</p>
+</header>
 
-    <h2>Q8ZZZ-MV417-EOP2T-3MA3L-N24UV</h2>
+<div class="container">
+    <div class="success-icon">🎉</div>
     
-    <p>Если возникли проблемы с активацией, пожалуйста, свяжитесь с нами по адресу <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a></p>
+    <h2>Спасибо за покупку!</h2>
+    
+    <p>Ваш заказ успешно оформлен. Лицензия активирована и готова к использованию.</p>
+    
+    <!-- Блок с лицензионным ключом -->
+    <div class="license-key">
+        <h3>🔑 Ваш лицензионный ключ:</h3>
+        <code>Q8ZZZ-MV417-EOP2T-3MA3L-N24UV</code>
+        <p style="font-size: 0.85rem; margin-top: 12px; margin-bottom: 0;">Сохраните этот ключ. Он понадобится для активации программы.</p>
+    </div>
+    
+    <!-- Кнопка скачивания ключа -->
+    <a href="downver/Key.txt" class="download-link" download>
+        📥 Скачать лицензионный ключ (.txt)
+    </a>
+    
+    <div class="button-group">
+        <a href="index.html" class="download-link button-secondary">🏠 На главную</a>
+        <a href="downver/SetupPSQLite.exe" class="download-link button-outline">💿 Скачать CRM (SQLite)</a>
+    </div>
+    
+    <hr>
+    
+    <div class="contact-info">
+        <p>📧 Если возникли проблемы с активацией, пожалуйста, свяжитесь с нами:</p>
+        <p><a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a></p>
+        <p style="margin-bottom: 0; font-size: 0.85rem;">Мы ответим в течение 24 часов (приоритетно для владельцев лицензии)</p>
+    </div>
 </div>
+
+<footer>
+    <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: 381616884622</p>
+    <div itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
+            <span itemprop="addressLocality">г. Москва</span>
+            <span itemprop="addressRegion">Россия</span>
+        </div>
+        Телефон: <span itemprop="telephone">+79655544200</span> |
+        Email: <a href="mailto:company@mybusiness-crm.ru" itemprop="email" style="color:#ffaa66;">company@mybusiness-crm.ru</a>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
 
 </body>
 </html>

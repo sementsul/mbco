@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База знаний | My-Business CRM — инструкции, FAQ, полезные материалы</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="База знаний My-Business CRM: инструкции по установке, настройке телефонии, интеграции мессенджеров, работа с базами данных, частые вопросы и ответы." />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 35px 30px;
+            margin: 40px auto;
+        }
+
+        .header-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        h3 {
+            color: #28a745;
+            margin: 30px 0 15px;
+            font-size: 1.3rem;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        h4 {
+            color: #007bff;
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        /* Категории */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .category-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #007bff;
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h4 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .category-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Статьи */
+        .articles-list {
+            margin: 20px 0;
+        }
+
+        .article-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+            transition: all 0.2s;
+        }
+
+        .article-item:hover {
+            background-color: #f8f9fa;
+            padding-left: 10px;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .article-title:hover {
+            text-decoration: underline;
+        }
+
+        .article-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.05rem;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .faq-question:hover {
+            color: #007bff;
+        }
+
+        .faq-question .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px 0 15px 20px;
+            color: #555;
+            border-left: 3px solid #28a745;
+            margin-top: 5px;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        /* Инфоблоки */
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 8px 0;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .button-outline:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .search-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #007bff;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .categories-grid {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My-Business - Ваша Offline CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами.</p>
+    <a href="index.html" class="back-button">← На главную</a>
+</header>
+
+<div class="container">
+    <div class="header-icon">📚</div>
+    
+    <h2>База знаний</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Инструкции, руководства и ответы на частые вопросы по работе с My-Business CRM</p>
+    
+    <!-- Поиск -->
+    <div class="search-box">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Поиск по базе знаний...">
+    </div>
+    
+    <!-- Категории -->
+    <div class="categories-grid">
+        <a href="#installation" class="category-card">
+            <div class="category-icon">📥</div>
+            <h4>Установка и настройка</h4>
+            <p>Установка CRM, выбор базы данных, первые шаги</p>
+        </a>
+        <a href="#telephony" class="category-card">
+            <div class="category-icon">📞</div>
+            <h4>Телефония</h4>
+            <p>Настройка Mango Talker и MicroSIP, совершение звонков</p>
+        </a>
+        <a href="#messengers" class="category-card">
+            <div class="category-icon">💬</div>
+            <h4>Мессенджеры</h4>
+            <p>Интеграция Telegram и WhatsApp</p>
+        </a>
+        <a href="#database" class="category-card">
+            <div class="category-icon">🗄️</div>
+            <h4>Базы данных</h4>
+            <p>SQLite, MySQL, совместная работа в команде</p>
+        </a>
+        <a href="#license" class="category-card">
+            <div class="category-icon">⭐</div>
+            <h4>Лицензия</h4>
+            <p>Что даёт лицензия, как приобрести, активация</p>
+        </a>
+        <a href="#faq" class="category-card">
+            <div class="category-icon">❓</div>
+            <h4>Частые вопросы</h4>
+            <p>Ответы на популярные вопросы пользователей</p>
+        </a>
+    </div>
+    
+    <hr id="installation">
+    
+    <!-- Раздел: Установка и настройка -->
+    <h3>📥 Установка и настройка</h3>
+    
+    <div class="articles-list">
+        <div class="article-item">
+            <a href="#" class="article-title">Установка My-Business CRM с SQLite</a>
+            <div class="article-desc">Пошаговая инструкция по установке версии с SQLite — для одного пользователя, без настройки сервера.</div>
+            <div class="article-date">30 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Установка My-Business CRM с MySQL</a>
+            <div class="article-desc">Настройка версии с MySQL для совместной работы нескольких сотрудников.</div>
+            <div class="article-date">28 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Первые шаги после установки</a>
+            <div class="article-desc">Как добавить первого клиента, настроить воронку продаж и начать работу.</div>
+            <div class="article-date">25 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Обновление программы до новой версии</a>
+            <div class="article-desc">Как обновить CRM без потери данных.</div>
+            <div class="article-date">20 мая 2024</div>
+        </div>
+    </div>
+    
+    <hr id="telephony">
+    
+    <!-- Раздел: Телефония -->
+    <h3>📞 Телефония</h3>
+    
+    <div class="success-box">
+        <strong>✅ Функция звонков доступна бесплатно!</strong> Для использования Mango Talker достаточно установить программу и войти в учётную запись Mango Office — интеграция не требуется.
+    </div>
+    
+    <div class="articles-list">
+        <div class="article-item">
+            <a href="mango-talker.html" class="article-title">Настройка Mango Talker для звонков из CRM</a>
+            <div class="article-desc">Инструкция по установке и настройке Mango Talker. Совершайте звонки прямо из карточки клиента.</div>
+            <div class="article-date">15 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Настройка MicroSIP для работы с CRM</a>
+            <div class="article-desc">Альтернативный SIP-клиент для совершения звонков.</div>
+            <div class="article-date">10 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Как подключить SIP-телефонию к Mango Talker</a>
+            <div class="article-desc">Получение и настройка SIP-данных от оператора.</div>
+            <div class="article-date">5 мая 2024</div>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <strong>📌 Быстрый старт с телефонией:</strong>
+        <ul class="feature-list" style="margin-top: 10px;">
+            <li>Скачайте и установите Mango Talker</li>
+            <li>Войдите в учётную запись Mango Office</li>
+            <li>В карточке клиента нажмите на иконку телефона</li>
+            <li>Звонок начнётся автоматически!</li>
+        </ul>
+    </div>
+    
+    <hr id="messengers">
+    
+    <!-- Раздел: Мессенджеры -->
+    <h3>💬 Мессенджеры</h3>
+    
+    <div class="articles-list">
+        <div class="article-item">
+            <a href="messengers.html" class="article-title">Интеграция Telegram и WhatsApp</a>
+            <div class="article-desc">Как настроить отправку сообщений клиентам из карточки CRM через мессенджеры.</div>
+            <div class="article-date">12 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Почему не открывается чат в Telegram?</a>
+            <div class="article-desc">Возможные причины и решения проблем с Telegram Desktop.</div>
+            <div class="article-date">8 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">WhatsApp Web: продление сессии и повторная авторизация</a>
+            <div class="article-desc">Как заново подключить WhatsApp Web, если сессия истекла.</div>
+            <div class="article-date">1 мая 2024</div>
+        </div>
+    </div>
+    
+    <hr id="database">
+    
+    <!-- Раздел: Базы данных -->
+    <h3>🗄️ Базы данных</h3>
+    
+    <div class="articles-list">
+        <div class="article-item">
+            <a href="#" class="article-title">SQLite vs MySQL: какую версию выбрать?</a>
+            <div class="article-desc">Сравнение версий и рекомендации по выбору под ваши задачи.</div>
+            <div class="article-date">18 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Настройка MySQL Server для совместной работы</a>
+            <div class="article-desc">Установка и настройка MySQL, создание базы данных и пользователя.</div>
+            <div class="article-date">14 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Резервное копирование данных</a>
+            <div class="article-desc">Как делать бэкапы базы данных и восстанавливать информацию.</div>
+            <div class="article-date">3 мая 2024</div>
+        </div>
+    </div>
+    
+    <hr id="license">
+    
+    <!-- Раздел: Лицензия -->
+    <h3>⭐ Лицензия</h3>
+    
+    <div class="articles-list">
+        <div class="article-item">
+            <a href="LIC.html" class="article-title">Что даёт лицензия?</a>
+            <div class="article-desc">Приоритетная поддержка, эксклюзивные функции, отключение информационных сообщений.</div>
+            <div class="article-date">20 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Как приобрести лицензию?</a>
+            <div class="article-desc">Способы оплаты, стоимость, получение лицензионного ключа.</div>
+            <div class="article-date">15 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="#" class="article-title">Активация лицензионного ключа</a>
+            <div class="article-desc">Пошаговая инструкция по вводу ключа и активации программы.</div>
+            <div class="article-date">10 мая 2024</div>
+        </div>
+        <div class="article-item">
+            <a href="downver/LICENSE.pdf" class="article-title">Лицензионное соглашение (PDF)</a>
+            <div class="article-desc">Полный текст лицензионного соглашения.</div>
+            <div class="article-date">1 мая 2024</div>
+        </div>
+    </div>
+    
+    <hr id="faq">
+    
+    <!-- Раздел: Частые вопросы -->
+    <h3>❓ Частые вопросы (FAQ)</h3>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Нужно ли покупать лицензию для работы программы?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            Нет, лицензия приобретается <strong>добровольно</strong>. Программа работает без функциональных, временных или количественных ограничений даже без лицензии. Лицензия — это способ поддержать разработчика и получить дополнительные преимущества (приоритетная поддержка, эксклюзивные функции, отключение сообщений).
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Какую версию базы данных выбрать — SQLite или MySQL?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            <ul class="feature-list">
+                <li><strong>SQLite</strong> — для одного пользователя, не требует настройки сервера, данные хранятся в файле.</li>
+                <li><strong>MySQL</strong> — для командной работы (2+ пользователей), требует установки MySQL Server.</li>
+            </ul>
+            Если вы работаете один — рекомендуем SQLite. Если планируете работать с коллегами — выбирайте MySQL.
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Как совершать звонки из CRM?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            <ol class="step-list">
+                <li>Установите <a href="https://www.mango-office.ru/products/mango-talker/download/">Mango Talker</a> или <a href="https://www.microsip.org/">MicroSIP</a></li>
+                <li>Войдите в учётную запись Mango Office (или настройте SIP в MicroSIP)</li>
+                <li>В карточке клиента нажмите на иконку телефона рядом с номером</li>
+                <li>Звонок начнётся автоматически!</li>
+            </ol>
+            Телефония доступна <strong>бесплатно</strong>.
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Как отправить сообщение клиенту в Telegram или WhatsApp?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            <ul class="feature-list">
+                <li><strong>Telegram:</strong> установите Telegram Desktop и авторизуйтесь. В карточке клиента нажмите на иконку Telegram.</li>
+                <li><strong>WhatsApp:</strong> при первом нажатии на иконку откроется WhatsApp Web — отсканируйте QR-код телефоном. После этого чат будет открываться автоматически.</li>
+            </ul>
+            Номер телефона должен быть указан в международном формате (+7...).
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Могу ли я работать в команде, не покупая лицензию?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            Да, вы можете использовать MySQL версию для совместной работы без лицензии. Единственное условие — каждый сотрудник должен иметь установленную программу и доступ к общей базе данных MySQL. Лицензия влияет только на дополнительные преимущества, но не на функциональность.
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Где скачать программу?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            Нажмите кнопку «Скачать» в верхней части главной страницы. Доступны две версии:
+            <ul class="feature-list">
+                <li><strong>SQLite версия</strong> — для одного пользователя</li>
+                <li><strong>MySQL версия</strong> — для командной работы</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+            Что делать, если возникла проблема?
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+            <ol class="step-list">
+                <li>Проверьте настройки программы и мессенджеров</li>
+                <li>Посмотрите раздел «Возможные проблемы» в соответствующих инструкциях</li>
+                <li>Напишите в техническую поддержку: <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a></li>
+            </ol>
+            Владельцы лицензии получают <strong>приоритетную поддержку</strong>.
+        </div>
+    </div>
+    
+    <hr>
+    
+    <!-- Дополнительные материалы -->
+    <div class="info-box">
+        <strong>📞 Не нашли ответ на свой вопрос?</strong><br>
+        Свяжитесь с нами по электронной почте <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a> или воспользуйтесь онлайн-чатом на сайте.<br>
+        <span style="font-size: 0.85rem;">Владельцы лицензии обслуживаются в приоритетном порядке.</span>
+    </div>
+    
+    <div class="button-group">
+        <a href="index.html" class="download-button">🏠 На главную</a>
+        <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать CRM (SQLite)</a>
+        <a href="downver/SetupPMySQL.exe" class="download-button button-outline">⬇️ Скачать CRM (MySQL)</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: 381616884622</p>
+    <div itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
+            <span itemprop="addressLocality">г. Москва</span>
+            <span itemprop="addressRegion">Россия</span>
+        </div>
+        Телефон: <span itemprop="telephone">+79655544200</span> |
+        Email: <a href="mailto:company@mybusiness-crm.ru" itemprop="email" style="color:#ffaa66;">company@mybusiness-crm.ru</a>
+    </div>
+</footer>
+
+<script>
+    // Год в футере
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+    
+    // Функция для раскрытия FAQ
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('.toggle-icon');
+        
+        answer.classList.toggle('show');
+        
+        if (answer.classList.contains('show')) {
+            icon.innerHTML = '▲';
+        } else {
+            icon.innerHTML = '▼';
+        }
+    }
+    
+    // Поиск по базе знаний
+    const searchInput = document.getElementById('searchInput');
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        // Поиск по статьям
+        const articles = document.querySelectorAll('.article-item');
+        articles.forEach(article => {
+            const title = article.querySelector('.article-title').textContent.toLowerCase();
+            const desc = article.querySelector('.article-desc').textContent.toLowerCase();
+            
+            if (searchTerm === '' || title.includes(searchTerm) || desc.includes(searchTerm)) {
+                article.style.display = 'block';
+            } else {
+                article.style.display = 'none';
+            }
+        });
+        
+        // Поиск по FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

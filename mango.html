@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройка Mango Talker для My-Business CRM | Функция звонков</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по настройке Mango Talker для звонков из My-Business CRM. Достаточно установить программу и войти в учётную запись Mango Office — интеграция не требуется." />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 35px 30px;
+            margin: 40px auto;
+        }
+
+        .header-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        h3 {
+            color: #28a745;
+            margin: 25px 0 15px;
+            font-size: 1.3rem;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .step-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            border-radius: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0 15px;
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .button-outline:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .simple-steps {
+            background: #e8f5e9;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .simple-steps .step {
+            display: inline-block;
+            margin: 10px 20px;
+            text-align: center;
+        }
+
+        .simple-steps .step-number-large {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My-Business - Ваша Offline CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами.</p>
+    <a href="index.html" class="back-button">← На главную</a>
+</header>
+
+<div class="container">
+    <div class="header-icon">📞</div>
+    
+    <h2>Настройка Mango Talker</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Совершайте звонки клиентам прямо из карточки в CRM</p>
+    
+    <div class="success-box">
+        <strong>✅ Функция звонков доступна бесплатно!</strong> Для использования достаточно установить Mango Talker и войти в учётную запись Mango Office. Никакой дополнительной интеграции не требуется — My-Business CRM использует программу автоматически.
+    </div>
+    
+    <div class="info-box">
+        <strong>📌 Как это работает?</strong><br>
+        My-Business CRM автоматически обнаруживает установленный Mango Talker. Когда вы нажимаете на номер телефона в карточке клиента, программа передаёт номер в Mango Talker, и звонок совершается автоматически. Вам не нужно настраивать интеграцию вручную.
+    </div>
+    
+    <h3>🚀 Быстрая настройка — всего 2 шага</h3>
+    
+    <div class="simple-steps">
+        <div class="step">
+            <div class="step-number-large">1</div>
+            <div><strong>Установить Mango Talker</strong></div>
+        </div>
+        <div class="step">
+            <div class="step-number-large">2</div>
+            <div><strong>Войти в учётную запись</strong></div>
+        </div>
+        <div class="step">
+            <div class="step-number-large">🎉</div>
+            <div><strong>Всё готово!</strong></div>
+        </div>
+    </div>
+    
+    <h3>📥 Шаг 1. Установка Mango Talker</h3>
+    <div class="step-box">
+        <div class="step-title"><span class="step-number">1</span> Скачайте и установите Mango Talker</div>
+        <p>Перейдите на официальный сайт Mango Office и скачайте дистрибутив:</p>
+        <div class="button-group" style="margin: 15px 0;">
+            <a href="https://www.mango-office.ru/products/mango-talker/download/" class="download-button" target="_blank">⬇️ Скачать Mango Talker (бесплатно)</a>
+        </div>
+        <ul class="step-list">
+            <li>Запустите установочный файл</li>
+            <li>Следуйте инструкциям установщика (обычно "Далее → Далее → Установить")</li>
+            <li>После установки запустите программу</li>
+        </ul>
+    </div>
+    
+    <h3>🔑 Шаг 2. Вход в учётную запись Mango Office</h3>
+    <div class="step-box">
+        <div class="step-title"><span class="step-number">2</span> Авторизуйтесь в Mango Talker</div>
+        <p>В открывшемся окне Mango Talker введите данные вашей учётной записи Mango Office:</p>
+        <ul class="feature-list">
+            <li><strong>Логин</strong> — ваш номер телефона или email, указанный при регистрации</li>
+            <li><strong>Пароль</strong> — пароль от учётной записи Mango Office</li>
+        </ul>
+        <div class="warning-box" style="margin-top: 15px;">
+            <strong>ℹ️ Нет учётной записи Mango Office?</strong><br>
+            Зарегистрироваться можно бесплатно на сайте <a href="https://www.mango-office.ru/" target="_blank" style="color:#007bff;">mango-office.ru</a>. Вам также понадобится подключённая SIP-телефония (услуга предоставляется по подписке).
+        </div>
+    </div>
+    
+    <h3>📞 Шаг 3. Всё готово — звоните из CRM!</h3>
+    <div class="step-box">
+        <div class="step-title"><span class="step-number">3</span> My-Business CRM автоматически подхватит программу</div>
+        <p>После установки и авторизации Mango Talker:</p>
+        <ul class="feature-list">
+            <li>Откройте My-Business CRM</li>
+            <li>Найдите клиента в списке или откройте карточку клиента</li>
+            <li>Нажмите на иконку телефона 📞 рядом с номером</li>
+            <li>Mango Talker автоматически запустится (ещё не запущен) и начнёт звонок</li>
+        </ul>
+        <div class="success-box" style="margin-top: 15px;">
+            <strong>💡 Важно:</strong> Никакой дополнительной настройки в CRM не требуется! Программа автоматически обнаруживает установленный Mango Talker и передаёт номер для звонка.
+        </div>
+    </div>
+    
+    <h3>⚠️ Возможные проблемы и решения</h3>
+    <div class="warning-box">
+        <ul class="feature-list">
+            <li><strong>Звонок не совершается:</strong> Убедитесь, что Mango Talker запущен и вы вошли в учётную запись</li>
+            <li><strong>Программа не найдена:</strong> Убедитесь, что Mango Talker установлен в стандартную папку</li>
+            <li><strong>Ошибка авторизации:</strong> Проверьте правильность логина и пароля Mango Office</li>
+            <li><strong>Нет звука при звонке:</strong> Проверьте настройки микрофона и динамиков в Mango Talker</li>
+        </ul>
+    </div>
+    
+    <div class="info-box">
+        <strong>📞 Альтернативное решение — MicroSIP</strong><br>
+        Вы также можете использовать бесплатного SIP-клиента <a href="https://www.microsip.org/" target="_blank" style="color:#007bff;">MicroSIP</a>. В этом случае потребуется ручная настройка SIP-аккаунта (данные предоставляет оператор телефонии). My-Business CRM автоматически работает и с MicroSIP.
+    </div>
+    
+    <hr>
+    
+    <div class="button-group">
+        <a href="index.html" class="download-button">🏠 На главную</a>
+        <a href="https://www.mango-office.ru/products/mango-talker/download/" class="download-button button-outline" target="_blank">📥 Скачать Mango Talker</a>
+    </div>
+    
+    <p style="text-align: center; font-size: 0.85rem; margin-top: 20px;">
+        📧 По вопросам работы телефонии: <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a>
+    </p>
+</div>
+
+<footer>
+    <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: 381616884622</p>
+    <div itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
+            <span itemprop="addressLocality">г. Москва</span>
+            <span itemprop="addressRegion">Россия</span>
+        </div>
+        Телефон: <span itemprop="telephone">+79655544200</span> |
+        Email: <a href="mailto:company@mybusiness-crm.ru" itemprop="email" style="color:#ffaa66;">company@mybusiness-crm.ru</a>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>My-Business (Offline CRM) — Гибкая CRM без ограничений</title>
+    <meta name="description" content="My-Business (Offline CRM) — программа для учёта клиентов и звонков с честной моделью: бесплатно без блокировок или платная лицензия в поддержку разработчика. Приоритетная поддержка, эксклюзивные функции, без информационных сообщений.">
+    <meta name="keywords" content="CRM, оффлайн CRM, управление бизнесом, учёт клиентов, CRM для малого бизнеса, бесплатная CRM">
+    <meta name="author" content="НДП Семенцул Максим Геннадиевич">
+    <meta name="copyright" content="НДП Семенцул Максим Геннадиевич">
+    <link rel="canonical" href="https://mybusiness-crm.ru">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Nav */
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+            -webkit-background-clip: unset;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline-light:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 5rem 0;
+            background: linear-gradient(145deg, #eef4fa 0%, #ffffff 100%);
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: #e0f0ff;
+            color: #1a6a9f;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #0f2b3d, #2b6c9e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2c4c6c;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1e6f9f;
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #0f5a83;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #eef4fc;
+        }
+
+        .hero-image {
+            flex: 0.9;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .mock-crm {
+            background: #e9f0f5;
+            border-radius: 1.5rem;
+            padding: 2rem 1rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #1e3a5f;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #0a2a3b;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #cde0ec;
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Блок лицензии — детали */
+        .license-benefits {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .benefit-block {
+            background: #f9fdfe;
+            border-left: 4px solid #f5b042;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+        }
+
+        .info-note {
+            background: #fef7e0;
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            border-left: 4px solid #e6b422;
+        }
+
+        .free-note {
+            background: #eef3fa;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        /* Tabla de condiciones */
+        .legal-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #cbdde9;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        @media (max-width: 780px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text p {
+                max-width: 100%;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="#features">Возможности</a>
+            <a href="#license">Лицензия</a>
+            <a href="#legal">Правовая info</a>
+            <a href="https://mybusiness-crm.ru" class="btn-outline-light">Приобрести</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-badge">⚡ Работает оффлайн · Без скрытых блокировок</div>
+                <h1>CRM, которая уважает ваш выбор</h1>
+                <p>My-Business (Offline CRM) — мощная программа для учёта клиентов, звонков и сделок. Работает без интернета, без функциональных ограничений. Платите только если хотите поддержать проект.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Скачать бесплатно</a>
+                    <a href="#license" class="btn-secondary">Что даёт лицензия?</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="mock-crm">
+                    📞 Карточка клиента<br/>
+                    Иван Петров · +7 999 123-45-67<br/>
+                    🟢 Последний звонок: Сегодня<br/>
+                    📝 Следующая встреча: 12 мая<br/>
+                    ⭐ Сделка: В работе
+                </div>
+                <p style="font-size:0.7rem; margin-top:0.8rem;">*Демонстрационный интерфейс</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Особенности (бесплатные фичи) -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Работает без ограничений даже бесплатно</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Полноценная оффлайн CRM</h3>
+                    <p>Все данные хранятся локально. Полный контроль над информацией о клиентах, сделках и истории взаимодействий.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🕒</div>
+                    <h3>Никаких временных лимитов</h3>
+                    <p>Неограниченное количество контактов, звонков и записей. Никаких «пробных периодов» и урезанных версий.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔊</div>
+                    <h3>Звонки с напоминанием</h3>
+                    <p>Интеграция с IP-телефонией, журнал звонков, удобные уведомления. При каждом звонке — поддержка без блокировок.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♾️</div>
+                    <h3>Без количественных ограничений</h3>
+                    <p>Создавайте сколько угодно карточек, проектов и отчётов. Программа не замедляется и не требует платить за «расширение».</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что даёт лицензия (из п.6.1) -->
+    <section id="license" style="background: #eef2f8;">
+        <div class="container">
+            <h2 class="section-title">Приобретая лицензию, вы поддерживаете развитие</h2>
+            <div class="license-benefits">
+                <div class="benefits-list">
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">⚡</div>
+                        <h3>Приоритетная техподдержка</h3>
+                        <p>Ваши обращения обрабатываются в первую очередь. Быстрые ответы и помощь от разработчика.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🔒</div>
+                        <h3>Эксклюзивные функции</h3>
+                        <p>Доступ к специальным возможностям, которые могут быть добавлены для владельцев лицензий.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🎓</div>
+                        <h3>Персональные консультации</h3>
+                        <p>Индивидуальная настройка CRM под ваш бизнес, помощь в интеграциях и рабочих сценариях.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🔇</div>
+                        <h3>Без информационных сообщений</h3>
+                        <p>Никаких надписей «приобретите лицензию» при запуске и во время звонков — чистая рабочая среда.</p>
+                    </div>
+                </div>
+                <div class="info-note">
+                    <p><strong>💡 Важно из лицензионного соглашения:</strong></p>
+                    <p>✔ Лицензия <strong>не обязательна</strong> — вы можете пользоваться ПО бесплатно без функциональных, временных или количественных ограничений (п. 3.1, 3.3).</p>
+                    <p>✔ Покупка лицензии — <strong>добровольное решение</strong>, если программа оказалась полезной и вы хотите поддержать дальнейшее развитие (п. 3.4).</p>
+                    <p>✔ Лицензиар <strong>не блокирует работу</strong> для пользователей без лицензии (п. 4.1).</p>
+                </div>
+                <div class="free-note">
+                    ⭐ Стоимость и порядок приобретения: <a href="https://mybusiness-crm.ru" style="color:#1e6f9f; font-weight:600;">mybusiness-crm.ru</a>. Факт оплаты = акцепт оферты на приобретение лицензии.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Условия и права (из лицензии) -->
+    <section id="legal">
+        <div class="container">
+            <h2 class="section-title">Официальные условия использования</h2>
+            <div class="legal-card">
+                <div style="display: grid; gap: 1.2rem;">
+                    <div><strong>📜 Предмет соглашения:</strong> Неисключительная, непередаваемая лицензия на использование ПО «My-Business (Offline CRM)».</div>
+                    <div><strong>🧠 Интеллектуальная собственность:</strong> Все права на ПО, исходный код, дизайн и товарные знаки принадлежат Лицензиару (НДП Семенцул Максим Геннадиевич). Соглашение не передаёт прав собственности.</div>
+                    <div><strong>🚫 Ограничения:</strong> Запрещена сдача в аренду, модификация, декомпиляция, удаление уведомлений об авторских правах, использование в целях, противоречащих законодательству РФ.</div>
+                    <div><strong>⚖️ Ответственность:</strong> ПО предоставляется «КАК ЕСТЬ». Лицензиар не гарантирует безошибочную работу и не несёт ответственности за любые прямые или косвенные убытки.</div>
+                    <div><strong>🔄 Изменения соглашения:</strong> Лицензиар вправе вносить изменения — новые условия публикуются на сайте. Продолжение использования означает принятие обновлений.</div>
+                    <div><strong>🏛️ Применимое право:</strong> Регулируется законодательством РФ, споры — в претензионном порядке, затем в суде по месту нахождения Лицензиара.</div>
+                </div>
+                <hr style="margin: 1.5rem 0; border-color:#cbdde9;">
+                <p style="font-size:0.85rem;">Установка и использование программы означает полное согласие с условиями Лицензионного соглашения. При несогласии вы обязаны удалить все файлы ПО с ваших устройств.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section style="padding: 2rem 0 4rem;">
+        <div class="container" style="text-align: center; background: linear-gradient(115deg, #f0f5fa, white); border-radius: 2rem; padding: 2.5rem;">
+            <h2 style="font-size: 1.8rem;">Готовы попробовать?<br>CRM, которая не ставит рамки</h2>
+            <p style="margin: 1rem auto; max-width: 500px;">Скачайте <strong>My-Business (Offline CRM)</strong> бесплатно. Оцените удобство, а если проект станет полезным — приобретите лицензию в знак поддержки.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                <a href="#" class="btn-primary" style="background: #0f5a83;">Скачать для Windows / Linux</a>
+                <a href="https://mybusiness-crm.ru" class="btn-secondary">Подробнее о лицензии</a>
+            </div>
+            <p style="margin-top: 1.5rem; font-size:0.75rem; opacity:0.7;">*При каждом запуске (в бесплатной версии) отображается информационное сообщение, которое легко закрыть. Оно не блокирует функции.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="#license" style="text-decoration: none;">Преимущества лицензии</a></p>
+                <p><a href="#legal" style="text-decoration: none;">Юридическая информация</a></p>
+                <p><a href="https://mybusiness-crm.ru" style="text-decoration: none;">Официальный сайт</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты техподдержки</strong><br>(приоритетная — для лицензиатов)</p>
+                <p>support@mybusiness-crm.ru</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

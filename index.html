@@ -1,368 +1,620 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My-BusinessCRM - CRM без ограничений: купите лицензию, если программа вам понравилась.</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
- <meta name="description" content="MyBusinessCRM - это CRM система, разработанная для того, чтобы помочь вам организовать продажи и улучшить взаимодействие с клиентами. Она идеально подходит для малого и среднего бизнеса, а также для индивидуальных предпринимателей." />
-  
-  
-  <style>
-    /* Basic Styling - Move to a separate CSS file for production */
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-    }
-    header {
-      background-color: #007bff; /* Primary Color */
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      width: 80%;
-      margin: auto;
-      overflow: hidden;
-      padding: 20px;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    h2 {
-      color: #007bff;
-    }
-    .button {
-      background-color: #28a745; /* Success Color */
-      color: #fff;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-    }
-    .feature-list {
-      list-style: disc;
-      margin-left: 20px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-    }
-    .screenshot {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      display: block;
-      border: 1px solid #ddd;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .screenshot-caption {
-      text-align: center;
-      margin-top: 5px;
-      font-style: italic;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>My-Business (Offline CRM) — Гибкая CRM без ограничений</title>
+    <meta name="description" content="My-Business (Offline CRM) — программа для учёта клиентов и звонков с честной моделью: бесплатно без блокировок или платная лицензия в поддержку разработчика. Приоритетная поддержка, эксклюзивные функции, без информационных сообщений.">
+    <meta name="keywords" content="CRM, оффлайн CRM, управление бизнесом, учёт клиентов, CRM для малого бизнеса, бесплатная CRM">
+    <meta name="author" content="НДП Семенцул Максим Геннадиевич">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-  box-sizing: border-box;
-}
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    
-  </style>
+        /* Header */
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-<style>
-.popup {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.8); 
-}
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-.popup-content {
-    background-color: white; 
-    margin: 15% auto; 
-    padding: 20px; 
-    border: 1px solid #888; 
-    width: 80%; 
-    max-width: 600px; 
-    position: relative; 
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-.close {
-    color: #aaa; 
-    float: right; 
-    font-size: 28px; 
-    font-weight: bold; 
-}
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
 
-.close:hover,
-.close:focus {
-    color: black; 
-    text-decoration: none; 
-    cursor: pointer; 
-}
-</style>
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-<script>
-function openPopup() {
-    document.getElementById("popup").style.display = "block";
-}
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
 
+        .btn-outline-light {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
 
-</script>
+        .btn-outline-light:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
 
-<script>
-function triggerDownload(fileName) {
-  var element = document.createElement('a');
-  element.setAttribute('href', fileName);
-  element.setAttribute('download', fileName);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  // Происходит клик, словно совершил его сам программирующий ниндзя
-  element.click();
-  document.body.removeChild(element);
-}
-</script>
+        .btn-buy-nav {
+            background: #f5b042;
+            border: none;
+            color: #1a2c3e;
+        }
 
-  <!-- Chatra {literal} -->
-<script>
-    (function(d, w, c) {
-        w.ChatraID = 'BWzNWh4LFBTmhtFTf';
-        var s = d.createElement('script');
-        w[c] = w[c] || function() {
-            (w[c].q = w[c].q || []).push(arguments);
-        };
-        s.async = true;
-        s.src = 'https://call.chatra.io/chatra.js';
-        if (d.head) d.head.appendChild(s);
-    })(document, window, 'Chatra');
-</script>
-<!-- /Chatra {/literal} -->
+        .btn-buy-nav:hover {
+            background: #ffc55a;
+            color: #0a1e2c;
+        }
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108501312', 'ym');
+        /* Hero */
+        .hero {
+            padding: 4rem 0 5rem 0;
+            background: linear-gradient(145deg, #eef4fa 0%, #ffffff 100%);
+        }
 
-    ym(108501312, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108501312" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
 
-  <script>
-window.ChatraSetup = {
-    yaCounterId: 108501312 // ID счетчика Метрики
-};
-</script>
+        .hero-text {
+            flex: 1.2;
+        }
 
-<!-- Код виджета Чатры -->
-  
-  
+        .hero-badge {
+            background: #e0f0ff;
+            color: #1a6a9f;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #0f2b3d, #2b6c9e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2c4c6c;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #1e6f9f;
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #0f5a83;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #eef4fc;
+        }
+
+        .btn-buy {
+            background: #f5b042;
+            border: none;
+            color: #1a2c3e;
+            box-shadow: 0 4px 12px rgba(245, 176, 66, 0.3);
+        }
+
+        .btn-buy:hover {
+            background: #ffaa2a;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 0.9;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* Screenshots section */
+        .screenshots {
+            background: #ffffff;
+            padding: 4rem 0;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot-card {
+            background: #f9fbfd;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.25s ease;
+            border: 1px solid #e2edf2;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-placeholder {
+            background: linear-gradient(145deg, #dcebf3, #c2d6e4);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #2c5a7a;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: white;
+        }
+
+        .screenshot-card p {
+            padding: 1rem;
+            font-weight: 500;
+            text-align: center;
+            background: white;
+        }
+
+        /* Features */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #0a2a3b;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        /* License block */
+        .license-benefits {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .benefit-block {
+            background: #f9fdfe;
+            border-left: 4px solid #f5b042;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+        }
+
+        .info-note {
+            background: #fef7e0;
+            border-radius: 1rem;
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            border-left: 4px solid #e6b422;
+        }
+
+        .free-note {
+            background: #eef3fa;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+
+        .legal-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #cbdde9;
+        }
+
+        .buy-section {
+            background: linear-gradient(125deg, #0f2b3d, #1c4d6e);
+            color: white;
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .buy-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .buy-section .btn-buy-large {
+            background: #f5b042;
+            color: #1a2c3e;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .buy-section .btn-buy-large:hover {
+            background: #ffc267;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 780px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>My-Business - Ваша Offline CRM</h1>
-    <p>Простая, мощная и доступная система для управления продажами.</p>
-   
- 
-  
-
-
-
-    <button type="button" class="button" onclick="openPopup()">Скачать</button>
-
-<div id="popup" class="popup" style="display:none;">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2>Скачать MyBusinessCRM</h2>
-        <button class="button" onclick="triggerDownload('downver/SetupPSQLite.exe')">Скачать версию с SQLite</button>
-        <button class="button" onclick="triggerDownload('downver/SetupPMySQL.exe')">Скачать версию с MySQL</button>
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="#features">Возможности</a>
+            <a href="#screenshots">Скриншоты</a>
+            <a href="#license">Лицензия</a>
+            <a href="#legal">Правовая info</a>
+            <a href="#buy-now" class="btn-outline-light btn-buy-nav">💰 Купить лицензию</a>
         </div>
-</div>
-    
-      
-    
-  
-  </header>
-
-  <div class="container">
-
-    <section id="overview">
-      <h2>Обзор</h2>
-      <p>My-Business - это CRM система, разработанная для того, чтобы помочь вам организовать продажи и улучшить взаимодействие с клиентами.  Она идеально подходит для малого и среднего бизнеса, индивидуальных предпренимателей и самозанятых.</p>
-      <p><strong>Ключевое преимущество:</strong>  CRM без ограничений, купите лицензию, если программа вам понравилась. Отсутствие лицензии ни как, не ограничевает работу программы, подробнее можно узнать из <a href="downver/LICENSE.pdf">лицензионного соглашения</a></p>
-    </section>
-
-    <section id="features">
-      <h2>Основные возможности</h2>
-      <ul class="feature-list">
-        <li><strong>Поддержка баз данных:</strong> SQLite (без интернета, можно использовать сетевую папку) и MySQL (для совместной работы).</li>
-        <li><strong>Мессенджеры:</strong>  Отправляйте сообщения клиентам прямо из CRM через WhatsApp и Telegram. Для использования Telegram нужно установить Telegram desktop</li>
-        <li><strong>Аналитика:</strong>  Отслеживайте суммы сборов и анализируйте динамику продаж за любой период времени.</li>
-        <li><strong>Простота использования:</strong>  Интуитивно понятный интерфейс, не требующий специальных навыков.</li>
-        <li><strong>Базовый функционал:</strong>  Всё необходимое для начала продаж: ведение клиентов, фиксация звонков, комментарии.</li>
-        <li><strong>Работа в команде:</strong>  Поддержка работы с коллегами через CRM.</li>
-        <li><strong>Структурирование клиентов:</strong>  Сортировка по дате звонка, ФИО, воронка, стадия.</li>
-        <li><strong>Быстрый старт:</strong>  Не требует настроек или создания учётных записей (кроме версии с MySQL).</li>
-      </ul>
-    </section>
-
-    <section id="screenshots">
-      <h2>Скриншоты</h2>
-
-
-
-
-
-
-
-       <a href="#" onclick="openFullscreenimg1();">
-      <img src="img/img1.png" alt="Главное окно CRM" class="screenshot" controls id="img1"></a>
-      <p class="screenshot-caption">Главное окно CRM: Общий вид и навигация.</p>
-
-      <a href="#" onclick="openFullscreenimg2();">
-      <img src="img/img3.png" alt="Карточка клиента" class="screenshot" controls id="img2"></a>
-      <p class="screenshot-caption">Карточка клиента: Подробная информация и история взаимодействий.</p>
-
-       <a href="#" onclick="openFullscreenimg3();">
-      <img src="img/img4.png" alt="Аналитика продаж" class="screenshot" class="screenshot" controls id="img3"></a>
-      <p class="screenshot-caption">Аналитика продаж: Отслеживание сумм сборов и динамики продаж.</p>
-
-      <a href="#" onclick="openFullscreenimg4();">
-      <img src="img/img.png" alt="Интеграция с мессенджерами" class="screenshot" controls id="img4"></a>
-      <p class="screenshot-caption">Звонок из CRM, через Mango Talker.</p>
-    </section>
-
-
-<script>
-var elema = document.getElementById("img1");
-function openFullscreenimg1() {
-  if (elema.requestFullscreen) {
-    elema.requestFullscreen();
-  } else if (elema.mozRequestFullScreen) { /* Firefox */
-    elema.mozRequestFullScreen();
-  } else if (elema.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-    elema.webkitRequestFullscreen();
-  } else if (elema.msRequestFullscreen) { /* IE/Edge */
-    elema.msRequestFullscreen();
-  }
-}
-</script>
-
-
-
-<script>
-var elemb = document.getElementById("img2");
-function openFullscreenimg2() {
-  if (elemb.requestFullscreen) {
-    elemb.requestFullscreen();
-  } else if (elemb.mozRequestFullScreen) { /* Firefox */
-    elemb.mozRequestFullScreen();
-  } else if (elemb.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-    elemb.webkitRequestFullscreen();
-  } else if (elemb.msRequestFullscreen) { /* IE/Edge */
-    elemb.msRequestFullscreen();
-  }
-}
-</script>
-
-<script>
-var elemd = document.getElementById("img3");
-function openFullscreenimg3() {
-  if (elemd.requestFullscreen) {
-    elemd.requestFullscreen();
-  } else if (elemd.mozRequestFullScreen) { /* Firefox */
-    elemd.mozRequestFullScreen();
-  } else if (elemd.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-    elemd.webkitRequestFullscreen();
-  } else if (elemd.msRequestFullscreen) { /* IE/Edge */
-    elemd.msRequestFullscreen();
-  }
-}
-</script>
-
-
-<script>
-var elem = document.getElementById("img4");
-function openFullscreenimg4() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
-}
-</script>
-
-
-    
-    
-
-    <section id="versions">
-      <h2>О лицензии</h2>
-      <h3>Что даёт лицензия: <a href="LIC.html">О лицензии.</a></h3>
-      
-
-      <h2>Настройка телефонии</h2>
-      <ul class="feature-list">
-        <li><strong>Поддержка SIP телефонии:</strong>  Интеграция с программой <a href="https://www.microsip.org/">MicroSIP</a> или клиентом <a href="https://www.mango-office.ru/products/mango-talker/download/">Mango Talker</a> для совершения звонков прямо из CRM.</li>
-      </ul>
-      <p><strong>Для работы телефонии необходимо установить <a href="https://www.microsip.org/">MicroSIP</a> или клиент <a href="https://www.mango-office.ru/products/mango-talker/download/">Mango Talker</a></strong></p>
-    </section>
-
-    <section id="call-to-action">
-      <h2>Начните использовать My-Business сегодня!</h2>
-
-<button type="button" class="button" onclick="openPopup()">Скачать бесплатно</button>
-<button onclick="window.location.href='kipit.html';" type="button" class="button">Купить лицензию</button>
- <button onclick="window.location.href='downver/LICENSE.pdf';" type="button" class="button">Лицензия</button>     
-    </section>
-
-  </div>
-
-  <footer>
-    <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: <a href="Inquiry.pdf">381616884622</a></p>
-
-    <div itemscope itemtype="http://schema.org/Organization">
-    <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
-    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-      <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
-      <span itemprop="addressLocality">г. Москва</span>
-      <span itemprop="addressRegion">Россия</span>
-      <span itemprop="postalCode"></span>
     </div>
-    Phone: <span itemprop="telephone">+79655544200</span>
-    Email: <a href="mailto:company@mybusiness-crm.ru" itemprop="email">company@mybusiness-crm.ru</a>
-</div>
-  
-  </footer>
-<script>
-    document.getElementById("year").innerHTML = new Date().getFullYear();
-  </script>
-  
+</header>
+
+<main>
+    <div class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-badge">⚡ Работает оффлайн · Без скрытых блокировок</div>
+                <h1>CRM, которая уважает ваш выбор</h1>
+                <p>My-Business (Offline CRM) — программа для учёта клиентов, звонков и сделок. Работает без интернета, без функциональных ограничений. Платите только если хотите поддержать проект.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Скачать бесплатно</a>
+                    <a href="#license" class="btn-secondary">Что даёт лицензия?</a>
+                    <a href="#buy-now" class="btn-primary btn-buy">💎 Приобрести лицензию</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div style="background:#e9f0f5; border-radius:1.5rem; padding:2rem 1rem; font-family:monospace; font-size:0.8rem;">
+                    📞 Карточка клиента<br/>
+                    Иван Петров · +7 999 123-45-67<br/>
+                    🟢 Последний звонок: Сегодня<br/>
+                    📝 Следующая встреча: 12 мая<br/>
+                    ⭐ Сделка: В работе
+                </div>
+                <p style="font-size:0.7rem; margin-top:0.8rem;">*Интерфейс программы</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4 СКРИНШОТА -->
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 class="section-title">Как работает My-Business CRM</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        🗂️📋
+                        <span>Список контактов</span>
+                    </div>
+                    <p>Удобная таблица клиентов, поиск, фильтрация и группировка</p>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        📞📊
+                        <span>Журнал звонков</span>
+                    </div>
+                    <p>Фиксация всех звонков, длительность, напоминания и аудит</p>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        📅✅
+                        <span>Задачи и сделки</span>
+                    </div>
+                    <p>Воронка продаж, планирование встреч, статусы сделок</p>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-placeholder">
+                        📈🔒
+                        <span>Отчёты оффлайн</span>
+                    </div>
+                    <p>Аналитика по продажам, KPI, выгрузка в Excel — всё локально</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #4a627a;">*Демонстрационные макеты основных экранов программы</p>
+        </div>
+    </section>
+
+    <!-- Особенности (бесплатные фичи) -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Работает без ограничений даже бесплатно</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:2.4rem;">📁</div>
+                    <h3>Полноценная оффлайн CRM</h3>
+                    <p>Все данные локально. Полный контроль информации о клиентах, сделках и истории.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:2.4rem;">🕒</div>
+                    <h3>Никаких временных лимитов</h3>
+                    <p>Неограниченное количество контактов, звонков, записей. Без пробных периодов.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:2.4rem;">🔊</div>
+                    <h3>Звонки с напоминанием</h3>
+                    <p>Интеграция с IP-телефонией, удобные уведомления, поддержка без блокировок.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="font-size:2.4rem;">♾️</div>
+                    <h3>Без количественных ограничений</h3>
+                    <p>Создавайте сколько угодно карточек, проектов и отчётов. Программа не тормозит.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что даёт лицензия + КНОПКА ПОКУПКИ (внутри блока) -->
+    <section id="license" style="background: #eef2f8;">
+        <div class="container">
+            <h2 class="section-title">Приобретая лицензию, вы поддерживаете развитие</h2>
+            <div class="license-benefits">
+                <div class="benefits-list">
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">⚡</div>
+                        <h3>Приоритетная техподдержка</h3>
+                        <p>Ваши обращения обрабатываются в первую очередь. Быстрая помощь от разработчика.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🔒</div>
+                        <h3>Эксклюзивные функции</h3>
+                        <p>Доступ к специальным возможностям, которые появляются для владельцев лицензий.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🎓</div>
+                        <h3>Персональные консультации</h3>
+                        <p>Индивидуальная настройка CRM под ваш бизнес, помощь в интеграциях.</p>
+                    </div>
+                    <div class="benefit-block">
+                        <div style="font-size:1.8rem;">🔇</div>
+                        <h3>Без информационных сообщений</h3>
+                        <p>Никаких надписей «приобретите лицензию» при запуске и во время звонков.</p>
+                    </div>
+                </div>
+                <div class="info-note">
+                    <p><strong>💡 Важно из лицензионного соглашения:</strong></p>
+                    <p>✔ Лицензия <strong>не обязательна</strong> — вы можете пользоваться ПО бесплатно без функциональных, временных или количественных ограничений (п. 3.1, 3.3).</p>
+                    <p>✔ Покупка лицензии — <strong>добровольное решение</strong>, если программа оказалась полезной (п. 3.4).</p>
+                    <p>✔ Лицензиар <strong>не блокирует работу</strong> для пользователей без лицензии (п. 4.1).</p>
+                </div>
+
+                <!-- Кнопка купить лицензию внутрі блока -->
+                <div style="text-align: center; margin: 1.5rem 0 1rem;">
+                    <a href="#buy-now" class="btn-primary btn-buy" style="background:#f5b042; color:#1a2c3e; font-weight: bold; padding: 0.9rem 2rem;">💰 Купить лицензию</a>
+                </div>
+
+                <div class="free-note">
+                    ⭐ Стоимость и порядок приобретения: <a href="https://mybusiness-crm.ru" style="color:#1e6f9f; font-weight:600;" target="_blank">mybusiness-crm.ru</a>. Факт оплаты = акцепт оферты на приобретение лицензии.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТДЕЛЬНЫЙ БЛОК С КНОПКОЙ ПОКУПКИ (call to action) -->
+    <div id="buy-now" style="scroll-margin-top: 100px;">
+        <div class="container">
+            <div class="buy-section">
+                <h2>💎 Приобрести лицензию My-Business CRM</h2>
+                <p style="max-width: 600px; margin: 0.5rem auto;">Поддержите разработку, получите приоритетную поддержку, эксклюзивные функции и работайте без напоминаний. Один платёж — постоянная лицензия.</p>
+                <a href="https://mybusiness-crm.ru" target="_blank" class="btn-buy-large">💳 Перейти к покупке →</a>
+                <p style="margin-top: 1.2rem; font-size: 0.8rem;">Официальный сайт: mybusiness-crm.ru</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Условия и права (из лицензии) -->
+    <section id="legal">
+        <div class="container">
+            <h2 class="section-title">Официальные условия использования</h2>
+            <div class="legal-card">
+                <div style="display: grid; gap: 1.2rem;">
+                    <div><strong>📜 Предмет соглашения:</strong> Неисключительная, непередаваемая лицензия на использование ПО «My-Business (Offline CRM)».</div>
+                    <div><strong>🧠 Интеллектуальная собственность:</strong> Все права на ПО, исходный код, дизайн и товарные знаки принадлежат Лицензиару (НДП Семенцул Максим Геннадиевич). Соглашение не передаёт прав собственности.</div>
+                    <div><strong>🚫 Ограничения:</strong> Запрещена сдача в аренду, модификация, декомпиляция, удаление уведомлений об авторских правах, использование в целях, противоречащих законодательству РФ.</div>
+                    <div><strong>⚖️ Ответственность:</strong> ПО предоставляется «КАК ЕСТЬ». Лицензиар не гарантирует безошибочную работу и не несёт ответственности за любые прямые или косвенные убытки.</div>
+                    <div><strong>🔄 Изменения соглашения:</strong> Лицензиар вправе вносить изменения — новые условия публикуются на сайте. Продолжение использования означает принятие обновлений.</div>
+                    <div><strong>🏛️ Применимое право:</strong> Регулируется законодательством РФ, споры — в претензионном порядке, затем в суде по месту нахождения Лицензиара.</div>
+                </div>
+                <hr style="margin: 1.5rem 0; border-color:#cbdde9;">
+                <p style="font-size:0.85rem;">Установка и использование программы означает полное согласие с условиями Лицензионного соглашения. При несогласии вы обязаны удалить все файлы ПО с ваших устройств.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию внизу -->
+    <section style="padding: 2rem 0 4rem;">
+        <div class="container" style="text-align: center; background: linear-gradient(115deg, #f0f5fa, white); border-radius: 2rem; padding: 2.5rem;">
+            <h2 style="font-size: 1.8rem;">Готовы попробовать?<br>CRM, которая не ставит рамки</h2>
+            <p style="margin: 1rem auto; max-width: 500px;">Скачайте <strong>My-Business (Offline CRM)</strong> бесплатно. Оцените удобство, а если проект станет полезным — приобретите лицензию в знак поддержки.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                <a href="#" class="btn-primary">Скачать для Windows / Linux</a>
+                <a href="#buy-now" class="btn-primary btn-buy" style="background:#f5b042; color:#1f3546;">💎 Купить лицензию</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="#license" style="text-decoration: none;">Преимущества лицензии</a></p>
+                <p><a href="#screenshots" style="text-decoration: none;">Скриншоты</a></p>
+                <p><a href="#legal" style="text-decoration: none;">Юридическая информация</a></p>
+                <p><a href="https://mybusiness-crm.ru" style="text-decoration: none;" target="_blank">Официальный сайт</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты техподдержки</strong><br>(приоритетная — для лицензиатов)</p>
+                <p>support@mybusiness-crm.ru</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
 </body>
 </html>
-
-

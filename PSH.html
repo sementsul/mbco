@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Первые шаги в My-Business CRM | Добавление клиента, звонки, мессенджеры</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Пошаговая инструкция для начинающих: добавление клиента в карточку, заполнение полей, выбор воронки и стадии, редактирование, настройка звонков через Mango Talker и мессенджеров Telegram/WhatsApp." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        /* Main content */
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: #1e6f9f;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .screenshot-placeholder {
+            background: #e9ecef;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 1px dashed #adb5bd;
+            color: #6c757d;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-demo {
+            background: #f0f4f8;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #dce5ec;
+        }
+
+        .card-demo h4 {
+            margin-top: 0;
+            color: #0f2b3d;
+        }
+
+        .field-row {
+            display: flex;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .field-label {
+            width: 120px;
+            font-weight: 600;
+            color: #1e6f9f;
+        }
+
+        .field-value {
+            flex: 1;
+            color: #333;
+        }
+
+        .field-input {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .select-demo {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .button-ok {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .field-label {
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="knowledge-base.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="knowledge-base.html">База знаний</a> / Первые шаги после установки
+        </div>
+
+        <h1 class="page-title">🚀 Первые шаги после установки</h1>
+        
+        <div class="content-card">
+            <p>Вы установили My-Business CRM. Теперь давайте разберёмся, как добавить первого клиента, настроить карточку, редактировать данные, а также подключить звонки и мессенджеры для общения с клиентами.</p>
+            
+            <div class="success-box">
+                <strong>✅ Программа полностью готова к работе!</strong> Вам не нужно проходить сложную регистрацию или настраивать сервера. Просто запустите CRM и следуйте инструкциям ниже.
+            </div>
+
+            <!-- Часть 1: Добавление клиента -->
+            <h2>📝 1. Добавление нового клиента</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте карточку создания клиента</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>В главном окне нажмите кнопку <strong>«Добавить»</strong> или <strong>«Новый клиент»</strong> (обычно в верхней панели)</li>
+                    <li>Откроется пустая карточка для заполнения</li>
+                </ul>
+                <div class="screenshot-placeholder">
+                    <span>🖼️ [Скриншот: пустая карточка клиента]</span>
+                    <small>Поля: ФИО, Телефон, Воронка, Стадия</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Заполните поля карточки</div>
+                <div class="card-demo">
+                    <h4>📋 Карточка клиента</h4>
+                    <div class="field-row">
+                        <div class="field-label">ФИО:</div>
+                        <div class="field-value"><input type="text" class="field-input" placeholder="Иванов Иван Иванович" value="Иванов Иван Иванович"></div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-label">Номер телефона:</div>
+                        <div class="field-value"><input type="text" class="field-input" placeholder="+7 999 123-45-67" value="+7 999 123-45-67"></div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-label">Воронка:</div>
+                        <div class="field-value">
+                            <select class="select-demo">
+                                <option>Продажи</option>
+                                <option selected>Основная воронка</option>
+                                <option>Тёплые клиенты</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-label">Стадия:</div>
+                        <div class="field-value">
+                            <select class="select-demo">
+                                <option>Первичный контакт</option>
+                                <option>Переговоры</option>
+                                <option selected>Сделка</option>
+                                <option>Успешно реализовано</option>
+                                <option>Закрыто</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="button-ok">✅ OK</button>
+                    </div>
+                </div>
+                <ul class="step-list">
+                    <li><strong>ФИО</strong> — полное имя клиента (обязательное поле)</li>
+                    <li><strong>Номер телефона</strong> — рекомендуется указывать в международном формате: <code>+7 999 123-45-67</code></li>
+                    <li><strong>Воронка</strong> — выберите воронку продаж (можно создать свои в настройках)</li>
+                    <li><strong>Стадия</strong> — текущий этап работы с клиентом</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Сохраните карточку</div>
+                <ul class="step-list">
+                    <li>После заполнения всех полей нажмите кнопку <strong>«OK»</strong> или <strong>«Сохранить»</strong></li>
+                    <li>Карточка клиента будет добавлена в общий список</li>
+                </ul>
+                <div class="success-box">
+                    <strong>🎉 Карточка создана!</strong> Клиент появился в вашей CRM. Теперь вы можете фиксировать звонки, добавлять комментарии и отслеживать историю взаимодействий.
+                </div>
+            </div>
+
+            <!-- Часть 2: Редактирование карточки -->
+            <h2>✏️ 2. Редактирование карточки клиента</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Найдите нужную карточку</div>
+                <ul class="step-list">
+                    <li>Используйте <strong>фильтры</strong> в верхней части списка клиентов</li>
+                    <li>Вы можете отфильтровать по: ФИО, телефону, воронке, стадии, дате добавления</li>
+                    <li>Введите часть имени или номера в строку поиска</li>
+                </ul>
+                <div class="screenshot-placeholder">
+                    <span>🖼️ [Скриншот: строка поиска и фильтры]</span>
+                    <small>Поиск по ФИО и телефону, фильтр по воронке/стадии</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Откройте карточку для редактирования</div>
+                <ul class="step-list">
+                    <li>Найдите клиента в списке</li>
+                    <li>Выделите строку с клиентом (кликните по ней)</li>
+                    <li>Нажмите кнопку <strong>«Редактировать карточку»</strong> или дважды кликните по строке</li>
+                    <li>Внесите необходимые изменения в поля</li>
+                    <li>Нажмите <strong>«OK»</strong> для сохранения</li>
+                </ul>
+                <div class="info-box">
+                    <strong>💡 Совет:</strong> Регулярно обновляйте стадию сделки, чтобы контролировать прогресс работы с каждым клиентом.
+                </div>
+            </div>
+
+            <!-- Часть 3: Настройка звонков -->
+            <h2>📞 3. Настройка звонков из CRM</h2>
+            
+            <div class="info-box">
+                <strong>📌 Важно!</strong> Для совершения звонков прямо из карточки клиента необходимо установить SIP-клиент. Рекомендуется использовать <strong>Mango Talker</strong> — он прост в настройке и автоматически интегрируется с CRM.
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Скачайте и установите Mango Talker</div>
+                <div class="button-group">
+                    <a href="https://www.mango-office.ru/products/mango-talker/download/" class="download-button" target="_blank">⬇️ Скачать Mango Talker</a>
+                </div>
+                <ul class="step-list">
+                    <li>Перейдите на официальный сайт Mango Office</li>
+                    <li>Скачайте установочный файл для Windows</li>
+                    <li>Установите программу (стандартная установка)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Авторизуйтесь в Mango Talker</div>
+                <ul class="step-list">
+                    <li>Запустите Mango Talker</li>
+                    <li>Войдите в свою учётную запись Mango Office</li>
+                    <li>Если нет аккаунта — зарегистрируйтесь бесплатно</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Всё готово!</strong> My-Business CRM автоматически обнаружит Mango Talker. При нажатии на номер телефона в карточке клиента звонок начнётся автоматически.
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>📞 Альтернатива — MicroSIP</strong><br>
+                Вы также можете использовать бесплатный SIP-клиент <a href="https://www.microsip.org/" target="_blank" style="color:#1e6f9f;">MicroSIP</a>. В этом случае потребуется ручная настройка SIP-аккаунта (данные предоставляет оператор телефонии).
+            </div>
+
+            <!-- Часть 4: Мессенджеры -->
+            <h2>💬 4. Настройка мессенджеров Telegram и WhatsApp</h2>
+            
+            <div class="info-box">
+                <strong>📌 Для чего это нужно?</strong> В карточке клиента есть кнопки Telegram и WhatsApp. При нажатии на них открывается чат с клиентом в соответствующем мессенджере. Номер телефона подставляется автоматически из карточки.
+            </div>
+
+            <h3>✈️ Telegram</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Установите Telegram Desktop</div>
+                <div class="button-group">
+                    <a href="https://desktop.telegram.org/" class="download-button" target="_blank">⬇️ Скачать Telegram Desktop</a>
+                </div>
+                <ul class="step-list">
+                    <li>Скачайте официальное приложение Telegram Desktop</li>
+                    <li>Установите и запустите программу</li>
+                    <li><strong>Авторизуйтесь</strong> — войдите в свой аккаунт (по номеру телефона)</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Готово!</strong> При нажатии на кнопку Telegram в карточке клиента откроется чат с этим клиентом (если его номер привязан к Telegram).
+                </div>
+                <div class="warning-box">
+                    <strong>⚠️ Важно:</strong> Для отправки сообщения клиенту его номер телефона должен быть <strong>привязан к аккаунту Telegram</strong>.
+                </div>
+            </div>
+
+            <h3>💚 WhatsApp</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Настройте WhatsApp Web</div>
+                <ul class="step-list">
+                    <li>Убедитесь, что WhatsApp установлен и авторизован на вашем телефоне</li>
+                    <li>При первом нажатии на кнопку WhatsApp в карточке клиента откроется <strong>WhatsApp Web</strong> в браузере по умолчанию</li>
+                    <li>Отсканируйте QR-код камерой телефона (как при обычном входе в WhatsApp Web)</li>
+                    <li>После авторизации чаты будут открываться автоматически</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Готово!</strong> При нажатии на кнопку WhatsApp в карточке клиента откроется чат в браузере.
+                </div>
+                <div class="info-box">
+                    <strong>📱 Примечание:</strong> WhatsApp Web требует активного подключения телефона к интернету. Достаточно авторизоваться один раз — браузер запомнит сессию.
+                </div>
+            </div>
+
+            <!-- Часть 5: Итоги -->
+            <h2>🎯 Что дальше?</h2>
+            <div class="step-box">
+                <ul class="check-list">
+                    <li>Добавьте всех ваших клиентов в CRM</li>
+                    <li>Настройте воронки и стадии под свой бизнес</li>
+                    <li>Используйте звонки и мессенджеры для общения с клиентами</li>
+                    <li>Отслеживайте историю взаимодействий в карточке</li>
+                    <li>При необходимости приобретите лицензию для получения приоритетной поддержки и эксклюзивных функций</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>📚 Полезные ссылки:</strong><br>
+                📖 <a href="knowledge-base.html">База знаний</a> — другие статьи и инструкции<br>
+                📞 <a href="mango.html">Настройка Mango Talker</a> — подробная инструкция по телефонии<br>
+                💬 <a href="messengers.html">Интеграция мессенджеров</a> — подробнее о Telegram и WhatsApp
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать CRM (SQLite)</a>
+                <a href="downver/SetupPMySQL.exe" class="download-button btn-outline">🐬 Скачать CRM (MySQL)</a>
+                <a href="knowledge-base.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="knowledge-base.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

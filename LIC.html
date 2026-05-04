@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что даёт лицензия | My-Business (Offline CRM)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Карточка-блок */
+        .license-card {
+            max-width: 880px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .license-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Шапка */
+        .license-header {
+            background: #1a2a3f;
+            background: linear-gradient(135deg, #0f2b3d 0%, #1a3a4f 100%);
+            padding: 1.75rem 2rem;
+            color: white;
+        }
+
+        .license-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .license-header h2::before {
+            content: "⭐";
+            font-size: 1.8rem;
+        }
+
+        .license-header p {
+            margin-top: 0.5rem;
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+
+        /* Содержимое */
+        .license-content {
+            padding: 2rem;
+        }
+
+        /* Сетка преимуществ */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .benefit-item {
+            background: #f8fafc;
+            border-radius: 1.25rem;
+            padding: 1.25rem 1.25rem;
+            transition: all 0.2s;
+            border: 1px solid #eef2f6;
+        }
+
+        .benefit-item:hover {
+            background: #ffffff;
+            border-color: #cbdde9;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f2b3d;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: #2c4c6c;
+            line-height: 1.45;
+            font-size: 0.9rem;
+        }
+
+        /* Детали / важные заметки */
+        .info-section {
+            background: #fefce8;
+            border-left: 4px solid #f5b042;
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+            background: #fffbeb;
+        }
+
+        .info-section p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #7a5c2a;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+        }
+
+        .info-section p:first-child {
+            margin-top: 0;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            font-weight: 600;
+            min-width: 1.5rem;
+        }
+
+        .footnote {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            color: #5c6f87;
+            text-align: center;
+        }
+
+        .footnote a {
+            color: #1e6f9f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footnote a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .license-header h2 {
+                font-size: 1.4rem;
+            }
+            .license-content {
+                padding: 1.5rem;
+            }
+            .benefits-grid {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="license-card">
+        <div class="license-header">
+            <h2>Что даёт лицензия?</h2>
+            <p>Добровольная поддержка разработчика — больше возможностей и комфорта</p>
+        </div>
+        <div class="license-content">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Приоритетная поддержка</h3>
+                    <p>Ваши обращения обрабатываются в первую очередь — быстрые ответы и решение сложных вопросов.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔓</div>
+                    <h3>Эксклюзивные функции</h3>
+                    <p>Доступ к специальным возможностям программы, если они предусмотрены в версиях для правообладателей лицензии.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎓</div>
+                    <h3>Персональные консультации</h3>
+                    <p>Индивидуальная помощь по настройке и использованию CRM непосредственно от Лицензиара.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔇</div>
+                    <h3>Без информационных сообщений</h3>
+                    <p>При запуске ПО и совершении звонков больше не появляется напоминание о покупке лицензии — работа без отвлечений.</p>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <p><span class="info-icon">✅</span> <strong>Лицензия — не обязанность:</strong> ПО работает без функциональных, временных или количественных ограничений даже без лицензии (п. 3.1, 3.3).</p>
+                <p><span class="info-icon">💡</span> <strong>Платите только если хотите поддержать проект:</strong> лицензия приобретается добровольно в случае, если ПО оказалось полезным (п. 3.4).</p>
+                <p><span class="info-icon">🛡️</span> <strong>Никаких блокировок:</strong> Лицензиар не вносит изменений, которые блокируют работу программы для пользователей без лицензии (п. 4.1).</p>
+            </div>
+
+            <div class="footnote">
+                Стоимость и порядок приобретения лицензии указаны на официальном сайте  
+                <a href="https://mybusiness-crm.ru" target="_blank" rel="noopener noreferrer">mybusiness-crm.ru</a><br>
+                *Факт оплаты означает акцепт оферты на приобретение лицензии в соответствии с п. 6.3 Соглашения.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покупка My-Business CRM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        
+        input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        
+        input[type="submit"] {
+            padding: 12px 24px;
+            font-size: 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+        .price-range {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .price-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            min-width: 150px;
+            cursor: pointer;
+        }
+        
+        .selected-price {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #007BFF;
+        }
+        
+        form {
+            margin-top: 25px;
+        }
+        
+        .radio-group {
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .radio-group label {
+            margin-bottom: 8px;
+        }
+        
+        .license-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .license-link:hover {
+            text-decoration: underline;
+        }
+        
+        .inn {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 15px;
+        }
+        
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Покупка My-Business CRM</h1>
+    
+    <p>Выберите стоимость лицензии:<br><small>Вы сами решаете, сколько поддержать проект</small></p>
+    
+    <!-- Выбор стоимости -->
+    <div class="price-range">
+        <span class="price-label">Минимально: ₽4000</span>
+        <input type="range" min="4000" max="10000" value="5000" step="100" id="priceRange">
+        <span class="price-label">Максимально: ₽10000</span>
+    </div>
+    
+    <!-- Показ текущей стоимости -->
+    <div class="selected-price">
+        💰 Стоимость: <span id="currentPrice">₽5000</span>
+    </div>
+    
+    <!-- Форма оплаты YooMoney -->
+    <form method="POST" action="https://yoomoney.ru/quickpay/confirm">
+        <!-- Скрытые поля -->
+        <input type="hidden" name="receiver" value="410016980665287"/>
+        <input type="hidden" name="label" value="MY BUSINESS CRM"/>
+        <input type="hidden" name="quickpay-form" value="button"/>
+        
+        <!-- Сумма платежа -->
+        <input type="hidden" name="sum" id="sumField" value="5000" data-type="number"/>
+        
+        <!-- Способы оплаты -->
+        <div class="radio-group">
+            <label><input type="radio" name="paymentType" value="PC" checked/> 💳 ЮMoney</label>
+            <label><input type="radio" name="paymentType" value="AC"/> 💳 Банковская карта</label>
+        </div>
+        
+        <input type="hidden" name="successURL" value="https://mybusiness-crm.ru/tenks.html">
+        
+        <!-- Кнопка оплаты -->
+        <input type="submit" value="✅ Оформить заказ"/>
+    </form>
+    
+    <hr>
+    
+    <p class="inn">ИНН: 381616884622</p>
+    <a href="lic.pdf" class="license-link">📄 Лицензионное соглашение</a>
+</div>
+
+<script>
+    // Связываем выбор стоимости с полем суммы в форме
+    const priceRange = document.getElementById('priceRange');
+    const currentPrice = document.getElementById('currentPrice');
+    const sumField = document.getElementById('sumField');
+
+    priceRange.addEventListener('input', () => {
+        const selectedValue = parseInt(priceRange.value);
+        currentPrice.textContent = `₽${selectedValue}`;
+        sumField.value = selectedValue; // Автоматически устанавливаем сумму в форму
+    });
+</script>
+
+</body>
+</html>

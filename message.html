@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интеграция мессенджеров в My-Business CRM | Telegram и WhatsApp</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Настройка мессенджеров Telegram и WhatsApp в My-Business CRM. Отправляйте сообщения клиентам прямо из карточки. Для Telegram нужен Telegram Desktop, для WhatsApp — веб-версия." />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .back-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 35px 30px;
+            margin: 40px auto;
+        }
+
+        .header-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        h3 {
+            color: #28a745;
+            margin: 30px 0 15px;
+            font-size: 1.3rem;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
+        }
+
+        h4 {
+            color: #007bff;
+            margin: 20px 0 10px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .messenger-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            transition: transform 0.2s;
+        }
+
+        .messenger-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .messenger-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .messenger-icon {
+            font-size: 48px;
+        }
+
+        .messenger-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .messenger-title.telegram {
+            color: #26A5E4;
+        }
+
+        .messenger-title.whatsapp {
+            color: #25D366;
+        }
+
+        .step-number {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            border-radius: 30px;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 8px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 6px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 25px 0 15px;
+        }
+
+        .button-outline {
+            background-color: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .button-outline:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .telegram-bg {
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4ecfa 100%);
+        }
+
+        .whatsapp-bg {
+            background: linear-gradient(135deg, #e8f8ef 0%, #d4f0e0 100%);
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .screenshot-placeholder {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed #adb5bd;
+            color: #6c757d;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 2rem;
+            display: block;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .messenger-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My-Business - Ваша Offline CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами.</p>
+    <a href="index.html" class="back-button">← На главную</a>
+</header>
+
+<div class="container">
+    <div class="header-icon">💬</div>
+    
+    <h2>Интеграция мессенджеров</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Общайтесь с клиентами в Telegram и WhatsApp прямо из карточки клиента</p>
+    
+    <div class="success-box">
+        <strong>✅ Функция доступна бесплатно!</strong> Отправляйте сообщения клиентам в мессенджерах одним нажатием кнопки. Никакой сложной настройки не требуется.
+    </div>
+    
+    <div class="info-box">
+        <strong>📌 Как это работает?</strong><br>
+        В карточке каждого клиента есть кнопки Telegram и WhatsApp. При нажатии на кнопку автоматически открывается чат с клиентом в соответствующем мессенджере — по номеру телефона, указанному в карточке. Вам нужно только установить и авторизоваться в мессенджерах.
+    </div>
+    
+    <!-- Telegram -->
+    <div class="messenger-card telegram-bg">
+        <div class="messenger-header">
+            <div class="messenger-icon">📱</div>
+            <div class="messenger-title telegram">Telegram</div>
+        </div>
+        
+        <h4>📥 Что нужно для работы?</h4>
+        <ul class="feature-list">
+            <li>Установить <strong>Telegram Desktop</strong> (официальное приложение для компьютера)</li>
+            <li>Авторизоваться в приложении (войти в свой аккаунт)</li>
+        </ul>
+        
+        <h4>🚀 Как настроить?</h4>
+        <ul class="step-list">
+            <li>Скачайте и установите <strong>Telegram Desktop</strong> с официального сайта</li>
+            <li>Запустите приложение и войдите в свой аккаунт (по номеру телефона)</li>
+            <li>Всё! My-Business CRM автоматически обнаружит Telegram</li>
+        </ul>
+        
+        <div style="margin: 15px 0;">
+            <a href="https://desktop.telegram.org/" class="download-button" target="_blank">⬇️ Скачать Telegram Desktop</a>
+        </div>
+        
+        <div class="warning-box" style="margin-top: 10px;">
+            <strong>💡 Важно:</strong> Для отправки сообщения клиенту его номер телефона должен быть <strong>привязан к аккаунту Telegram</strong> (то есть у клиента должен быть зарегистрирован Telegram по этому номеру).
+        </div>
+    </div>
+    
+    <!-- WhatsApp -->
+    <div class="messenger-card whatsapp-bg">
+        <div class="messenger-header">
+            <div class="messenger-icon">💚</div>
+            <div class="messenger-title whatsapp">WhatsApp</div>
+        </div>
+        
+        <h4>📥 Что нужно для работы?</h4>
+        <ul class="feature-list">
+            <li>Браузер (Chrome, Firefox, Edge или любой другой)</li>
+            <li>Аккаунт WhatsApp на телефоне</li>
+        </ul>
+        
+        <h4>🚀 Как настроить?</h4>
+        <ul class="step-list">
+            <li>Убедитесь, что WhatsApp установлен и авторизован на вашем телефоне</li>
+            <li>При первом нажатии на кнопку WhatsApp в карточке клиента откроется <strong>WhatsApp Web</strong></li>
+            <li>Отсканируйте QR-код камерой телефона (как при обычном входе в WhatsApp Web)</li>
+            <li>После авторизации чаты будут открываться автоматически</li>
+        </ul>
+        
+        <div class="info-box" style="margin-top: 10px;">
+            <strong>📱 Примечание:</strong> WhatsApp Web работает через браузер и требует активного подключения телефона к интернету. Достаточно авторизоваться один раз — браузер запомнит сессию.
+        </div>
+    </div>
+    
+    <h3>📞 Как это выглядит в CRM?</h3>
+    <div class="step-box" style="background: #f8f9fa; border-radius: 12px; padding: 20px;">
+        <div class="step-title">В карточке клиента появляются иконки мессенджеров</div>
+        <div class="screenshot-placeholder">
+            <span>🖼️ [Карточка клиента]</span>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px;">
+                <div style="background: #e9ecef; padding: 8px 15px; border-radius: 20px;">📞 +7 (999) 123-45-67</div>
+                <div style="background: #26A5E4; color: white; padding: 8px 15px; border-radius: 20px;">✈️ Telegram</div>
+                <div style="background: #25D366; color: white; padding: 8px 15px; border-radius: 20px;">💚 WhatsApp</div>
+            </div>
+            <small style="display: block; margin-top: 15px;">Нажмите на иконку — откроется чат с клиентом</small>
+        </div>
+        <ul class="feature-list" style="margin-top: 15px;">
+            <li><strong>Telegram</strong> — открывается Telegram Desktop с готовым чатом с клиентом</li>
+            <li><strong>WhatsApp</strong> — открывается WhatsApp Web в браузере с чатом с клиентом</li>
+            <li>Номер телефона автоматически подставляется из карточки клиента</li>
+        </ul>
+    </div>
+    
+    <h3>⚠️ Возможные проблемы и решения</h3>
+    <div class="warning-box">
+        <ul class="feature-list">
+            <li><strong>Telegram не открывается:</strong> Убедитесь, что Telegram Desktop установлен и запущен</li>
+            <li><strong>Чат не создаётся:</strong> Проверьте, что у клиента есть аккаунт в этом мессенджере</li>
+            <li><strong>WhatsApp Web не открывается:</strong> Возможно, сессия истекла — отсканируйте QR-код заново</li>
+            <li><strong>Номер не подставляется:</strong> Проверьте формат номера в карточке клиента (международный формат +7...)</li>
+        </ul>
+    </div>
+    
+    <div class="info-box">
+        <strong>💡 Совет:</strong> Для корректной работы указывайте номера телефонов в карточке клиента в международном формате (например, <strong>+79991234567</strong>). Это гарантирует правильное распознавание номера в мессенджерах.
+    </div>
+    
+    <hr>
+    
+    <div class="button-group">
+        <a href="index.html" class="download-button">🏠 На главную</a>
+        <a href="https://desktop.telegram.org/" class="download-button button-outline" target="_blank">📥 Скачать Telegram</a>
+    </div>
+    
+    <p style="text-align: center; font-size: 0.85rem; margin-top: 20px;">
+        📧 По вопросам работы мессенджеров: <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a>
+    </p>
+</div>
+
+<footer>
+    <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: 381616884622</p>
+    <div itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
+            <span itemprop="addressLocality">г. Москва</span>
+            <span itemprop="addressRegion">Россия</span>
+        </div>
+        Телефон: <span itemprop="telephone">+79655544200</span> |
+        Email: <a href="mailto:company@mybusiness-crm.ru" itemprop="email" style="color:#ffaa66;">company@mybusiness-crm.ru</a>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+
+</body>
+</html>

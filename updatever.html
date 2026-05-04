@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Обновление My-Business CRM до новой версии | База знаний</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по обновлению My-Business CRM до новой версии. Скачайте последнюю версию и установите поверх старой — база данных и активация сохраняются." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        /* Main content */
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #1e6f9f;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="knowledge-base.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="knowledge-base.html">База знаний</a> / Обновление программы
+        </div>
+
+        <h1 class="page-title">🔄 Обновление программы до новой версии</h1>
+        
+        <div class="content-card">
+            <p>Мы регулярно выпускаем обновления My-Business CRM, которые добавляют новые функции, исправляют ошибки и улучшают производительность. Процесс обновления очень простой и занимает всего несколько минут.</p>
+            
+            <div class="success-box">
+                <strong>✅ Важно знать перед обновлением:</strong><br>
+                ✔ <strong>База данных сохраняется</strong> — все ваши клиенты, сделки и история никуда не денутся<br>
+                ✔ <strong>Активация сохраняется</strong> — если у вас есть лицензия, после обновления она останется активной<br>
+                ✔ <strong>Настройки программы сохраняются</strong> — вам не придётся настраивать программу заново
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Как узнать, что вышло обновление?</strong><br>
+                • При запуске программа может показать уведомление о новой версии<br>
+                • Информация об обновлениях публикуется на официальном сайте<br>
+                • Подписчики рассылки получают уведомления на e-mail
+            </div>
+
+            <!-- Шаг 1 -->
+            <h2>📥 1. Скачивание последней версии</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Скачайте установочный файл новой версии</div>
+                <p>Перейдите на официальный сайт или используйте кнопки ниже для скачивания последней версии:</p>
+                <div class="button-group">
+                    <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать последнюю версию (SQLite)</a>
+                    <a href="downver/SetupPMySQL.exe" class="download-button btn-outline">⬇️ Скачать последнюю версию (MySQL)</a>
+                </div>
+                <ul class="step-list">
+                    <li>Выберите версию, соответствующую вашей текущей установке</li>
+                    <li>Если вы используете SQLite — скачивайте SQLite версию</li>
+                    <li>Если используете MySQL — скачивайте MySQL версию</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ Важно!</strong> Скачивайте ту же версию (SQLite или MySQL), которая у вас установлена. Не пытайтесь перейти с SQLite на MySQL через обновление — для этого потребуется отдельный перенос данных.
+                </div>
+            </div>
+
+            <!-- Шаг 2 -->
+            <h2>⚙️ 2. Установка обновления</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Закройте программу</div>
+                <ul class="step-list">
+                    <li>Перед установкой обновления <strong>обязательно закройте My-Business CRM</strong></li>
+                    <li>Убедитесь, что программа не запущена (проверьте значок в трее)</li>
+                    <li>Если используете MySQL версию — закройте все подключения к базе данных</li>
+                </ul>
+                <div class="screenshot-placeholder" style="background: #e9ecef; border-radius: 0.75rem; padding: 1.5rem; text-align: center; margin: 1.5rem 0; border: 1px dashed #adb5bd; color: #6c757d;">
+                    <span>🖼️ [Скриншот: закрытая программа]</span>
+                    <small>Убедитесь, что иконка CRM не активна в панели задач</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Запустите установщик</div>
+                <ul class="step-list">
+                    <li>Найдите скачанный файл (обычно в папке "Загрузки")</li>
+                    <li>Запустите его <strong>от имени администратора</strong> (рекомендуется)</li>
+                    <li>Если появится запрос от системы безопасности — нажмите «Да» или «Запустить»</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span> Следуйте инструкциям установщика</div>
+                <ul class="step-list">
+                    <li>Установщик автоматически определит папку, где установлена предыдущая версия</li>
+                    <li><strong>Важно:</strong> Убедитесь, что путь установки совпадает с текущей папкой программы</li>
+                    <li>Нажимайте «Далее» или «Установить» — все настройки уже предустановлены</li>
+                    <li>Дождитесь завершения процесса копирования файлов</li>
+                </ul>
+                <div class="success-box">
+                    <strong>💡 Важно!</strong> Установщик автоматически сохраняет все ваши данные. База данных, файлы конфигурации и лицензионный ключ не удаляются и не изменяются.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">5</span> Завершите установку</div>
+                <ul class="step-list">
+                    <li>Нажмите «Готово» или «Finish»</li>
+                    <li>При необходимости оставьте галочку «Запустить программу»</li>
+                </ul>
+            </div>
+
+            <!-- Шаг 3 -->
+            <h2>✅ 3. Проверка успешного обновления</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">6</span> Запустите программу и проверьте версию</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>Проверьте, что все ваши клиенты и сделки на месте</li>
+                    <li>Убедитесь, что лицензия активна (если она была приобретена)</li>
+                    <li>Проверьте номер версии в меню «О программе»</li>
+                </ul>
+                <div class="screenshot-placeholder" style="background: #e9ecef; border-radius: 0.75rem; padding: 1.5rem; text-align: center; margin: 1.5rem 0; border: 1px dashed #adb5bd; color: #6c757d;">
+                    <span>🖼️ [Скриншот: окно "О программе" с версией]</span>
+                    <small>Номер версии отображается в меню «Справка» → «О программе»</small>
+                </div>
+            </div>
+
+            <!-- Что сохраняется -->
+            <h2>💾 Что сохраняется при обновлении?</h2>
+            
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>📁 База данных</strong> — все клиенты, сделки, звонки, комментарии, история</li>
+                    <li><strong>🔑 Лицензионный ключ</strong> — если у вас есть активная лицензия, она остаётся</li>
+                    <li><strong>⚙️ Настройки программы</strong> — интерфейс, фильтры, воронки, стадии</li>
+                    <li><strong>🖼️ Пользовательские данные</strong> — загруженные файлы, изображения</li>
+                    <li><strong>📝 Настройки интеграций</strong> — настройки телефонии и мессенджеров</li>
+                </ul>
+            </div>
+
+            <!-- Частые вопросы -->
+            <h2>❓ Частые вопросы об обновлении</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Нужно ли удалять старую версию перед установкой новой?</div>
+                <p><strong>Нет!</strong> Установщик автоматически обновляет файлы поверх старых. Удалять предыдущую версию <strong>не нужно</strong> — это может привести к потере настроек.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что будет с моей лицензией после обновления?</div>
+                <p>Лицензия <strong>сохраняется</strong>. Вам не нужно вводить ключ заново. Если лицензия была активна до обновления, она останется активной и после.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли откатиться на старую версию?</div>
+                <p>Технически это возможно, но <strong>не рекомендуется</strong>. Новая версия может использовать другой формат базы данных. Перед откатом обязательно сделайте резервную копию базы данных.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Как часто выходят обновления?</div>
+                <p>Обновления выходят по мере необходимости — при добавлении новых функций или исправлении ошибок. Рекомендуем всегда использовать последнюю версию.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Нужно ли переустанавливать Mango Talker или другие интеграции?</div>
+                <p><strong>Нет</strong>, обновление CRM не влияет на установленные SIP-клиенты и мессенджеры. Они продолжат работать как обычно.</p>
+            </div>
+
+            <!-- Возможные проблемы -->
+            <h2>⚠️ Возможные проблемы при обновлении</h2>
+            
+            <div class="warning-box">
+                <ul class="check-list">
+                    <li><strong>Ошибка «Файл занят другим процессом»:</strong> Закройте программу полностью (проверьте диспетчер задач)</li>
+                    <li><strong>Не удаётся перезаписать файлы:</strong> Запустите установщик от имени администратора</li>
+                    <li><strong>Программа не запускается после обновления:</strong> Попробуйте запустить от имени администратора или переустановите программу</li>
+                    <li><strong>Пропали настройки интерфейса:</strong> Они могли сброситься — настройте их заново в меню «Настройки»</li>
+                    <li><strong>Ошибка подключения к MySQL:</strong> Проверьте настройки подключения в программе</li>
+                </ul>
+            </div>
+
+            <!-- Резервное копирование -->
+            <h2>💡 Рекомендация: резервное копирование перед обновлением</h2>
+            
+            <div class="info-box">
+                <p>Хотя обновление безопасно и данные сохраняются, мы рекомендуем <strong>перед каждым крупным обновлением делать резервную копию</strong> базы данных:</p>
+                <ul class="step-list">
+                    <li><strong>Для SQLite версии:</strong> Скопируйте файл базы данных (обычно находится в папке с программой)</li>
+                    <li><strong>Для MySQL версии:</strong> Сделайте дамп базы через phpMyAdmin или командой mysqldump</li>
+                </ul>
+                <div class="code-block" style="background: #1e2a3a; color: #e2edf7; padding: 0.8rem; border-radius: 0.5rem; font-family: monospace; margin-top: 0.8rem;">
+                    mysqldump -u пользователь -p имя_базы > backup.sql
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>🎉 Поздравляем!</strong> Вы успешно обновили My-Business CRM до последней версии. Теперь вы можете пользоваться новыми функциями и улучшениями.
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать последнюю версию (SQLite)</a>
+                <a href="downver/SetupPMySQL.exe" class="download-button btn-outline">⬇️ Скачать последнюю версию (MySQL)</a>
+                <a href="knowledge-base.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="knowledge-base.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

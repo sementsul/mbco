@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Установка My-Business CRM с MySQL | База знаний</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Пошаговая инструкция по установке My-Business CRM с MySQL. Настройка подключения к серверу баз данных, импорт и экспорт данных, работа в команде." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        /* Main content */
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: #1e6f9f;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .screenshot-placeholder {
+            background: #e9ecef;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 1px dashed #adb5bd;
+            color: #6c757d;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+            transform: translateY(-2px);
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="knowledge-base.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="knowledge-base.html">База знаний</a> / Установка версии с MySQL
+        </div>
+
+        <h1 class="page-title">🐬 Установка My-Business CRM (версия с MySQL)</h1>
+        
+        <div class="content-card">
+            <p>Пошаговая инструкция по установке программы <strong>My-Business (Offline CRM)</strong> с поддержкой базы данных MySQL. Эта версия предназначена для <strong>совместной работы в команде</strong> — несколько сотрудников могут одновременно работать с одной базой данных.</p>
+            
+            <div class="success-box">
+                <strong>✅ Преимущества версии с MySQL:</strong><br>
+                ✔ Совместная работа нескольких пользователей<br>
+                ✔ Централизованное хранение данных на сервере<br>
+                ✔ Высокая производительность при большом объёме данных<br>
+                ✔ Возможность работы через локальную сеть или интернет<br>
+                ✔ Резервное копирование на уровне сервера
+            </div>
+
+            <!-- Часть 1: Подготовка MySQL сервера -->
+            <h2>1. Подготовка MySQL сервера</h2>
+            <div class="warning-box">
+                <strong>⚠️ Важно!</strong> Перед установкой CRM необходимо иметь работающий MySQL сервер. Если у вас его нет — установите один из вариантов ниже.
+            </div>
+
+            <h3>Варианты установки MySQL:</h3>
+            <div class="step-box">
+                <div class="step-title">🔧 Вариант 1: Установка локального сервера</div>
+                <ul class="step-list">
+                    <li>Скачайте <strong>MySQL Community Server</strong> с официального сайта <a href="https://dev.mysql.com/downloads/mysql/" target="_blank">dev.mysql.com</a></li>
+                    <li>Или используйте сборку <strong>WAMP / OpenServer / XAMPP</strong> для Windows</li>
+                    <li>Установите и запустите MySQL сервер</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">☁️ Вариант 2: Удалённый (хостинговый) сервер</div>
+                <ul class="step-list">
+                    <li>Используйте готовый MySQL от хостинг-провайдера</li>
+                    <li>Данные для подключения предоставит ваш хостинг</li>
+                </ul>
+            </div>
+
+            <h3>Создание базы данных</h3>
+            <div class="step-box">
+                <div class="step-title">📁 Создайте базу данных для CRM</div>
+                <p>Через phpMyAdmin или командную строку создайте новую базу данных:</p>
+                <div class="code-block">
+                    CREATE DATABASE mybusiness_crm CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+                </div>
+                <ul class="step-list">
+                    <li>Имя базы данных: <strong>mybusiness_crm</strong> (или любое другое)</li>
+                    <li>Кодировка: <strong>utf8mb4</strong> (рекомендуется)</li>
+                    <li>Создайте пользователя и дайте ему права на эту базу</li>
+                </ul>
+            </div>
+
+            <!-- Часть 2: Установка CRM -->
+            <h2>2. Установка My-Business CRM с MySQL</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Скачайте установочный файл</div>
+                <div class="button-group">
+                    <a href="downver/SetupPMySQL.exe" class="download-button">⬇️ Скачать SetupPMySQL.exe</a>
+                </div>
+                <ul class="step-list">
+                    <li>Размер файла: ~15-20 МБ</li>
+                    <li>Поддерживаемые ОС: Windows 7, 8, 10, 11</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Запустите установку</div>
+                <ul class="step-list">
+                    <li>Запустите <strong>SetupPMySQL.exe</strong> от имени администратора</li>
+                    <li>Следуйте стандартным шагам установщика (как в версии с SQLite)</li>
+                    <li>Выберите папку для установки</li>
+                    <li>Дождитесь завершения установки</li>
+                </ul>
+            </div>
+
+            <!-- Часть 3: Подключение к MySQL -->
+            <h2>3. Настройка подключения к MySQL</h2>
+            <div class="warning-box">
+                <strong>🔧 Важно!</strong> После установки программы необходимо настроить подключение к вашему MySQL серверу.
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Запустите программу</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM через ярлык на рабочем столе</li>
+                    <li>При первом запуске откроется окно <strong>настройки подключения к базе данных</strong></li>
+                </ul>
+                <div class="screenshot-placeholder">
+                    <span>🖼️ [Скриншот: окно подключения к MySQL]</span>
+                    <small>Окно с полями: Хост, Порт, Имя БД, Пользователь, Пароль</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Введите параметры подключения</div>
+                <p>Заполните следующие поля:</p>
+                <ul class="check-list">
+                    <li><strong>Хост (Server)</strong> — адрес сервера MySQL<br>
+                        <code>localhost</code> — если сервер на том же компьютере<br>
+                        <code>192.168.1.100</code> — IP адрес сервера в локальной сети<br>
+                        <code>site.ru</code> — адрес удалённого сервера</li>
+                    <li><strong>Порт (Port)</strong> — стандартный порт MySQL: <code>3306</code> (обычно оставляют по умолчанию)</li>
+                    <li><strong>Имя базы данных</strong> — название созданной вами БД (например, <code>mybusiness_crm</code>)</li>
+                    <li><strong>Пользователь (Username)</strong> — имя пользователя MySQL</li>
+                    <li><strong>Пароль (Password)</strong> — пароль пользователя MySQL</li>
+                </ul>
+                <div class="info-box">
+                    <strong>💡 Пример заполнения для локального сервера:</strong><br>
+                    🖥️ Хост: localhost<br>
+                    🔌 Порт: 3306<br>
+                    📁 Имя БД: mybusiness_crm<br>
+                    👤 Пользователь: root<br>
+                    🔒 Пароль: [пароль от MySQL]
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Проверка подключения</div>
+                <ul class="step-list">
+                    <li>Нажмите кнопку <strong>«Проверить подключение»</strong> или <strong>«Test Connection»</strong></li>
+                    <li>Если данные введены верно — появится сообщение об успешном подключении</li>
+                    <li>Нажмите <strong>«Сохранить»</strong> или <strong>«Подключиться»</strong></li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Подключение успешно!</strong> Программа создаст необходимые таблицы в базе данных и запустится.
+                </div>
+            </div>
+
+            <!-- Ошибки подключения -->
+            <h3>⚠️ Ошибки подключения и их решение</h3>
+            <div class="warning-box">
+                <ul class="check-list">
+                    <li><strong>Access denied for user:</strong> Неправильный логин или пароль — проверьте данные пользователя</li>
+                    <li><strong>Unknown database:</strong> База данных не существует — создайте БД перед подключением</li>
+                    <li><strong>Can't connect to MySQL server:</strong> Сервер недоступен — проверьте хост и порт, запущен ли MySQL сервис</li>
+                    <li><strong>Connection timeout:</strong> Сеть недоступна или файрвол блокирует порт 3306</li>
+                    <li><strong>Host is not allowed to connect:</strong> Пользователю запрещено удалённое подключение — настройте права доступа</li>
+                </ul>
+            </div>
+
+            <!-- Импорт CSV в MySQL версии -->
+            <h2>📁 Импорт данных из CSV в MySQL версии</h2>
+            <p>Как и в версии с SQLite, вы можете импортировать данные о клиентах из CSV файлов.</p>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте «Инструменты → Импорт и экспорт базы данных»</div>
+                <ul class="step-list">
+                    <li>В главном меню программы выберите раздел <strong>«Инструменты»</strong></li>
+                    <li>Нажмите <strong>«Импорт и экспорт базы данных»</strong></li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Выберите CSV файл</div>
+                <ul class="step-list">
+                    <li>Нажмите <strong>«Выбрать файл»</strong></li>
+                    <li>Укажите путь к вашему CSV файлу</li>
+                    <li>Настройте соответствие полей</li>
+                    <li>Нажмите <strong>«Импортировать»</strong></li>
+                </ul>
+                <div class="info-box">
+                    <strong>📌 Рекомендации по CSV:</strong>
+                    <ul class="check-list" style="margin-top: 0.5rem;">
+                        <li>Кодировка: UTF-8</li>
+                        <li>Разделитель: запятая (,) или точка с запятой (;)</li>
+                        <li>Первая строка — заголовки столбцов</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Настройка командной работы -->
+            <h2>👥 Настройка командной работы</h2>
+            <div class="info-box">
+                <strong>Как организовать работу нескольких сотрудников?</strong>
+                <ul class="step-list" style="margin-top: 0.8rem;">
+                    <li>Установите MySQL сервер на одном из компьютеров (или используйте хостинг)</li>
+                    <li>Настройте сетевой доступ к порту 3306 (при необходимости откройте в файрволе)</li>
+                    <li>На каждом компьютере сотрудников установите My-Business CRM с MySQL</li>
+                    <li>В настройках подключения укажите IP-адрес сервера с MySQL</li>
+                    <li>Используйте общего пользователя MySQL с правами на базу данных</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>🔒 Совет по безопасности:</strong>
+                <ul class="check-list">
+                    <li>Создайте отдельного пользователя MySQL для сотрудников с ограниченными правами</li>
+                    <li>При удалённой работе используйте VPN для безопасного подключения</li>
+                    <li>Регулярно делайте резервные копии базы данных</li>
+                </ul>
+            </div>
+
+            <!-- Экспорт данных -->
+            <h2>📤 Экспорт базы данных</h2>
+            <div class="step-box">
+                <div class="step-title">Экспорт в CSV</div>
+                <ul class="step-list">
+                    <li>Перейдите в <strong>«Инструменты → Импорт и экспорт базы данных»</strong></li>
+                    <li>Выберите вкладку <strong>«Экспорт»</strong></li>
+                    <li>Выберите нужные поля и нажмите «Экспортировать»</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Резервное копирование MySQL</div>
+                <ul class="step-list">
+                    <li>Рекомендуется регулярно делать бэкапы через phpMyAdmin (Экспорт → SQL)</li>
+                    <li>Или через командную строку: <code>mysqldump -u пользователь -p имя_бд > backup.sql</code></li>
+                </ul>
+                <div class="code-block">
+                    mysqldump -u root -p mybusiness_crm > backup.sql
+                </div>
+            </div>
+
+            <!-- Возможные проблемы -->
+            <h2>⚠️ Частые проблемы и решения</h2>
+            <div class="warning-box">
+                <ul class="check-list">
+                    <li><strong>Программа не запускается после установки:</strong> Проверьте настройки подключения к MySQL</li>
+                    <li><strong>Таблицы не создаются автоматически:</strong> Убедитесь, что у пользователя есть права на создание таблиц (CREATE, ALTER, INSERT, SELECT, UPDATE)</li>
+                    <li><strong>Медленная работа:</strong> Проверьте скорость сетевого соединения с MySQL сервером</li>
+                    <li><strong>Ошибка «Too many connections»:</strong> Настройте максимальное количество подключений в MySQL</li>
+                    <li><strong>Данные не синхронизируются:</strong> Все сотрудники должны подключаться к одной базе данных</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>📞 Нужна помощь с настройкой MySQL?</strong><br>
+                Если у вас возникли сложности с установкой или настройкой подключения к MySQL, обратитесь в техническую поддержку:<br>
+                ✉️ <a href="mailto:company@mybusiness-crm.ru">company@mybusiness-crm.ru</a><br>
+                Владельцы лицензии получают <strong>приоритетную поддержку</strong> и помощь с настройкой.
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="downver/SetupPMySQL.exe" class="download-button">⬇️ Скачать версию с MySQL</a>
+                <a href="downver/SetupPSQLite.exe" class="download-button btn-outline">📁 Скачать версию с SQLite</a>
+                <a href="knowledge-base.html" class="download-button btn-outline">📚 Все статьи базы знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="knowledge-base.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

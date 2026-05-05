@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>WhatsApp Web: продление сессии и повторная авторизация | База знаний</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Как заново подключить WhatsApp Web для работы с My-Business CRM, если сессия истекла. Продление сессии, повторная авторизация, решение проблем с подключением." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: #1e6f9f;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .qr-code-placeholder {
+            background: #2c3e50;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            color: white;
+        }
+
+        .qr-code-placeholder span {
+            font-size: 6rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .screenshot-placeholder {
+            background: #e9ecef;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 1px dashed #adb5bd;
+            color: #6c757d;
+        }
+
+        .screenshot-placeholder span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .whatsapp-icon {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / WhatsApp Web: продление сессии и повторная авторизация
+        </div>
+
+        <h1 class="page-title">💚 WhatsApp Web: продление сессии и повторная авторизация</h1>
+        
+        <div class="content-card">
+            <div class="whatsapp-icon">💚</div>
+            <p>Для работы WhatsApp из My-Business CRM используется <strong>WhatsApp Web</strong> — веб-версия мессенджера, которая открывается в браузере. Сессия WhatsApp Web действительна ограниченное время, после чего требуется повторная авторизация.</p>
+            
+            <div class="success-box">
+                <strong>✅ Как это работает в CRM:</strong><br>
+                При нажатии на кнопку WhatsApp в карточке клиента открывается WhatsApp Web в браузере по умолчанию. Если сессия активна — сразу открывается чат с клиентом. Если сессия истекла — потребуется повторно отсканировать QR-код.
+            </div>
+
+            <h2>📱 Как работает WhatsApp Web?</h2>
+            <div class="info-box">
+                <ul class="check-list">
+                    <li>WhatsApp Web — это веб-версия, которая синхронизируется с вашим телефоном</li>
+                    <li>Для работы требуется активное подключение телефона к интернету</li>
+                    <li>Сессия действует около <strong>14 дней</strong> без повторного сканирования</li>
+                    <li>После истечения сессии нужно заново отсканировать QR-код</li>
+                    <li>При выходе из аккаунта на телефоне сессия также завершается</li>
+                </ul>
+            </div>
+
+            <h2>🔍 Как понять, что сессия истекла?</h2>
+            <div class="warning-box">
+                <ul class="check-list">
+                    <li>При нажатии на кнопку WhatsApp в CRM открывается страница с <strong>QR-кодом</strong> вместо чата с клиентом</li>
+                    <li>В WhatsApp Web отображается надпись <strong>"Сканируйте QR-код"</strong></li>
+                    <li>Появляется ошибка <strong>"Сессия истекла"</strong> или <strong>"Требуется повторный вход"</strong></li>
+                    <li>WhatsApp Web показывает пустой экран без чатов</li>
+                </ul>
+            </div>
+
+            <h2>🔄 Как заново подключить WhatsApp Web (пошаговая инструкция)</h2>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте WhatsApp Web</div>
+                <ul class="step-list">
+                    <li>Нажмите на кнопку WhatsApp в карточке клиента в My-Business CRM</li>
+                    <li>В браузере откроется страница <strong>web.whatsapp.com</strong></li>
+                    <li>Вы увидите <strong>QR-код</strong> для сканирования</li>
+                </ul>
+                <div class="qr-code-placeholder">
+                    <span>◼◼◼◼◼</span>
+                    <span>◼◼◼◼◼</span>
+                    <span>◼◼◼◼◼</span>
+                    <small style="display: block; margin-top: 0.5rem;">[ QR-код для сканирования ]</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Откройте WhatsApp на телефоне</div>
+                <ul class="step-list">
+                    <li>Запустите приложение <strong>WhatsApp</strong> на вашем смартфоне</li>
+                    <li>Убедитесь, что вы авторизованы в своём аккаунте</li>
+                    <li>Проверьте подключение к интернету (Wi-Fi или мобильные данные)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Отсканируйте QR-код</div>
+                <ul class="step-list">
+                    <li>В WhatsApp на телефоне нажмите на <strong>три точки</strong> (меню) → <strong>WhatsApp Web</strong> (или "Связанные устройства")</li>
+                    <li>Нажмите <strong>"Привязать устройство"</strong> (или "Сканировать QR-код")</li>
+                    <li>Наведите камеру телефона на QR-код на экране компьютера</li>
+                    <li>Дождитесь подтверждения — телефон завибрирует или появится уведомление об успешном подключении</li>
+                </ul>
+                <div class="screenshot-placeholder">
+                    <span>🖼️ [Скриншот: меню WhatsApp на телефоне]</span>
+                    <small>Настройки → WhatsApp Web → Сканировать QR-код</small>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span> Подтвердите авторизацию</div>
+                <ul class="step-list">
+                    <li>На компьютере откроется список чатов из WhatsApp</li>
+                    <li>Сессия сохранена — повторное сканирование не потребуется до следующего истечения срока</li>
+                    <li>Теперь при нажатии на кнопку WhatsApp в CRM будет сразу открываться чат с клиентом</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Готово!</strong> WhatsApp Web снова подключён и готов к работе с CRM.
+                </div>
+            </div>
+
+            <h2>⏰ Как продлить сессию без повторного сканирования?</h2>
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>Регулярно используйте WhatsApp Web</strong> — активное использование продлевает сессию</li>
+                    <li><strong>Не выходите из аккаунта на телефоне</strong> — выход завершает все активные сессии</li>
+                    <li><strong>Не очищайте куки браузера</strong> — это удалит сохранённую сессию</li>
+                    <li><strong>Используйте тот же браузер</strong> — сессия привязана к конкретному браузеру</li>
+                </ul>
+            </div>
+
+            <h2>⚠️ Почему сессия могла сброситься?</h2>
+            <div class="warning-box">
+                <ul class="check-list">
+                    <li><strong>Истек срок действия сессии</strong> — обычно через 14 дней неактивности</li>
+                    <li><strong>Вы вышли из аккаунта на телефоне</strong> — это завершает все сессии WhatsApp Web</li>
+                    <li><strong>Очистка истории браузера</strong> — удаление куков сбрасывает авторизацию</li>
+                    <li><strong>Смена браузера</strong> — сессия не переносится между браузерами</li>
+                    <li><strong>Обновление браузера</strong> — в редких случаях может сбросить сессию</li>
+                    <li><strong>Антивирус или файрвол</strong> — могут блокировать сохранение сессии</li>
+                </ul>
+            </div>
+
+            <h2>🔧 Возможные проблемы и решения</h2>
+
+            <div class="step-box">
+                <div class="step-title">QR-код не сканируется</div>
+                <ul class="step-list">
+                    <li>Убедитесь, что камера телефона работает и имеет доступ к приложению WhatsApp</li>
+                    <li>Проверьте, что на телефоне включён доступ к камере для WhatsApp</li>
+                    <li>Попробуйте обновить страницу web.whatsapp.com (F5)</li>
+                    <li>Убедитесь, что QR-код полностью виден на экране монитора</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Надпись "WhatsApp Web устарел"</div>
+                <ul class="step-list">
+                    <li>Устаревшая версия браузера — обновите браузер до последней версии</li>
+                    <li>Рекомендуемые браузеры: Google Chrome, Mozilla Firefox, Microsoft Edge, Яндекс.Браузер</li>
+                    <li>Обновите страницу и попробуйте снова</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Телефон не подключается к WhatsApp Web</div>
+                <ul class="step-list">
+                    <li>Проверьте, что на телефоне активен интернет (Wi-Fi или мобильные данные)</li>
+                    <li>Убедитесь, что на телефоне установлена актуальная версия WhatsApp</li>
+                    <li>Перезапустите приложение WhatsApp на телефоне</li>
+                    <li>Попробуйте перезагрузить телефон</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Чат с клиентом не открывается автоматически</div>
+                <ul class="step-list">
+                    <li>Проверьте формат номера телефона в карточке клиента (должен быть в международном формате: +79991234567)</li>
+                    <li>Убедитесь, что у клиента есть аккаунт WhatsApp по этому номеру</li>
+                    <li>Проверьте, что WhatsApp Web активен (виден список чатов)</li>
+                </ul>
+            </div>
+
+            <h2>💡 Полезные советы</h2>
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>Закрепите вкладку WhatsApp Web</strong> в браузере — так вы случайно не закроете её</li>
+                    <li><strong>Не закрывайте вкладку WhatsApp Web</strong> — сессия останется активной дольше</li>
+                    <li><strong>Разрешите уведомления</strong> в WhatsApp Web — будете видеть новые сообщения</li>
+                    <li><strong>Используйте тот же браузер</strong> для работы с CRM — сессия сохранится</li>
+                    <li><strong>Периодически проверяйте статус подключения</strong> — открывайте WhatsApp Web раз в несколько дней</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Важно!</strong> WhatsApp Web требует активного подключения телефона к интернету. Если телефон выключен или находится в "режиме полёта" — WhatsApp Web не будет работать.
+            </div>
+
+            <div class="warning-box">
+                <strong>🚑 Не удаётся подключить WhatsApp Web?</strong><br>
+                Попробуйте:<br>
+                1. Перезагрузить телефон<br>
+                2. Очистить куки браузера для web.whatsapp.com<br>
+                3. Использовать другой браузер<br>
+                4. Проверить настройки антивируса<br><br>
+                Если ничего не помогло — напишите в поддержку: <strong>company@mybusiness-crm.ru</strong>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="https://web.whatsapp.com/" class="download-button" target="_blank">🌐 Открыть WhatsApp Web</a>
+                <a href="messengers.html" class="download-button btn-outline">💬 Настройка мессенджеров</a>
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

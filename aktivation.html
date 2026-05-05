@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Активация лицензионного ключа | My-Business CRM — пошаговая инструкция</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Пошаговая инструкция по активации лицензионного ключа в My-Business CRM. Как ввести ключ в окне при запуске или при звонке, что делать при ошибках." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .danger-box {
+            background: #ffe0e0;
+            border-left: 4px solid #dc3545;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 1rem 0;
+            word-break: break-all;
+        }
+
+        .key-demo {
+            background: #f0f4f8;
+            border: 2px dashed #1e6f9f;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #1e6f9f;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .key-demo {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Активация лицензионного ключа
+        </div>
+
+        <h1 class="page-title">🔑 Активация лицензионного ключа</h1>
+        
+        <div class="content-card">
+            <p>После приобретения лицензии вы получили <strong>лицензионный ключ</strong> — уникальный код, который активирует все преимущества платной версии My-Business CRM. Активация происходит <strong>без подключения к интернету</strong>.</p>
+            
+            <div class="success-box">
+                <strong>✅ Что вас ждёт после активации?</strong><br>
+                • Приоритетная техническая поддержка<br>
+                • Доступ к эксклюзивным функциям<br>
+                • Персональные консультации<br>
+                • Отсутствие информационных сообщений о покупке лицензии
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Перед началом:</strong><br>
+                Убедитесь, что у вас есть лицензионный ключ. Он выглядит так:
+                <div class="key-demo">
+                    Q8ZZZ-MV417-EOP2T-3MA3L-N24UV
+                </div>
+                Ключ был отправлен на вашу электронную почту после оплаты и отображался на странице "Спасибо за покупку".
+            </div>
+
+            <!-- Пошаговая инструкция -->
+            <h2>📝 Пошаговая инструкция активации</h2>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Запустите My-Business CRM</div>
+                <ul class="step-list">
+                    <li>Откройте программу через ярлык на рабочем столе или в меню "Пуск"</li>
+                    <li>При запуске программы появится окно с предложением ввести лицензионный ключ</li>
+                </ul>
+                <div class="info-box" style="margin: 0.5rem 0; background: #f0f4f8;">
+                    💡 <strong>Альтернативный способ:</strong> Окно активации также появляется при попытке совершить звонок или при использовании функции, требующей лицензии.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Введите лицензионный ключ</div>
+                <ul class="step-list">
+                    <li>В открывшемся окне найдите поле для ввода ключа</li>
+                    <li>Аккуратно введите полученный ключ (можно скопировать и вставить)</li>
+                    <li><strong>Важно:</strong> Ключ чувствителен к регистру, вводите его точно как в письме</li>
+                    <li>Дефисы в ключе вводятся обязательно</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Нажмите кнопку "Активировать"</div>
+                <ul class="step-list">
+                    <li>После ввода ключа нажмите кнопку <strong>"Активировать"</strong> или <strong>"OK"</strong></li>
+                    <li>Активация происходит мгновенно, интернет не требуется</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Активация успешна!</strong><br>
+                    Поздравляем! Теперь у вас активная лицензия. Все преимущества платной версии доступны.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span> Проверьте статус лицензии</div>
+                <ul class="step-list">
+                    <li>После активации информационные сообщения о покупке лицензии больше не будут появляться</li>
+                    <li>При запуске программы окно с предложением ввести ключ больше не показывается</li>
+                    <li>Функционал платной версии становится доступен</li>
+                </ul>
+            </div>
+
+            <!-- Альтернативный способ -->
+            <h2>🔄 Альтернативный способ активации</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Активация через файл ключа</div>
+                <ul class="step-list">
+                    <li>Если при покупке вы скачали файл <strong>Key.txt</strong> с ключом</li>
+                    <li>Скопируйте этот файл в папку с установленной программой</li>
+                    <li>При следующем запуске программа автоматически распознает ключ и активирует лицензию</li>
+                    <li>Интернет для этого не требуется</li>
+                    <li>Файл ключа можно удалить после активации</li>
+                </ul>
+            </div>
+
+            <!-- Возможные ошибки -->
+            <h2>⚠️ Возможные ошибки и их решение</h2>
+
+            <div class="step-box">
+                <div class="step-title">Ошибка: "Неверный лицензионный ключ"</div>
+                <ul class="step-list">
+                    <li>Проверьте правильность ввода ключа — возможно, ошибка в символе</li>
+                    <li>Убедитесь, что ключ введён без лишних пробелов в начале или конце</li>
+                    <li>Попробуйте скопировать ключ из письма и вставить (Ctrl+V)</li>
+                    <li>Проверьте, что дефисы введены правильно</li>
+                    <li>Убедитесь, что ключ соответствует версии программы (SQLite/MySQL)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Ошибка: "Ключ уже активирован на другом компьютере"</div>
+                <ul class="step-list">
+                    <li>Лицензия привязана к одному пользователю (ИП)</li>
+                    <li>Активация возможна на одном основном компьютере</li>
+                    <li>Для переноса лицензии на другой компьютер — напишите в поддержку <strong>company@mybusiness-crm.ru</strong></li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Ключ не подходит к этой версии программы</div>
+                <ul class="step-list">
+                    <li>Убедитесь, что вы используете правильную версию (SQLite или MySQL)</li>
+                    <li>Ключ для SQLite версии не подходит для MySQL версии и наоборот</li>
+                    <li>Если вы ошиблись версией — напишите в поддержку</li>
+                </ul>
+            </div>
+
+            <!-- Проверка статуса -->
+            <h2>🔍 Как проверить статус лицензии?</h2>
+            
+            <div class="info-box">
+                <ul class="check-list">
+                    <li>При запуске программы отсутствует окно с предложением ввести ключ</li>
+                    <li>Отсутствуют информационные сообщения о покупке лицензии</li>
+                    <li>Функции платной версии (если есть) доступны</li>
+                </ul>
+            </div>
+
+            <!-- Перенос лицензии -->
+            <h2>🔄 Перенос лицензии на другой компьютер</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Как перенести лицензию?</div>
+                <ul class="step-list">
+                    <li>Напишите в техническую поддержку <strong>company@mybusiness-crm.ru</strong></li>
+                    <li>Укажите ваш лицензионный ключ (или данные об оплате)</li>
+                    <li>Сообщите причину переноса (смена компьютера, переустановка ОС и т.д.)</li>
+                    <li>Поддержка деактивирует старую активацию</li>
+                    <li>Вы сможете активировать ключ на новом компьютере</li>
+                </ul>
+                <div class="info-box" style="margin-top: 0.5rem;">
+                    <strong>💡 Важно:</strong> Перенос выполняется бесплатно. Пожалуйста, не теряйте лицензионный ключ.
+                </div>
+            </div>
+
+            <!-- Часто задаваемые вопросы -->
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Нужен ли интернет для активации?</div>
+                <p><strong>Нет.</strong> Активация происходит полностью в автономном режиме. Интернет-соединение не требуется.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Нужно ли активировать лицензию после обновления программы?</div>
+                <p><strong>Нет.</strong> При обновлении программы лицензия сохраняется. Вам не нужно вводить ключ заново.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что делать, если я потерял лицензионный ключ?</div>
+                <ul class="step-list">
+                    <li>Проверьте папку "Спам" в вашей почте</li>
+                    <li>Если не нашли — напишите в поддержку <strong>company@mybusiness-crm.ru</strong></li>
+                    <li>Укажите дату оплаты и сумму (чек из банка)</li>
+                    <li>Мы восстановим ваш ключ</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сколько раз можно активировать ключ?</div>
+                <ul class="step-list">
+                    <li>Ключ активируется на одном основном компьютере</li>
+                    <li>При необходимости переноса — обратитесь в поддержку</li>
+                    <li>Не передавайте ключ третьим лицам</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Где появляется окно для ввода ключа?</div>
+                <ul class="step-list">
+                    <li><strong>При запуске программы</strong> — если лицензия не активна</li>
+                    <li><strong>При инициализации звонка</strong> — при попытке совершить звонок</li>
+                    <li>Также в меню <strong>Настройки → Лицензия</strong> или <strong>О программе</strong></li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Будет ли работать лицензия на Linux через Wine?</div>
+                <ul class="step-list">
+                    <li>Да, программа работает через Wine</li>
+                    <li>Активация проходит аналогично Windows</li>
+                    <li>Техническая поддержка для Linux ограничена</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>🛡️ Важно:</strong> Лицензия предназначена для использования одним пользователем (ИП или физическим лицом). Передача ключа третьим лицам запрещена лицензионным соглашением.
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="kupit.html" class="download-button">💰 Купить лицензию</a>
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+                <a href="index.html" class="download-button btn-outline">🏠 На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

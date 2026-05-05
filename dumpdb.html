@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Резервное копирование данных | Как делать бэкапы и восстанавливать информацию | База знаний</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по резервному копированию данных в My-Business CRM. Как делать бэкапы базы данных SQLite и MySQL, восстанавливать информацию, настраивать автоматическое резервное копирование." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: #1e6f9f;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .danger-box {
+            background: #ffe0e0;
+            border-left: 4px solid #dc3545;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .backup-method {
+            background: #f0f4f8;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .code-block {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Резервное копирование данных
+        </div>
+
+        <h1 class="page-title">💾 Резервное копирование данных</h1>
+        
+        <div class="content-card">
+            <p>Регулярное резервное копирование (бэкап) данных — залог безопасности вашей информации. В случае сбоя, потери данных или ошибки программы вы сможете быстро восстановить всю информацию о клиентах, сделках и истории взаимодействий.</p>
+            
+            <div class="danger-box">
+                <strong>⚠️ ВАЖНО!</strong> Регулярно делайте резервные копии! Жёсткие диски выходят из строя, файлы могут быть случайно удалены. Один бэкап в неделю — минимальная рекомендация.
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Что нужно备份ить?</strong><br>
+                • Базу данных — всю информацию о клиентах, сделках, звонках и комментариях<br>
+                • Файлы настроек программы (если вы меняли конфигурацию)
+            </div>
+
+            <h2>📌 Как часто делать резервные копии?</h2>
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>Ежедневно</strong> — если вы активно работаете с CRM и вносите много изменений</li>
+                    <li><strong>Раз в неделю</strong> — минимальная рекомендация для любого бизнеса</li>
+                    <li><strong>Перед обновлением программы</strong> — на случай несовместимости</li>
+                    <li><strong>После крупного импорта данных</strong> — сохраните результат работы</li>
+                </ul>
+            </div>
+
+            <!-- ==================== SQLite ==================== -->
+            <h2>🗄️ Резервное копирование SQLite версии</h2>
+            
+            <div class="info-box">
+                <p><strong>Где хранится база данных SQLite?</strong><br>
+                Файл базы данных обычно находится в папке с программой и имеет расширение <strong>.db</strong> или <strong>.sqlite</strong> (например, <code>mybusiness.db</code>).</p>
+                <p>Типичные пути:</p>
+                <ul class="step-list">
+                    <li><code>C:\Program Files\My-Business CRM\data.db</code></li>
+                    <li><code>C:\Users\Ваше_имя\AppData\Local\My-Business CRM\database.db</code></li>
+                </ul>
+            </div>
+
+            <h3>Способ 1. Простое копирование файла (рекомендуется)</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Закройте программу</div>
+                <ul class="step-list">
+                    <li>Перед копированием базы данных обязательно закройте My-Business CRM</li>
+                    <li>Если программа запущена, файл базы данных может быть заблокирован</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Найдите файл базы данных</div>
+                <ul class="step-list">
+                    <li>Откройте папку с установленной программой</li>
+                    <li>Найдите файл с расширением <strong>.db</strong> или <strong>.sqlite</strong></li>
+                    <li>Если не можете найти — воспользуйтесь поиском Windows</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Скопируйте файл</div>
+                <ul class="step-list">
+                    <li>Скопируйте файл (Ctrl+C)</li>
+                    <li>Вставьте копию в безопасное место: отдельная папка, внешний диск, облачное хранилище (Google Drive, Яндекс.Диск, Dropbox)</li>
+                    <li>Для удобства добавьте дату в имя файла: <code>mybusiness_backup_2025_01_15.db</code></li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Бэкап создан!</strong> Теперь у вас есть резервная копия всех данных.
+            </div>
+
+            <h3>Способ 2. Экспорт через CRM</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте раздел "Инструменты → Импорт и экспорт базы данных"</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>В главном меню выберите <strong>Инструменты → Импорт и экспорт базы данных</strong></li>
+                    <li>Выберите вкладку <strong>Экспорт</strong></li>
+                    <li>Выберите нужные поля и нажмите <strong>"Экспортировать"</strong></li>
+                </ul>
+            </div>
+
+            <h3>Восстановление из бэкапа SQLite</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Закройте программу</div>
+                <ul class="step-list">
+                    <li>Обязательно закройте My-Business CRM перед восстановлением</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Замените файл базы данных</div>
+                <ul class="step-list">
+                    <li>Скопируйте ваш бэкап-файл в папку с программой</li>
+                    <li>Замените существующий файл базы данных (предварительно сохранив старый на всякий случай)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Запустите программу</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>Все данные должны быть восстановлены</li>
+                </ul>
+                <div class="success-box">
+                    <strong>✅ Восстановление завершено!</strong>
+                </div>
+            </div>
+
+            <!-- ==================== MySQL ==================== -->
+            <h2>🐬 Резервное копирование MySQL версии</h2>
+
+            <div class="info-box">
+                <p><strong>Для MySQL версии</strong> резервное копирование делается через дамп базы данных. Это файл с SQL-командами, который позволяет полностью восстановить структуру и данные.</p>
+            </div>
+
+            <h3>Способ 1. Через командную строку (mysqldump)</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте командную строку</div>
+                <ul class="step-list">
+                    <li>Нажмите <strong>Win + R</strong>, введите <code>cmd</code>, нажмите Enter</li>
+                    <li>Перейдите в папку с MySQL (обычно <code>C:\Program Files\MySQL\MySQL Server X.X\bin</code>)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Выполните команду mysqldump</div>
+                <p>Для создания дампа всей базы данных выполните:</p>
+                <div class="code-block">
+                    mysqldump -u root -p mybusiness_crm > backup_2025_01_15.sql
+                </div>
+                <ul class="step-list">
+                    <li><strong>root</strong> — имя пользователя MySQL (или crm_user)</li>
+                    <li><strong>mybusiness_crm</strong> — имя вашей базы данных</li>
+                    <li><strong>backup_2025_01_15.sql</strong> — имя файла бэкапа (укажите свою дату)</li>
+                    <li>Система запросит пароль — введите его</li>
+                </ul>
+                <div class="code-block">
+                    Пример с указанием пароля прямо в команде (менее безопасно):<br>
+                    mysqldump -u root -pВашПароль mybusiness_crm > backup.sql
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Сохраните файл бэкапа</div>
+                <ul class="step-list">
+                    <li>Файл <strong>backup_2025_01_15.sql</strong> появится в текущей папке</li>
+                    <li>Скопируйте его в безопасное место (отдельный диск, облако)</li>
+                </ul>
+            </div>
+
+            <h3>Способ 2. Через phpMyAdmin (для локального сервера)</h3>
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте phpMyAdmin</div>
+                <ul class="step-list">
+                    <li>Перейдите по адресу <code>http://localhost/phpmyadmin</code></li>
+                    <li>Войдите с логином и паролем MySQL</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Выберите базу данных</div>
+                <ul class="step-list">
+                    <li>В левой колонке выберите вашу базу данных (например, mybusiness_crm)</li>
+                    <li>Нажмите на вкладку <strong>"Экспорт"</strong></li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Экспортируйте базу</div>
+                <ul class="step-list">
+                    <li>Выберите метод экспорта: <strong>"Быстрый"</strong> или <strong>"Обычный"</strong></li>
+                    <li>Формат: <strong>SQL</strong></li>
+                    <li>Нажмите <strong>"Вперёд"</strong> или <strong>"Сохранить"</strong></li>
+                    <li>.sql файл скачается на ваш компьютер</li>
+                </ul>
+                <div class="screenshot-placeholder" style="background: #e9ecef; border-radius: 0.75rem; padding: 1.5rem; text-align: center; margin: 1.5rem 0; border: 1px dashed #adb5bd; color: #6c757d;">
+                    <span>🖼️ [Скриншот: экспорт в phpMyAdmin]</span>
+                    <small>Вкладка "Экспорт" → выбор формата SQL → сохранение файла</small>
+                </div>
+            </div>
+
+            <h3>Восстановление из бэкапа MySQL</h3>
+            
+            <div class="step-box">
+                <div class="step-title">Способ 1. Через командную строку</div>
+                <p>Для восстановления базы данных из дампа выполните:</p>
+                <div class="code-block">
+                    mysql -u root -p mybusiness_crm < backup_2025_01_15.sql
+                </div>
+                <ul class="step-list">
+                    <li>Система запросит пароль</li>
+                    <li>Дождитесь завершения операции</li>
+                    <li>База данных будет восстановлена</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Способ 2. Через phpMyAdmin</div>
+                <ul class="step-list">
+                    <li>Откройте phpMyAdmin</li>
+                    <li>Выберите базу данных (или создайте новую с тем же именем)</li>
+                    <li>Нажмите на вкладку <strong>"Импорт"</strong></li>
+                    <li>Выберите ваш .sql файл и нажмите <strong>"Выполнить"</strong></li>
+                </ul>
+                <div class="screenshot-placeholder" style="background: #e9ecef; border-radius: 0.75rem; padding: 1.5rem; text-align: center; margin: 1.5rem 0; border: 1px dashed #adb5bd; color: #6c757d;">
+                    <span>🖼️ [Скриншот: импорт в phpMyAdmin]</span>
+                    <small>Вкладка "Импорт" → выбор файла → загрузка</small>
+                </div>
+            </div>
+
+            <!-- ==================== Автоматизация ==================== -->
+            <h2>🤖 Автоматическое резервное копирование</h2>
+
+            <h3>Для SQLite версии</h3>
+            <div class="step-box">
+                <div class="step-title">Создание bat-файла для автокопирования</div>
+                <p>Создайте файл <strong>backup.bat</strong> с таким содержимым:</p>
+                <div class="code-block">
+                    @echo off<br>
+                    set BACKUP_DIR=D:\Backups\MyBusiness<br>
+                    set DATE=%date:~-4,4%_%date:~-7,2%_%date:~-10,2%<br>
+                    copy "C:\Program Files\My-Business CRM\data.db" "%BACKUP_DIR%\data_%DATE%.db"
+                </div>
+                <ul class="step-list">
+                    <li>Измените пути на свои</li>
+                    <li>Настройте планировщик Windows для запуска этого файла ежедневно</li>
+                </ul>
+            </div>
+
+            <h3>Для MySQL версии</h3>
+            <div class="step-box">
+                <div class="step-title">Создание bat-файла для автокопирования</div>
+                <p>Создайте файл <strong>mysql_backup.bat</strong>:</p>
+                <div class="code-block">
+                    @echo off<br>
+                    set BACKUP_DIR=D:\Backups\MySQL<br>
+                    set DATE=%date:~-4,4%_%date:~-7,2%_%date:~-10,2%<br>
+                    "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysqldump" -u crm_user -pYourPassword mybusiness_crm > "%BACKUP_DIR%\mybusiness_%DATE%.sql"
+                </div>
+                <ul class="step-list">
+                    <li>Замените пароль и пути на свои</li>
+                    <li>Через планировщик Windows запускайте bat-файл ежедневно</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Рекомендации по хранению бэкапов:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li>Храните бэкапы на другом физическом диске (не на том, где установлена программа)</li>
+                    <li>Используйте облачные сервисы (Google Drive, Яндекс.Диск, Dropbox) для автоматической синхронизации</li>
+                    <li>Сохраняйте как минимум 3 последних копии (на случай повреждения последней)</li>
+                    <li>Проверяйте, что бэкап создаётся успешно и не повреждён</li>
+                </ul>
+            </div>
+
+            <!-- ==================== Частые вопросы ==================== -->
+            <h2>❓ Частые вопросы (FAQ)</h2>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли восстановить базу данных на другой компьютер?</div>
+                <ul class="step-list">
+                    <li><strong>SQLite:</strong> Да — просто скопируйте файл .db на другой компьютер и укажите путь к нему в программе</li>
+                    <li><strong>MySQL:</strong> Да — импортируйте дамп .sql на сервер и укажите новые параметры подключения</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сколько места занимает бэкап?</div>
+                <ul class="step-list">
+                    <li>Обычно бэкап ненамного больше самой базы данных</li>
+                    <li>Для малого бизнеса (до 10 000 клиентов) — от 10 до 100 МБ</li>
+                    <li>Для крупных баз — до нескольких ГБ</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Нужно ли останавливать MySQL перед бэкапом?</div>
+                <ul class="step-list">
+                    <li>Нет, mysqldump создаёт консистентную копию на работающем сервере</li>
+                    <li>Для больших баз рекомендуется делать бэкап в часы наименьшей нагрузки</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что делать, если файл бэкапа повреждён?</div>
+                <ul class="step-list">
+                    <li>Всегда храните несколько копий — последнюю и одну-две предыдущие</li>
+                    <li>Периодически проверяйте, что бэкапы успешно восстанавливаются</li>
+                </ul>
+            </div>
+
+            <!-- ==================== Чеклист ==================== -->
+            <div class="success-box">
+                <strong>📋 Чек-лист надёжного резервного копирования:</strong><br>
+                ☐ Я знаю, где хранится моя база данных<br>
+                ☐ Я делаю резервные копии минимум раз в неделю<br>
+                ☐ Я храню бэкапы на другом диске или в облаке<br>
+                ☐ Я храню несколько последних копий<br>
+                ☐ Я проверил, что бэкапы восстанавливаются<br>
+                ☐ Я настроил автоматическое резервное копирование
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+                <a href="mysql.html" class="download-button btn-outline">🐬 Настройка MySQL</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

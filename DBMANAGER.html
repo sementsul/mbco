@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DBMANAGER — управление базами данных SQLite | My-Business CRM</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Утилита DBMANAGER в составе My-Business CRM. Создание новой базы данных SQLite, удаление, установка базы по умолчанию. Запуск через кнопку 'Базы данных' в программе." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .danger-box {
+            background: #ffe0e0;
+            border-left: 4px solid #dc3545;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .db-path {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            word-break: break-all;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / DBMANAGER — управление базами данных
+        </div>
+
+        <h1 class="page-title">🗄️ DBMANAGER — управление базами данных SQLite</h1>
+        
+        <div class="content-card">
+            <p><strong>DBMANAGER</strong> — это встроенная утилита в составе My-Business CRM (версия SQLite), которая позволяет управлять базами данных программы. С её помощью вы можете создавать новые базы данных, удалять ненужные и устанавливать базу данных по умолчанию.</p>
+            
+            <div class="info-box">
+                <strong>📌 Для чего это нужно?</strong><br>
+                • Создание отдельной базы данных для разных проектов или клиентов<br>
+                • Очистка места на диске путём удаления неиспользуемых баз<br>
+                • Переключение между несколькими базами данных<br>
+                • Восстановление работоспособности при повреждении основной базы
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Важно!</strong> Утилита DBMANAGER доступна только в <strong>SQLite версии</strong> программы. Для MySQL версии управление базами данных осуществляется через phpMyAdmin или другие инструменты администрирования.
+            </div>
+
+            <!-- Запуск утилиты -->
+            <h2>🚀 Запуск утилиты DBMANAGER</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Запустите My-Business CRM</div>
+                <ul class="step-list">
+                    <li>Откройте программу через ярлык на рабочем столе или в меню "Пуск"</li>
+                    <li>Дождитесь полной загрузки программы</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Нажмите кнопку "Базы данных"</div>
+                <ul class="step-list">
+                    <li>На главном экране программы найдите кнопку <strong>"Базы данных"</strong></li>
+                    <li>Обычно она расположена на верхней панели инструментов или в главном меню</li>
+                    <li>После нажатия откроется окно утилиты DBMANAGER</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Подсказка:</strong> Если вы не видите кнопку "Базы данных", убедитесь, что у вас установлена <strong>SQLite версия</strong> программы. В MySQL версии эта функция недоступна.
+            </div>
+
+            <!-- Где хранятся файлы -->
+            <h2>📁 Где хранятся файлы баз данных?</h2>
+            
+            <div class="info-box">
+                <p>Все файлы баз данных <strong>.db</strong> хранятся в папке с установленной программой:</p>
+                <div class="db-path">
+                    C:\Program Files\My-Business CRM\
+                </div>
+                <p>Если вы установили программу в другую папку, файлы баз данных будут там.</p>
+                <div class="warning-box" style="margin-top: 0.5rem;">
+                    <strong>⚠️ Важно:</strong> Не удаляйте и не перемещайте файлы баз данных вручную через проводник Windows, если не уверены в своих действиях. Используйте для этого DBMANAGER.
+                </div>
+            </div>
+
+            <!-- Функционал утилиты -->
+            <h2>⚙️ Функционал утилиты DBMANAGER</h2>
+
+            <h3>📄 1. Создание новой базы данных</h3>
+            <div class="step-box">
+                <div class="step-title">Как создать новую базу данных?</div>
+                <ul class="step-list">
+                    <li>В окне DBMANAGER нажмите кнопку <strong>"Создать новую базу данных"</strong> или <strong>"Новая БД"</strong></li>
+                    <li>Введите название для новой базы данных (латиницей, без пробелов)</li>
+                    <li>Утилита создаст пустой файл <strong>.db</strong> в папке программы</li>
+                    <li>Новая база появится в списке доступных баз данных</li>
+                </ul>
+                <div class="success-box" style="margin-top: 0.5rem;">
+                    <strong>✅ Готово!</strong> Вы можете переключиться на новую базу и начать работу с чистого листа.
+                </div>
+            </div>
+
+            <h3>🗑️ 2. Удаление базы данных</h3>
+            <div class="step-box">
+                <div class="step-title">Как удалить базу данных?</div>
+                <ul class="step-list">
+                    <li>В окне DBMANAGER выберите базу данных из списка</li>
+                    <li>Нажмите кнопку <strong>"Удалить базу данных"</strong> или <strong>"Удалить БД"</strong></li>
+                    <li>Подтвердите действие во всплывающем окне</li>
+                    <li>Файл базы данных будет удалён из папки программы</li>
+                </ul>
+                <div class="danger-box" style="margin-top: 0.5rem;">
+                    <strong>⚠️ Внимание!</strong> Удаление базы данных необратимо. Все данные в этой базе будут потеряны. Рекомендуем перед удалением сделать резервную копию.
+                </div>
+            </div>
+
+            <h3>⭐ 3. Установка базы данных по умолчанию</h3>
+            <div class="step-box">
+                <div class="step-title">Как установить базу данных по умолчанию?</div>
+                <ul class="step-list">
+                    <li>В окне DBMANAGER выберите базу данных из списка</li>
+                    <li>Нажмите кнопку <strong>"Установить по умолчанию"</strong> или <strong>"БД по умолчанию"</strong></li>
+                    <li>Выбранная база будет загружаться автоматически при каждом запуске программы</li>
+                </ul>
+                <div class="info-box" style="margin-top: 0.5rem;">
+                    <strong>💡 Совет:</strong> Если вы работаете с несколькими проектами, вы можете переключаться между базами данных, меняя базу по умолчанию.
+                </div>
+            </div>
+
+            <h3>🔄 4. Переключение между базами данных</h3>
+            <div class="step-box">
+                <div class="step-title">Как переключиться на другую базу данных?</div>
+                <ul class="step-list">
+                    <li>В окне DBMANAGER выберите нужную базу из списка</li>
+                    <li>Нажмите кнопку <strong>"Переключиться"</strong> или <strong>"Выбрать"</strong></li>
+                    <li>Программа закроется и откроется повторно уже с выбранной базой данных</li>
+                </ul>
+                <div class="info-box" style="margin-top: 0.5rem;">
+                    <strong>💡 Примечание:</strong> При переключении базы данных программа автоматически перезапускается для применения изменений.
+                </div>
+            </div>
+
+            <!-- Резервное копирование через DBMANAGER -->
+            <h2>💾 Резервное копирование базы данных</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Как сделать резервную копию базы данных?</div>
+                <ul class="step-list">
+                    <li>Закройте программу My-Business CRM</li>
+                    <li>Откройте папку с программой (обычно <code>C:\Program Files\My-Business CRM\</code>)</li>
+                    <li>Найдите файл вашей базы данных (например, <strong>default.db</strong>)</li>
+                    <li>Скопируйте файл в безопасное место (внешний диск, облачное хранилище)</li>
+                    <li>Для восстановления — скопируйте файл обратно в папку программы</li>
+                </ul>
+                <div class="success-box" style="margin-top: 0.5rem;">
+                    <strong>✅ Бэкап создан!</strong> Рекомендуем регулярно делать резервные копии важных данных.
+                </div>
+            </div>
+
+            <!-- Пошаговый пример работы -->
+            <h2>📖 Пример работы с DBMANAGER</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Сценарий: Создание отдельной базы для нового проекта</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>Нажмите кнопку <strong>"Базы данных"</strong></li>
+                    <li>Нажмите <strong>"Создать новую базу данных"</strong></li>
+                    <li>Введите название: <code>project_2025</code></li>
+                    <li>Новая база появилась в списке</li>
+                    <li>Выберите её и нажмите <strong>"Установить по умолчанию"</strong></li>
+                    <li>Перезапустите программу</li>
+                    <li>Теперь вы работаете с чистой базой данных для нового проекта</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сценарий: Переключение между базами клиентов</div>
+                <ul class="step-list">
+                    <li>У вас есть две базы: <code>клиенты_опт</code> и <code>клиенты_розница</code></li>
+                    <li>Откройте DBMANAGER</li>
+                    <li>Выберите нужную базу и нажмите <strong>"Переключиться"</strong></li>
+                    <li>Программа перезапустится с выбранной базой</li>
+                    <li>Таким образом можно быстро переключаться между разными группами клиентов</li>
+                </ul>
+            </div>
+
+            <!-- Частые вопросы -->
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли использовать одну базу данных на нескольких компьютерах?</div>
+                <ul class="step-list">
+                    <li>Да, для этого нужно разместить файл <strong>.db</strong> в сетевой папке</li>
+                    <li>На каждом компьютере указать путь к этому файлу в настройках</li>
+                    <li><strong>Важно:</strong> Одновременная работа нескольких пользователей с одной SQLite базой не рекомендуется, возможны конфликты</li>
+                    <li>Для командной работы используйте MySQL версию</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что делать, если база данных повреждена?</div>
+                <ul class="step-list">
+                    <li>Попробуйте переключиться на другую базу через DBMANAGER</li>
+                    <li>Восстановите данные из резервной копии</li>
+                    <li>Если резервной копии нет — создайте новую базу и импортируйте данные из CSV</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Почему я не вижу кнопку "Базы данных"?</div>
+                <ul class="step-list">
+                    <li>Убедитесь, что у вас установлена <strong>SQLite версия</strong> программы</li>
+                    <li>В MySQL версии эта функция недоступна</li>
+                    <li>Проверьте, что вы используете актуальную версию программы</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сколько баз данных можно создать?</div>
+                <ul class="step-list">
+                    <li>Количество баз данных ограничено только свободным местом на диске</li>
+                    <li>Вы можете создавать неограниченное количество баз данных для разных проектов</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Как переименовать базу данных?</div>
+                <ul class="step-list">
+                    <li>Закройте программу</li>
+                    <li>Переименуйте файл <strong>.db</strong> в папке программы</li>
+                    <li>Запустите программу — база будет отображаться под новым именем</li>
+                    <li>Не используйте кириллицу в именах файлов</li>
+                </ul>
+            </div>
+
+            <!-- Предупреждение -->
+            <div class="warning-box">
+                <strong>⚠️ Важные предупреждения:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li>Не удаляйте базу данных, если вы не уверены, что она вам больше не нужна</li>
+                    <li>Перед удалением базы всегда делайте резервную копию</li>
+                    <li>Не изменяйте файлы баз данных вручную через блокнот — это повредит базу</li>
+                    <li>Регулярно делайте резервные копии важных данных</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать SQLite версию</a>
+                <a href="index.html" class="download-button btn-outline">🏠 На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Дизайнер отчётов Fast Reports | My-Business CRM — создание и настройка отчётов</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по работе с дизайнером отчётов Fast Reports в My-Business CRM. Создание шаблонов отчетов, настройка данных, экспорт в PDF и Excel, печать." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            color: #1e6f9f;
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .export-formats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .format-tag {
+            background: #f0f4f8;
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            font-size: 0.85rem;
+            color: #1e6f9f;
+            border: 1px solid #cbdde9;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Дизайнер отчётов Fast Reports
+        </div>
+
+        <h1 class="page-title">📊 Дизайнер отчётов Fast Reports</h1>
+        
+        <div class="content-card">
+            <p>В состав My-Business CRM входит мощный инструмент для создания и редактирования отчётов — <strong>дизайнер отчётов Fast Reports</strong>. С его помощью вы можете формировать профессиональные отчёты по вашим данным: списки клиентов, отчёты по продажам, аналитические сводки и многое другое.</p>
+            
+            <div class="success-box">
+                <strong>✅ Возможности дизайнера отчётов:</strong><br>
+                • Визуальное создание шаблонов отчётов без программирования<br>
+                • Подключение к данным CRM (клиенты, сделки, звонки)<br>
+                • Экспорт отчётов в популярные форматы: PDF, Excel, Word, HTML, изображения<br>
+                • Предварительный просмотр перед печатью<br>
+                • Сохранение и загрузка шаблонов
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Что такое Fast Reports?</strong><br>
+                Fast Reports — это профессиональная библиотека для генерации отчётов, используемая в тысячах приложений по всему миру. В состав My-Business CRM встроен полнофункциональный визуальный дизайнер, который позволяет создавать отчёты любой сложности без навыков программирования [citation:10].
+            </div>
+
+            <!-- Запуск дизайнера -->
+            <h2>🚀 Запуск дизайнера отчётов</h2>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте раздел "Отчёты" в CRM</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>В главном меню найдите раздел <strong>"Отчёты"</strong> или <strong>"Дизайнер отчётов"</strong></li>
+                    <li>Нажмите на кнопку <strong>"Создать новый отчёт"</strong> или <strong>"Редактировать"</strong> для существующего шаблона</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Откройте окно дизайнера</div>
+                <ul class="step-list">
+                    <li>После нажатия откроется окно <strong>дизайнера отчётов Fast Reports</strong></li>
+                    <li>Интерфейс дизайнера включает:<br>
+                    — <strong>Панель инструментов</strong> — для работы с отчётом (создание, открытие, сохранение, предпросмотр)<br>
+                    — <strong>Область дизайна</strong> — рабочая область для размещения элементов отчёта<br>
+                    — <strong>Окно данных</strong> — доступные поля из базы данных CRM<br>
+                    — <strong>Инспектор свойств</strong> — настройка свойств выбранных элементов</li>
+                </ul>
+            </div>
+
+            <!-- Создание отчёта -->
+            <h2>📝 Создание нового отчёта</h2>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Выберите источник данных</div>
+                <ul class="step-list">
+                    <li>В окне дизайнера перейдите на вкладку <strong>"Data"</strong> (Данные)</li>
+                    <li>В дереве данных выберите нужные поля CRM:<br>
+                    — Клиенты (ФИО, телефон, дата создания, воронка, стадия и т.д.)<br>
+                    — Сделки<br>
+                    — Звонки</li>
+                    <li>Перетащите нужные поля мышью на рабочую область отчёта</li>
+                </ul>
+                <div class="info-box" style="margin-top: 0.5rem;">
+                    <strong>💡 Совет:</strong> Для создания таблицы с данными используйте компонент <strong>"Table"</strong> или <strong>"Data Band"</strong> — он автоматически повторяется для каждой записи из базы данных.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Добавьте элементы оформления</div>
+                <ul class="step-list">
+                    <li>Используйте <strong>панель инструментов</strong> слева для добавления элементов:<br>
+                    — <strong>Text</strong> — текстовые поля, заголовки, подписи<br>
+                    — <strong>Picture</strong> — изображения (логотип компании)<br>
+                    — <strong>Line, Shape</strong> — линии и фигуры для оформления<br>
+                    — <strong>Table</strong> — таблицы для структурированных данных<br>
+                    — <strong>Subreport</strong> — вложенные отчёты</li>
+                    <li>Настройте внешний вид через <strong>инспектор свойств</strong> (клавиша F11)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Настройте структуру отчёта</div>
+                <ul class="step-list">
+                    <li>Используйте <strong>полосы (Bands)</strong> для организации структуры:<br>
+                    — <strong>Report Title</strong> — заголовок отчёта (печатается один раз в начале)<br>
+                    — <strong>Page Header</strong> — верхний колонтитул страницы<br>
+                    — <strong>Data Header</strong> — заголовок таблицы данных<br>
+                    — <strong>Data</strong> — основная полоса с данными (повторяется для каждой записи)<br>
+                    — <strong>Data Footer</strong> — итоги по группе данных<br>
+                    — <strong>Page Footer</strong> — нижний колонтитул страницы<br>
+                    — <strong>Report Summary</strong> — общие итоги в конце отчёта</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span> Предварительный просмотр</div>
+                <ul class="step-list">
+                    <li>Нажмите кнопку <strong>Preview</strong> (Предпросмотр) на панели инструментов или клавишу <strong>Ctrl+P</strong></li>
+                    <li>В режиме предпросмотра вы можете увидеть, как будет выглядеть готовый отчёт</li>
+                    <li>При необходимости вернитесь к редактированию и внесите правки</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">5</span> Сохраните шаблон отчёта</div>
+                <ul class="step-list">
+                    <li>Нажмите <strong>Save</strong> или <strong>Save as</strong> на панели инструментов (или Ctrl+S)</li>
+                    <li>Укажите имя файла шаблона (расширение .frx или .fr3)</li>
+                    <li>Шаблоны хранятся в папке с программой и доступны для дальнейшего использования</li>
+                </ul>
+            </div>
+
+            <!-- Экспорт отчётов -->
+            <h2>📤 Экспорт отчётов</h2>
+            
+            <div class="info-box">
+                <strong>Дизайнер Fast Reports поддерживает экспорт в следующие форматы:</strong>
+                <div class="export-formats">
+                    <span class="format-tag">PDF</span>
+                    <span class="format-tag">Microsoft Excel (XLSX)</span>
+                    <span class="format-tag">Microsoft Word (DOCX)</span>
+                    <span class="format-tag">HTML</span>
+                    <span class="format-tag">CSV</span>
+                    <span class="format-tag">XML</span>
+                    <span class="format-tag">JSON</span>
+                    <span class="format-tag">PNG</span>
+                    <span class="format-tag">JPEG</span>
+                    <span class="format-tag">TIFF</span>
+                    <span class="format-tag">RTF</span>
+                    <span class="format-tag">TXT</span>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Как экспортировать отчёт</div>
+                <ul class="step-list">
+                    <li>В режиме предпросмотра (Preview) нажмите кнопку <strong>"Экспорт"</strong> на панели инструментов</li>
+                    <li>Выберите нужный формат экспорта (например, PDF, Excel)</li>
+                    <li>При необходимости настройте параметры экспорта (качество, страницы, ориентация)</li>
+                    <li>Нажмите <strong>"Сохранить"</strong> и выберите папку для сохранения файла</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Печать отчёта</div>
+                <ul class="step-list">
+                    <li>В режиме предпросмотра нажмите кнопку <strong>Print</strong> (Печать) или Ctrl+P</li>
+                    <li>Выберите принтер и настройки печати</li>
+                    <li>Нажмите <strong>"Печать"</strong></li>
+                </ul>
+            </div>
+
+            <!-- Группировка и сортировка -->
+            <h2>🔧 Расширенные возможности</h2>
+
+            <h3>Группировка данных</h3>
+            <div class="step-box">
+                <ul class="step-list">
+                    <li>Добавьте полосу <strong>Group Header</strong> (Заголовок группы)</li>
+                    <li>В инспекторе свойств укажите поле для группировки (например, "воронка" или "стадия")</li>
+                    <li>Добавьте полосу <strong>Group Footer</strong> (Нижний колонтитул группы) для итогов по группе</li>
+                    <li>Пример: отчёт по клиентам, сгруппированный по воронке продаж</li>
+                </ul>
+            </div>
+
+            <h3>Подсчёт итогов</h3>
+            <div class="step-box">
+                <ul class="step-list">
+                    <li>Добавьте в отчёт текстовое поле для итога</li>
+                    <li>В инспекторе свойств задайте функцию:<br>
+                    — <code>[SUM(Поле)]</code> — сумма значений<br>
+                    — <code>[COUNT(Поле)]</code> — количество записей<br>
+                    — <code>[AVG(Поле)]</code> — среднее значение<br>
+                    — <code>[MIN(Поле)]</code> — минимум<br>
+                    — <code>[MAX(Поле)]</code> — максимум</li>
+                    <li>Разместите итоговое поле в полосе <strong>Report Summary</strong> или <strong>Group Footer</strong></li>
+                </ul>
+                <div class="code-block">
+                    Пример: [COUNT(Клиенты.ФИО)] - общее количество клиентов
+                </div>
+            </div>
+
+            <h3>Фильтрация данных</h3>
+            <div class="step-box">
+                <ul class="step-list">
+                    <li>Выделите полосу с данными (Data Band)</li>
+                    <li>В инспекторе свойств найдите свойство <strong>Filter</strong></li>
+                    <li>Задайте условие фильтрации (например, [Клиенты.Стадия] = "Сделка")</li>
+                    <li>Отчёт будет показывать только записи, соответствующие условию</li>
+                </ul>
+            </div>
+
+            <h3>Использование параметров</h3>
+            <div class="step-box">
+                <ul class="step-list">
+                    <li>Перейдите в меню <strong>Report → Parameters</strong></li>
+                    <li>Создайте новый параметр (например, "ДатаНачала", "Стадия")</li>
+                    <li>В отчёте используйте параметр: <code>[Параметр1]</code></li>
+                    <li>При формировании отчёта CRM попросит ввести значения параметров</li>
+                    <li>Это позволяет создавать интерактивные отчёты</li>
+                </ul>
+            </div>
+
+            <!-- Быстрые шаблоны -->
+            <h2>⚡ Быстрые шаблоны отчётов</h2>
+            
+            <div class="info-box">
+                <strong>В состав CRM входят готовые шаблоны отчётов:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li><strong>Список клиентов</strong> — таблица со всеми клиентами</li>
+                    <li><strong>Отчёт по воронке продаж</strong> — группировка по стадиям</li>
+                    <li><strong>Аналитика по звонкам</strong> — статистика звонков за период</li>
+                    <li><strong>Карточка клиента</strong> — детальный отчёт по одному клиенту</li>
+                </ul>
+                <p style="margin-top: 0.5rem;">Вы можете использовать эти шаблоны как основу и редактировать их под свои нужды.</p>
+            </div>
+
+            <!-- Частые вопросы -->
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Нужны ли навыки программирования для создания отчётов?</div>
+                <p><strong>Нет.</strong> Дизайнер отчётов Fast Reports имеет визуальный интерфейс — вы создаёте отчёты перетаскиванием элементов мышью, без написания кода [citation:2][citation:10].</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Как добавить логотип компании в отчёт?</div>
+                <ul class="step-list">
+                    <li>Добавьте компонент <strong>Picture</strong> на полосу отчёта</li>
+                    <li>В инспекторе свойств выберите файл изображения (логотип)</li>
+                    <li>Настройте размер и положение</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Как сделать отчёт с итогами по месяцам?</div>
+                <ul class="step-list">
+                    <li>Используйте <strong>группировку</strong> по полю "Дата" с настройкой формата по месяцу</li>
+                    <li>Добавьте в группу итоговую строку с суммой или количеством</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Где хранятся созданные мной шаблоны отчётов?</div>
+                <ul class="step-list">
+                    <li>Шаблоны сохраняются в папку с программой My-Business CRM</li>
+                    <li>Файлы имеют расширение <strong>.frx</strong> или <strong>.fr3</strong></li>
+                    <li>Вы можете скопировать их для переноса на другой компьютер</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли экспортировать отчёт в Excel с сохранением форматирования?</div>
+                <ul class="step-list">
+                    <li>Да, при экспорте в формат XLSX сохраняется структура таблиц, шрифты и заливки</li>
+                    <li>В настройках экспорта можно выбрать "Excel 2007/2010" для наилучшей совместимости</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Вызов справки</div>
+                <ul class="step-list">
+                    <li>В окне дизайнера отчётов нажмите <strong>F1</strong> для вызова встроенной справки Fast Reports</li>
+                    <li>Там вы найдёте подробное описание всех компонентов и функций [citation:7]</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать CRM</a>
+                <a href="index.html" class="download-button btn-outline">🏠 На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

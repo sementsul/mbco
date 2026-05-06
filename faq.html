@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -28,46 +28,54 @@
         }
 
         header {
-            background-color: #007bff;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: #fff;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
             width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 2rem;
+            font-weight: 600;
         }
 
         header p {
-            margin-top: 8px;
+            margin-top: 10px;
             opacity: 0.9;
+            font-size: 1.1rem;
         }
 
         .back-button {
             background-color: #28a745;
             color: #fff;
-            padding: 8px 20px;
+            padding: 10px 24px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 30px;
             display: inline-block;
-            margin-top: 12px;
+            margin-top: 15px;
             font-size: 0.9rem;
-            transition: background-color 0.2s;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .back-button:hover {
             background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1200px;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 35px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px 35px;
             margin: 40px auto;
         }
 
@@ -80,14 +88,15 @@
         h2 {
             color: #007bff;
             margin-bottom: 15px;
-            font-size: 1.8rem;
+            font-size: 2rem;
             text-align: center;
+            font-weight: 600;
         }
 
         h3 {
             color: #28a745;
-            margin: 30px 0 15px;
-            font-size: 1.3rem;
+            margin: 35px 0 20px;
+            font-size: 1.4rem;
             border-left: 4px solid #28a745;
             padding-left: 15px;
         }
@@ -104,18 +113,91 @@
             color: #555;
         }
 
+        /* Поиск Яндекс - кастомные стили */
+        .search-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .search-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .ya-search-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .ya-site-form {
+            display: block;
+        }
+
+        .ya-search-flex {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .ya-search-input {
+            flex: 1;
+            padding: 14px 22px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: white;
+        }
+
+        .ya-search-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .ya-search-btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .ya-search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .search-note {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 12px;
+        }
+
         /* Категории */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin: 30px 0;
+            margin: 35px 0;
         }
 
         .category-card {
             background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid #e0e0e0;
@@ -127,7 +209,7 @@
 
         .category-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             border-color: #007bff;
         }
 
@@ -139,11 +221,13 @@
         .category-card h4 {
             margin: 10px 0;
             color: #333;
+            font-weight: 600;
         }
 
         .category-card p {
             font-size: 0.9rem;
             margin-bottom: 0;
+            color: #666;
         }
 
         /* Статьи */
@@ -159,12 +243,13 @@
 
         .article-item:hover {
             background-color: #f8f9fa;
-            padding-left: 10px;
+            padding-left: 12px;
+            border-radius: 8px;
         }
 
         .article-title {
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             color: #007bff;
             text-decoration: none;
             display: block;
@@ -194,7 +279,7 @@
         }
 
         .faq-question {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.05rem;
             color: #333;
             cursor: pointer;
@@ -291,11 +376,11 @@
             display: inline-block;
             padding: 10px 24px;
             font-size: 1em;
-            font-weight: bold;
+            font-weight: 600;
             background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 30px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -305,6 +390,7 @@
         .download-button:hover {
             background-color: #218838;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .button-outline {
@@ -323,40 +409,20 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 25px 0;
+            margin: 30px 0 20px;
         }
 
         hr {
-            margin: 25px 0;
+            margin: 30px 0;
             border: none;
             border-top: 1px solid #e0e0e0;
-        }
-
-        .search-box {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            font-size: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 30px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: #007bff;
         }
 
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 15px;
+            padding: 25px;
             width: 100%;
             font-size: 0.85rem;
         }
@@ -370,16 +436,57 @@
             text-decoration: underline;
         }
 
-        @media (max-width: 600px) {
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #007bff;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border: none;
+            font-size: 20px;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
             .container {
                 padding: 25px 20px;
                 margin: 20px;
             }
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+            h3 {
+                font-size: 1.2rem;
             }
             .categories-grid {
                 gap: 15px;
+            }
+            .ya-search-flex {
+                flex-direction: column;
+            }
+            .ya-search-btn {
+                width: 100%;
             }
         }
     </style>
@@ -387,8 +494,8 @@
 <body>
 
 <header>
-    <h1>My-Business - Ваша Offline CRM</h1>
-    <p>Простая, мощная и доступная система для управления продажами.</p>
+    <h1>📊 My-Business CRM</h1>
+    <p>Простая, мощная и доступная система для управления продажами</p>
     <a href="index.html" class="back-button">← На главную</a>
 </header>
 
@@ -396,11 +503,31 @@
     <div class="header-icon">📚</div>
     
     <h2>База знаний</h2>
-    <p style="text-align: center; margin-bottom: 20px;">Инструкции, руководства и ответы на частые вопросы по работе с My-Business CRM</p>
+    <p style="text-align: center; margin-bottom: 20px; font-size: 1.05rem;">
+        Инструкции, руководства и ответы на частые вопросы по работе с My-Business CRM
+    </p>
     
-    <!-- Поиск -->
-    <div class="search-box">
-      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Поиск по базе знаний...">  
+    <!-- Яндекс Поиск -->
+    <div class="search-section">
+        <div class="search-title">
+            🔍 Быстрый поиск по всем материалам
+        </div>
+        <div class="ya-search-wrapper">
+            <div class="ya-site-form ya-site-form_inited_no" data-bem="{&quot;action&quot;:&quot;https://yandex.ru/search/site/&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;https://mybusiness-crm.ru/&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_self&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:false,&quot;searchid&quot;:14996854,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#FFFFFF&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:&quot;Введите ваш вопрос...&quot;,&quot;input_placeholderColor&quot;:&quot;#999999&quot;,&quot;input_borderColor&quot;:&quot;#007bff&quot;}">
+                <form action="https://yandex.ru/search/site/" method="get" target="_self" accept-charset="utf-8">
+                    <input type="hidden" name="searchid" value="14996854"/>
+                    <input type="hidden" name="l10n" value="ru"/>
+                    <input type="hidden" name="reqenc" value=""/>
+                    <div class="ya-search-flex">
+                        <input type="search" name="text" value="" placeholder="Введите ваш вопрос..." class="ya-search-input"/>
+                        <button type="submit" class="ya-search-btn">🔍 Найти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="search-note">
+            <span>📌 Поиск работает по всем статьям базы знаний с помощью Яндекс</span>
+        </div>
     </div>
     
     <!-- Категории -->
@@ -425,10 +552,10 @@
             <h4>Базы данных</h4>
             <p>SQLite, MySQL, совместная работа в команде</p>
         </a>
-        <a href="#license" class="category-card">
-            <div class="category-icon">⭐</div>
-            <h4>Лицензия</h4>
-            <p>Что даёт лицензия, как приобрести, активация</p>
+        <a href="#reports" class="category-card">
+            <div class="category-icon">📊</div>
+            <h4>Отчёты</h4>
+            <p>Дизайнер отчётов Fast Reports, выгрузка в Excel</p>
         </a>
         <a href="#faq" class="category-card">
             <div class="category-icon">❓</div>
@@ -522,7 +649,7 @@
     
     <hr id="database">
     
- <!-- Раздел: Базы данных -->
+    <!-- Раздел: Базы данных -->
     <h3>🗄️ Базы данных</h3>
     
     <div class="articles-list">
@@ -548,79 +675,39 @@
         </div>
     </div>
     
-    <hr id="license">
-
-
-
-<!-- ==================== ВСТАВКА ДЛЯ БАЗЫ ЗНАНИЙ: ОТЧЁТЫ ==================== -->
-<!-- Добавьте этот код в файл faq.html (или другую страницу базы знаний) -->
-<!-- Рекомендуемое место: после раздела "Базы данных", перед разделом "Лицензия" -->
-<!-- ================================================================= -->
-
-<hr id="reports">
-
-<!-- Раздел: Отчёты -->
-<h3>📊 Отчёты и аналитика</h3>
-
-<div class="success-box">
-    <strong>✅ Встроенный дизайнер отчётов Fast Reports</strong><br>
-    В состав My-Business CRM входит профессиональный инструмент для создания отчётов. Вы можете формировать списки клиентов, отчёты по продажам, аналитические сводки и многое другое без навыков программирования.
-</div>
-
-<div class="articles-list">
-    <div class="article-item">
-        <a href="FastReports.html" class="article-title">Дизайнер отчётов Fast Reports</a>
-        <div class="article-desc">Создание и редактирование отчётов в визуальном дизайнере. Добавление данных, настройка внешнего вида, группировка, итоги.</div>
-        <div class="article-date">06 мая 2026</div>
-    </div>
-    <div class="article-item">
-        <a href="vigruzka.html" class="article-title">Выгрузка данных в Microsoft Excel</a>
-        <div class="article-desc">Как выгрузить список контактов в Excel, настроить фильтры и автоматическое открытие.</div>
-        <div class="article-date">06 мая 2026</div>
-    </div>
-</div>
-
-<div class="info-box">
-    <strong>📌 Что можно создать с помощью дизайнера отчётов?</strong>
-    <ul class="feature-list" style="margin-top: 10px;">
-        <li><strong>Список клиентов</strong> — полный перечень контактов с фильтрацией и группировкой</li>
-        <li><strong>Отчёт по воронке продаж</strong> — анализ клиентов по стадиям сделок</li>
-        <li><strong>Аналитика по звонкам</strong> — статистика звонков за период</li>
-        <li><strong>Карточка клиента</strong> — детальный отчёт по одному клиенту</li>
-        <li><strong>Финансовые отчёты</strong> — суммы, средние чеки, итоги</li>
-        <li><strong>Отчёты с группировкой</strong> — данные, сгруппированные по воронке, стадии, дате</li>
-    </ul>
-</div>
-<hr>
-<!-- ==================== КОНЕЦ ВСТАВКИ ==================== -->
-
-
-
+    <hr id="reports">
     
-    <!-- Раздел: Лицензия -->
-    <h3>⭐ Лицензия</h3>
+    <!-- Раздел: Отчёты -->
+    <h3>📊 Отчёты и аналитика</h3>
+    
+    <div class="success-box">
+        <strong>✅ Встроенный дизайнер отчётов Fast Reports</strong><br>
+        В состав My-Business CRM входит профессиональный инструмент для создания отчётов. Вы можете формировать списки клиентов, отчёты по продажам, аналитические сводки и многое другое без навыков программирования.
+    </div>
     
     <div class="articles-list">
         <div class="article-item">
-            <a href="LIC.html" class="article-title">Что даёт лицензия?</a>
-            <div class="article-desc">Приоритетная поддержка, эксклюзивные функции, отключение информационных сообщений.</div>
-            <div class="article-date">20 мая 2024</div>
+            <a href="FastReports.html" class="article-title">Дизайнер отчётов Fast Reports</a>
+            <div class="article-desc">Создание и редактирование отчётов в визуальном дизайнере. Добавление данных, настройка внешнего вида, группировка, итоги.</div>
+            <div class="article-date">06 мая 2026</div>
         </div>
         <div class="article-item">
-            <a href="opokupke.html" class="article-title">Как приобрести лицензию?</a>
-            <div class="article-desc">Способы оплаты, стоимость, получение лицензионного ключа.</div>
-            <div class="article-date">15 мая 2024</div>
+            <a href="vigruzka.html" class="article-title">Выгрузка данных в Microsoft Excel</a>
+            <div class="article-desc">Как выгрузить список контактов в Excel, настроить фильтры и автоматическое открытие.</div>
+            <div class="article-date">06 мая 2026</div>
         </div>
-        <div class="article-item">
-            <a href="aktivation.html" class="article-title">Активация лицензионного ключа</a>
-            <div class="article-desc">Пошаговая инструкция по вводу ключа и активации программы.</div>
-            <div class="article-date">10 мая 2024</div>
-        </div>
-        <div class="article-item">
-            <a href="downver/LICENSE.pdf" class="article-title">Лицензионное соглашение (PDF)</a>
-            <div class="article-desc">Полный текст лицензионного соглашения.</div>
-            <div class="article-date">1 мая 2024</div>
-        </div>
+    </div>
+    
+    <div class="info-box">
+        <strong>📌 Что можно создать с помощью дизайнера отчётов?</strong>
+        <ul class="feature-list" style="margin-top: 10px;">
+            <li><strong>Список клиентов</strong> — полный перечень контактов с фильтрацией и группировкой</li>
+            <li><strong>Отчёт по воронке продаж</strong> — анализ клиентов по стадиям сделок</li>
+            <li><strong>Аналитика по звонкам</strong> — статистика звонков за период</li>
+            <li><strong>Карточка клиента</strong> — детальный отчёт по одному клиенту</li>
+            <li><strong>Финансовые отчёты</strong> — суммы, средние чеки, итоги</li>
+            <li><strong>Отчёты с группировкой</strong> — данные, сгруппированные по воронке, стадии, дате</li>
+        </ul>
     </div>
     
     <hr id="faq">
@@ -751,9 +838,12 @@
     </div>
 </footer>
 
+<!-- Кнопка "Наверх" -->
+<button class="scroll-top" onclick="scrollToTop()">↑</button>
+
 <script>
     // Год в футере
-    document.getElementById("year").innerHTML = new Date().getFullYear();
+    document.getElementById('year').innerHTML = new Date().getFullYear();
     
     // Функция для раскрытия FAQ
     function toggleFAQ(element) {
@@ -769,38 +859,61 @@
         }
     }
     
-    // Поиск по базе знаний
-    const searchInput = document.getElementById('searchInput');
-    
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        
-        // Поиск по статьям
-        const articles = document.querySelectorAll('.article-item');
-        articles.forEach(article => {
-            const title = article.querySelector('.article-title').textContent.toLowerCase();
-            const desc = article.querySelector('.article-desc').textContent.toLowerCase();
-            
-            if (searchTerm === '' || title.includes(searchTerm) || desc.includes(searchTerm)) {
-                article.style.display = 'block';
-            } else {
-                article.style.display = 'none';
-            }
-        });
-        
-        // Поиск по FAQ
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question').textContent.toLowerCase();
-            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
-            
-            if (searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
+    // Плавный скролл к якорям
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
+    
+    // Кнопка "Наверх"
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Показывать/скрывать кнопку "Наверх"
+    window.addEventListener('scroll', function() {
+        const scrollBtn = document.querySelector('.scroll-top');
+        if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    });
+</script>
+
+<!-- Яндекс Виджет поиска -->
+<style type="text/css">
+    .ya-page_js_yes .ya-site-form_inited_no { display: none; }
+</style>
+
+<script type="text/javascript">
+    (function(w,d,c){
+        var s=d.createElement('script'),
+        h=d.getElementsByTagName('script')[0],
+        e=d.documentElement;
+        if((' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1){
+            e.className+=' ya-page_js_yes';
+        }
+        s.type='text/javascript';
+        s.async=true;
+        s.charset='utf-8';
+        s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';
+        h.parentNode.insertBefore(s,h);
+        (w[c]||(w[c]=[])).push(function(){
+            Ya.Site.Form.init()
+        })
+    })(window,document,'yandex_site_callbacks');
 </script>
 
 </body>

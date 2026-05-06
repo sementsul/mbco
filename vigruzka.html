@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Выгрузка данных в Microsoft Excel | My-Business CRM — инструкция</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по выгрузке данных о контактах из My-Business CRM в Microsoft Excel. Настройка фильтров, кнопка 'Выгрузить', автоматическое открытие в Excel." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .filter-example {
+            background: #f0f4f8;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .filter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .filter-tag {
+            background: white;
+            border: 1px solid #1e6f9f;
+            border-radius: 20px;
+            padding: 0.25rem 0.8rem;
+            font-size: 0.8rem;
+            color: #1e6f9f;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 0.5rem 0;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Выгрузка в Excel
+        </div>
+
+        <h1 class="page-title">📊 Выгрузка данных в Microsoft Excel</h1>
+        
+        <div class="content-card">
+            <p>My-Business CRM позволяет быстро выгрузить информацию о контактах в <strong>Microsoft Excel</strong> (формат XLSX или CSV). Эта функция удобна для создания отчётов, анализа данных, передачи информации коллегам или подготовки рассылок.</p>
+            
+            <div class="success-box">
+                <strong>✅ Преимущества выгрузки в Excel:</strong><br>
+                • Анализ данных с помощью сводных таблиц и диаграмм<br>
+                • Печать списка клиентов<br>
+                • Обмен данными с другими программами<br>
+                • Создание резервных копий в удобном формате<br>
+                • Фильтрация данных перед выгрузкой
+            </div>
+
+            <!-- Пошаговая инструкция -->
+            <h2>📝 Пошаговая инструкция выгрузки</h2>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span> Откройте список контактов</div>
+                <ul class="step-list">
+                    <li>Запустите My-Business CRM</li>
+                    <li>Убедитесь, что вы находитесь в основном окне со списком контактов</li>
+                    <li>При необходимости выберите нужную базу данных</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span> Настройте фильтры (по желанию)</div>
+                <ul class="step-list">
+                    <li>Используйте фильтры в верхней части списка для отбора нужных контактов</li>
+                    <li>Вы можете отфильтровать по ФИО, телефону, воронке, стадии, дате добавления</li>
+                    <li>Будут выгружены только те контакты, которые отображаются в списке после применения фильтров</li>
+                </ul>
+                <div class="filter-example">
+                    <strong>🔍 Примеры фильтров:</strong>
+                    <div class="filter-list">
+                        <span class="filter-tag">Воронка: Продажи</span>
+                        <span class="filter-tag">Стадия: Переговоры</span>
+                        <span class="filter-tag">Дата: За последний месяц</span>
+                        <span class="filter-tag">ФИО содержит: ООО</span>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top: 0.5rem;">
+                    <strong>💡 Совет:</strong> Если не устанавливать фильтры, будет выгружен полный список всех контактов в текущей базе данных.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span> Нажмите кнопку "Выгрузить"</div>
+                <ul class="step-list">
+                    <li>На верхней панели инструментов найдите кнопку <strong>"Выгрузить"</strong></li>
+                    <li>Нажмите на неё один раз</li>
+                    <li>Программа автоматически сформирует файл с данными</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span> Автоматическое открытие в Excel</div>
+                <ul class="step-list">
+                    <li>После нажатия кнопки файл <strong>автоматически откроется в Microsoft Excel</strong></li>
+                    <li>Вам не нужно искать файл в папках — он откроется сам</li>
+                    <li>Файл содержит все поля контактов: ФИО, телефон, email, воронку, стадию, дату создания, комментарии и т.д.</li>
+                </ul>
+                <div class="success-box" style="margin-top: 0.5rem;">
+                    <strong>✅ Готово!</strong> Вы можете работать с данными в Excel: сортировать, фильтровать, строить диаграммы, сохранять файл на диск.
+                </div>
+            </div>
+
+            <!-- Какие данные выгружаются -->
+            <h2>📋 Какие данные выгружаются?</h2>
+            
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>ФИО</strong> — полное имя контакта</li>
+                    <li><strong>Телефон</strong> — номер телефона</li>
+                    <li><strong>Email</strong> — адрес электронной почты</li>
+                    <li><strong>Воронка</strong> — название воронки продаж</li>
+                    <li><strong>Стадия</strong> — текущая стадия сделки</li>
+                    <li><strong>Дата создания</strong> — когда контакт был добавлен в CRM</li>
+                    <li><strong>Дата последнего звонка</strong> — последнее взаимодействие</li>
+                    <li><strong>Комментарии</strong> — заметки по контакту</li>
+                    <li><strong>Дополнительные поля</strong> — настроенные вами поля</li>
+                </ul>
+            </div>
+
+            <!-- Пример использования -->
+            <h2>📌 Примеры использования выгрузки</h2>
+
+            <div class="step-box">
+                <div class="step-title">Пример 1. Формирование отчёта по активным сделкам</div>
+                <ul class="step-list">
+                    <li>Установите фильтр: Стадия = "Переговоры" или "Сделка"</li>
+                    <li>Нажмите кнопку "Выгрузить"</li>
+                    <li>В Excel откроются все активные сделки</li>
+                    <li>Постройте сводную таблицу для анализа</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Пример 2. Обзвон клиентов за последнюю неделю</div>
+                <ul class="step-list">
+                    <li>Установите фильтр: Дата последнего звонка > 7 дней</li>
+                    <li>Или: Не было звонков</li>
+                    <li>Нажмите "Выгрузить" → список клиентов для обзвона готов</li>
+                    <li>Распечатайте список или используйте прямо в Excel</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Пример 3. Список для email-рассылки</div>
+                <ul class="step-list">
+                    <li>Установите фильтр: Email не пустой</li>
+                    <li>Нажмите "Выгрузить"</li>
+                    <li>В Excel скопируйте столбец Email</li>
+                    <li>Вставьте в программу для рассылки</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Пример 4. Анализ воронки продаж</div>
+                <ul class="step-list">
+                    <li>Выгрузите полный список</li>
+                    <li>В Excel постройте сводную таблицу по полю "Стадия"</li>
+                    <li>Проанализируйте количество клиентов на каждом этапе</li>
+                    <li>Оцените эффективность воронки</li>
+                </ul>
+            </div>
+
+            <!-- Что делать, если Excel не установлен -->
+            <h2>⚠️ Если Microsoft Excel не установлен</h2>
+            
+            <div class="warning-box">
+                <strong>Что делать, если программа пишет ошибку или файл не открывается?</strong>
+                <ul class="step-list" style="margin-top: 0.5rem;">
+                    <li>Убедитесь, что на компьютере установлен <strong>Microsoft Excel</strong> (2007 или новее)</li>
+                    <li>Если Excel не установлен, вы можете открыть файл в <strong>бесплатных аналогах</strong>: LibreOffice Calc, Google Таблицы, OpenOffice</li>
+                    <li>В этом случае файл нужно будет найти в папке <strong>"Загрузки"</strong> или в папке с программой</li>
+                    <li>Файл имеет расширение <strong>.xlsx</strong> или <strong>.csv</strong></li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>📁 Где найти выгруженный файл?</strong><br>
+                Файл автоматически сохраняется в следующую папку:
+                <div class="db-path" style="margin-top: 0.5rem;">
+                    C:\Users\Ваше_имя\Downloads\
+                </div>
+                <p>Или в папку с программой, в зависимости от настроек.</p>
+            </div>
+
+            <!-- Частые вопросы -->
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли выгрузить только определённые поля?</div>
+                <ul class="step-list">
+                    <li>В текущей версии выгружаются все поля контакта</li>
+                    <li>После выгрузки в Excel вы можете удалить ненужные столбцы вручную</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Какой формат файла используется?</div>
+                <ul class="step-list">
+                    <li>По умолчанию выгрузка происходит в формате <strong>.xlsx</strong> (Microsoft Excel)</li>
+                    <li>Этот формат поддерживает все современные версии Excel</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сколько контактов можно выгрузить за раз?</div>
+                <ul class="step-list">
+                    <li>Ограничений нет — выгружается весь список, который отображается в CRM</li>
+                    <li>При очень большом количестве контактов (100 000+) выгрузка может занять несколько секунд</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Сохраняется ли файл на диск?</div>
+                <ul class="step-list">
+                    <li>Да, файл сохраняется во временную папку или в папку "Загрузки"</li>
+                    <li>После работы в Excel не забудьте сохранить файл, если хотите его оставить</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Почему файл не открывается в Excel?</div>
+                <ul class="step-list">
+                    <li>Возможные причины: Excel не установлен, используется старая версия Excel (2003 и ниже), повреждён файл</li>
+                    <li>Решение: установите Excel 2007 или новее, либо используйте бесплатный аналог LibreOffice</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли настроить автоматическую выгрузку по расписанию?</div>
+                <ul class="step-list">
+                    <li>В текущей версии автоматическая выгрузка по расписанию не предусмотрена</li>
+                    <li>Выгрузка выполняется вручную по нажатию кнопки</li>
+                </ul>
+            </div>
+
+            <!-- Краткое резюме -->
+            <div class="success-box">
+                <strong>📌 Краткая инструкция:</strong><br>
+                1️⃣ Откройте список контактов в CRM<br>
+                2️⃣ При необходимости установите фильтры<br>
+                3️⃣ Нажмите кнопку <strong>"Выгрузить"</strong> на верхней панели<br>
+                4️⃣ Файл автоматически откроется в Microsoft Excel<br>
+                5️⃣ Работайте с данными: анализируйте, сохраняйте, печатайте
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать CRM</a>
+                <a href="index.html" class="download-button btn-outline">🏠 На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	created with www.mysitemapgenerator.com	-->
+		<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
+<yml_catalog date="2026-05-07 19:22">
+		<shop>
+    <name>My-Business CRM</name>
+    <company>Разработчик My-Business</company>
+    <url>https://mybusiness-crm.ru</url>
+    <platform>My-Business</platform>
+    <version>1.0</version>
+    <currencies>
+      <currency id="RUB" rate="1"/>
+    </currencies>
+    <categories>
+      <category id="1">Программное обеспечение</category>
+      <category id="2" parentId="1">CRM‑системы</category>
+    </categories>
+    <offers>
+      <offer id="CRM001" type="vendor.model">
+        <url>https://mybusiness-crm.ru/kupit.html</url>
+        <price>4000</price>
+        <currencyId>RUB</currencyId>
+        <categoryId>2</categoryId>
+        <name>Лицензия My-Business CRM (Offline)</name>
+        <vendor>My-Business</vendor>
+        <description>Программа для учёта клиентов, звонков и сделок с возможностью работы без интернета. После оплаты вы получите лицензионный ключ для активации в программе.</description>
+        <param name="Тип лицензии">Добровольная поддержка проекта</param>
+        <param name="Способ доставки">Ключ отображается на экране сразу после оплаты, можно скачать ключ в виде TXT файла</param>
+        <param name="Преимущества лицензии">Приоритетная поддержка, эксклюзивные функции, персональные консультации, отключение информационных сообщений</param>
+        <param name="Способы оплаты">Банковская карта (Visa, MasterCard, МИР), ЮMoney, СБП</param>
+        <param name="Платёжный шлюз">ЮKassa (YooMoney)</param>
+        <param name="Активация">Ввод ключа в программе My-Business CRM</param>
+        <param name="Формат ключа">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</param>
+        <param name="Работа без интернета">Да</param>
+      </offer>
+    </offers>
+  </shop>
+</yml_catalog>

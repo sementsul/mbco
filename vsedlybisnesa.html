@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Справочник: всё для бизнеса | My-Business CRM — сервисы, программы, книги, услуги</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <meta name="description" content="Справочник полезных сервисов, программ, книг и услуг для бизнеса. Облачные сервисы (аналитика, CRM, ИИ), программы (документы, ЭЦП), услуги (поиск сотрудников, связь, банки, клининг), книги (маркетинг, дизайн, бизнес-процессы)." />
+    <meta name="description" content="Справочник полезных сервисов, программ, книг и услуг для бизнеса. Облачные сервисы (аналитика, CRM, ИИ, документы), программы (документы, ЭЦП), услуги (поиск сотрудников, связь, банки, клининг), книги (психология бизнеса, менеджмент, подбор персонала, для начинающих, дресс-код), технический раздел, всё для офиса, шаблоны документов." />
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -45,7 +45,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
-            max-width: 1300px;
+            max-width: 1400px;
         }
 
         .logo {
@@ -128,7 +128,6 @@
             text-decoration: underline;
         }
 
-        /* Главные разделы */
         .main-section {
             margin-bottom: 3rem;
         }
@@ -145,7 +144,7 @@
 
         .subcategory-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
@@ -226,6 +225,34 @@
             color: #6c8a9e;
             margin-top: 0.2rem;
             line-height: 1.3;
+        }
+
+        .template-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e2edf2;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .template-item:last-child {
+            border-bottom: none;
+        }
+
+        .template-item:hover {
+            transform: translateX(5px);
+        }
+
+        .template-title {
+            font-weight: 500;
+            color: #0f2b3d;
+            font-size: 0.9rem;
+        }
+
+        .template-desc {
+            font-size: 0.75rem;
+            color: #6c8a9e;
+            margin-top: 0.2rem;
         }
 
         .book-item {
@@ -363,130 +390,51 @@
             <h2 class="main-title">☁️ Облачные сервисы</h2>
             <div class="subcategory-grid">
                 
-                <!-- Подраздел: Аналитика -->
                 <div class="subcategory">
                     <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">📊</span>
-                            <span>Аналитика</span>
-                        </div>
+                        <div class="subcategory-title"><span class="subcategory-icon">📊</span><span>Аналитика</span></div>
                     </div>
                     <div class="subcategory-content">
-                        <a href="https://metrika.yandex.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Яндекс.Метрика</div>
-                                <div class="service-desc">Веб-аналитика, карта кликов, веб-визор, цели</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://analytics.google.com" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Google Analytics</div>
-                                <div class="service-desc">Аналитика сайта, воронки, события, цели</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://powerbi.microsoft.com/ru-ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Microsoft Power BI</div>
-                                <div class="service-desc">Бизнес-аналитика, дашборды, визуализация данных</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://www.roistat.com/ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Roistat</div>
-                                <div class="service-desc">Сквозная аналитика, атрибуция звонков</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://metrika.yandex.ru" target="_blank" class="service-item"><div><div class="service-name">Яндекс.Метрика</div><div class="service-desc">Веб-аналитика, карта кликов, веб-визор</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://analytics.google.com" target="_blank" class="service-item"><div><div class="service-name">Google Analytics</div><div class="service-desc">Аналитика сайта, воронки, цели</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://powerbi.microsoft.com/ru-ru/" target="_blank" class="service-item"><div><div class="service-name">Microsoft Power BI</div><div class="service-desc">Бизнес-аналитика, дашборды</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://www.roistat.com/ru/" target="_blank" class="service-item"><div><div class="service-name">Roistat</div><div class="service-desc">Сквозная аналитика, атрибуция звонков</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: CRM -->
                 <div class="subcategory">
                     <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">💼</span>
-                            <span>CRM</span>
-                        </div>
+                        <div class="subcategory-title"><span class="subcategory-icon">💼</span><span>CRM</span></div>
                     </div>
                     <div class="subcategory-content">
-                        <a href="#" class="service-item">
-                            <div>
-                                <div class="service-name">My-Business CRM</div>
-                                <div class="service-desc">Офлайн-CRM, работа без интернета, бесплатно</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://bitrix24.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Битрикс24</div>
-                                <div class="service-desc">Облачная CRM, задачи, портал, телефония</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://amoCRM.com" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">AmoCRM</div>
-                                <div class="service-desc">Воронка продаж, интеграции с мессенджерами</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.megacrm.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">MegaCRM</div>
-                                <div class="service-desc">CRM для торговли и производства</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="#" class="service-item"><div><div class="service-name">My-Business CRM</div><div class="service-desc">Офлайн-CRM, работа без интернета</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://bitrix24.ru" target="_blank" class="service-item"><div><div class="service-name">Битрикс24</div><div class="service-desc">Облачная CRM, задачи, портал</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://amoCRM.com" target="_blank" class="service-item"><div><div class="service-name">AmoCRM</div><div class="service-desc">Воронка продаж, интеграции</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.megacrm.ru/" target="_blank" class="service-item"><div><div class="service-name">MegaCRM</div><div class="service-desc">Для торговли и производства</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: Искусственный интеллект (ИИ) -->
                 <div class="subcategory">
                     <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🧠</span>
-                            <span>Искусственный интеллект (ИИ)</span>
-                        </div>
+                        <div class="subcategory-title"><span class="subcategory-icon">🧠</span><span>Искусственный интеллект (ИИ)</span></div>
                     </div>
                     <div class="subcategory-content">
-                        <a href="https://chat.openai.com" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">ChatGPT</div>
-                                <div class="service-desc">Текстовый ИИ-помощник для контента, писем, идей</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://yandex.ru/projects/ya-gpt" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">YandexGPT</div>
-                                <div class="service-desc">Российская нейросеть для текста и контента</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://www.midjourney.com" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Midjourney</div>
-                                <div class="service-desc">Генерация изображений по текстовому описанию</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.kandinsky.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Кандинский</div>
-                                <div class="service-desc">Российская нейросеть для генерации изображений</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://ru.synthesia.io/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Synthesia</div>
-                                <div class="service-desc">Создание видео с ИИ-аватарами</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://chat.openai.com" target="_blank" class="service-item"><div><div class="service-name">ChatGPT</div><div class="service-desc">Текстовый ИИ-помощник</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://yandex.ru/projects/ya-gpt" target="_blank" class="service-item"><div><div class="service-name">YandexGPT</div><div class="service-desc">Российская нейросеть для текста</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://www.midjourney.com" target="_blank" class="service-item"><div><div class="service-name">Midjourney</div><div class="service-desc">Генерация изображений</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.kandinsky.ru" target="_blank" class="service-item"><div><div class="service-name">Кандинский</div><div class="service-desc">Российская нейросеть для изображений</div></div><div class="service-price">Бесплатно</div></a>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header">
+                        <div class="subcategory-title"><span class="subcategory-icon">📄</span><span>Документы</span></div>
+                    </div>
+                    <div class="subcategory-content">
+                        <a href="https://www.google.com/docs/about/" target="_blank" class="service-item"><div><div class="service-name">Google Документы</div><div class="service-desc">Онлайн-редактор, совместная работа</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://www.microsoft.com/ru-ru/microsoft-365" target="_blank" class="service-item"><div><div class="service-name">Microsoft 365</div><div class="service-desc">Word, Excel, PowerPoint в облаке</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://disk.yandex.ru" target="_blank" class="service-item"><div><div class="service-name">Яндекс.Диск</div><div class="service-desc">Облачное хранение документов</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://www.dropbox.com/ru/" target="_blank" class="service-item"><div><div class="service-name">Dropbox</div><div class="service-desc">Облачное хранилище и синхронизация</div></div><div class="service-price">Freemium</div></a>
                     </div>
                 </div>
             </div>
@@ -497,83 +445,21 @@
             <h2 class="main-title">💻 Программы</h2>
             <div class="subcategory-grid">
                 
-                <!-- Подраздел: Документы -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">📝</span>
-                            <span>Документы</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">📝</span><span>Документы</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://www.onlyoffice.com/ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">ONLYOFFICE</div>
-                                <div class="service-desc">Офисный пакет, редактор документов и таблиц</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://www.libreoffice.org/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">LibreOffice</div>
-                                <div class="service-desc">Бесплатный офисный пакет с открытым кодом</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://www.microsoft.com/ru-ru/microsoft-365" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Microsoft 365</div>
-                                <div class="service-desc">Word, Excel, PowerPoint, Teams, облако OneDrive</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.google.com/docs/about/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Google Документы</div>
-                                <div class="service-desc">Онлайн-редактор для совместной работы</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
+                        <a href="https://www.onlyoffice.com/ru/" target="_blank" class="service-item"><div><div class="service-name">ONLYOFFICE</div><div class="service-desc">Офисный пакет, редактор документов</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://www.libreoffice.org/" target="_blank" class="service-item"><div><div class="service-name">LibreOffice</div><div class="service-desc">Бесплатный офисный пакет</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://www.microsoft.com/ru-ru/microsoft-365" target="_blank" class="service-item"><div><div class="service-name">Microsoft 365</div><div class="service-desc">Word, Excel, PowerPoint, Teams</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: Электронная подпись (ЭЦП) -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🔏</span>
-                            <span>Электронная подпись (ЭЦП)</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🔏</span><span>Электронная подпись (ЭЦП)</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://www.kontur.ru/crypto" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Контур.Крипто</div>
-                                <div class="service-desc">Усиленная электронная подпись для отчётности</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://1c.ru/ecp/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">1С:Электронная подпись</div>
-                                <div class="service-desc">Интеграция с 1С для документооборота</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.tenzor.ru/catalog/ep/forbusiness/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Тензор.ЭЦП</div>
-                                <div class="service-desc">Электронная подпись для бизнеса</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.kontur.ru/diadoc" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Контур.Диадок</div>
-                                <div class="service-desc">Электронный документооборот с ЭЦП</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://www.kontur.ru/crypto" target="_blank" class="service-item"><div><div class="service-name">Контур.Крипто</div><div class="service-desc">Усиленная электронная подпись</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.kontur.ru/diadoc" target="_blank" class="service-item"><div><div class="service-name">Контур.Диадок</div><div class="service-desc">Электронный документооборот с ЭЦП</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://1c.ru/ecp/" target="_blank" class="service-item"><div><div class="service-name">1С:Электронная подпись</div><div class="service-desc">Интеграция с 1С</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
             </div>
@@ -584,99 +470,76 @@
             <h2 class="main-title">📖 Книги для бизнеса</h2>
             <div class="subcategory-grid">
                 
-                <!-- Подраздел: Маркетинг и продажи -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🎯</span>
-                            <span>Маркетинг и продажи</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🎯</span><span>Маркетинг и продажи</span></div></div>
                     <div class="subcategory-content">
-                        <div class="book-item">
-                            <div class="book-title">«Договориться можно обо всём»</div>
-                            <div class="book-author">Гэвин Кеннеди</div>
-                            <div class="book-desc">Техники переговоров для бизнеса и жизни</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Клиенты на всю жизнь»</div>
-                            <div class="book-author">Карл Сьюэлл, Пол Браун</div>
-                            <div class="book-desc">Как создать сервис, который возвращает клиентов</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«45 татуировок менеджера»</div>
-                            <div class="book-author">Максим Батырев</div>
-                            <div class="book-desc">Правила российского топ-менеджера о продажах и управлении</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Трафик»</div>
-                            <div class="book-author">Анна Храмцова</div>
-                            <div class="book-desc">Привлечение клиентов на все случаи жизни</div>
-                        </div>
+                        <div class="book-item"><div class="book-title">«Договориться можно обо всём»</div><div class="book-author">Гэвин Кеннеди</div><div class="book-desc">Техники переговоров для бизнеса</div></div>
+                        <div class="book-item"><div class="book-title">«Клиенты на всю жизнь»</div><div class="book-author">Карл Сьюэлл, Пол Браун</div><div class="book-desc">Как создать сервис, который возвращает клиентов</div></div>
+                        <div class="book-item"><div class="book-title">«45 татуировок менеджера»</div><div class="book-author">Максим Батырев</div><div class="book-desc">Правила российского топ-менеджера</div></div>
+                        <div class="book-item"><div class="book-title">«Трафик»</div><div class="book-author">Анна Храмцова</div><div class="book-desc">Привлечение клиентов на все случаи жизни</div></div>
                     </div>
                 </div>
 
-                <!-- Подраздел: Дизайн -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🎨</span>
-                            <span>Дизайн</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🎨</span><span>Дизайн</span></div></div>
                     <div class="subcategory-content">
-                        <div class="book-item">
-                            <div class="book-title">«Дизайн привычных вещей»</div>
-                            <div class="book-author">Дон Норман</div>
-                            <div class="book-desc">Основы юзабилити и пользовательского опыта</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Графический дизайн. Мастер-класс»</div>
-                            <div class="book-author">Кэтрин Фишер</div>
-                            <div class="book-desc">Принципы и практика графического дизайна для брендов</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Идентичность. Создание бренда»</div>
-                            <div class="book-author">Уилер Э.</div>
-                            <div class="book-desc">Создание и управление брендом визуально</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Дизайн для бизнеса»</div>
-                            <div class="book-author">Андрей Матюшкин</div>
-                            <div class="book-desc">Практическое руководство для предпринимателей</div>
-                        </div>
+                        <div class="book-item"><div class="book-title">«Дизайн привычных вещей»</div><div class="book-author">Дон Норман</div><div class="book-desc">Основы юзабилити</div></div>
+                        <div class="book-item"><div class="book-title">«Графический дизайн. Мастер-класс»</div><div class="book-author">Кэтрин Фишер</div><div class="book-desc">Принципы дизайна для брендов</div></div>
+                        <div class="book-item"><div class="book-title">«Идентичность. Создание бренда»</div><div class="book-author">Уилер Э.</div><div class="book-desc">Визуальное управление брендом</div></div>
                     </div>
                 </div>
 
-                <!-- Подраздел: Оптимизация бизнес-процессов -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">⚙️</span>
-                            <span>Оптимизация бизнес-процессов</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">⚙️</span><span>Оптимизация бизнес-процессов</span></div></div>
                     <div class="subcategory-content">
-                        <div class="book-item">
-                            <div class="book-title">«Бережливое производство»</div>
-                            <div class="book-author">Джеффри Лайкер</div>
-                            <div class="book-desc">Система Toyota и оптимизация процессов</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Rework. Бизнес без предрассудков»</div>
-                            <div class="book-author">Фрайд, Хайнемайер Хенссон</div>
-                            <div class="book-desc">Как работать меньше, но эффективнее</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«7 навыков высокоэффективных людей»</div>
-                            <div class="book-author">Стивен Кови</div>
-                            <div class="book-desc">Личная эффективность и управление временем</div>
-                        </div>
-                        <div class="book-item">
-                            <div class="book-title">«Исполнительная дисциплина»</div>
-                            <div class="book-author">Крис Макчесни и др.</div>
-                            <div class="book-desc">Как достигать главных целей</div>
-                        </div>
+                        <div class="book-item"><div class="book-title">«Бережливое производство»</div><div class="book-author">Джеффри Лайкер</div><div class="book-desc">Система Toyota</div></div>
+                        <div class="book-item"><div class="book-title">«Rework. Бизнес без предрассудков»</div><div class="book-author">Фрайд, Хайнемайер Хенссон</div><div class="book-desc">Как работать меньше, но эффективнее</div></div>
+                        <div class="book-item"><div class="book-title">«Исполнительная дисциплина»</div><div class="book-author">Крис Макчесни</div><div class="book-desc">Как достигать главных целей</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🧠</span><span>Психология бизнеса</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="book-item"><div class="book-title">«Психология влияния»</div><div class="book-author">Роберт Чалдини</div><div class="book-desc">Классика о психологии убеждения</div></div>
+                        <div class="book-item"><div class="book-title">«Думай медленно... решай быстро»</div><div class="book-author">Даниэль Канеман</div><div class="book-desc">Как работает мышление человека</div></div>
+                        <div class="book-item"><div class="book-title">«Эмоциональный интеллект»</div><div class="book-author">Дэниел Гоулман</div><div class="book-desc">Почему EQ важнее IQ</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">📊</span><span>Менеджмент</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="book-item"><div class="book-title">«7 навыков высокоэффективных людей»</div><div class="book-author">Стивен Кови</div><div class="book-desc">Личная эффективность и управление</div></div>
+                        <div class="book-item"><div class="book-title">«От хорошего к великому»</div><div class="book-author">Джим Коллинз</div><div class="book-desc">Почему одни компании становятся великими</div></div>
+                        <div class="book-item"><div class="book-title">«Лидер и племя»</div><div class="book-author">Дейв Логан</div><div class="book-desc">Как развить лидерские качества</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">👥</span><span>Подбор персонала</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="book-item"><div class="book-title">«Наймите и работайте»</div><div class="book-author">Алексей Захаров</div><div class="book-desc">Как найти лучших сотрудников</div></div>
+                        <div class="book-item"><div class="book-title">«HR-бренд. Как стать лучшим работодателем»</div><div class="book-author">Марк Бёрч</div><div class="book-desc">Привлечение и удержание талантов</div></div>
+                        <div class="book-item"><div class="book-title">«Кто. Решение вашей главной проблемы»</div><div class="book-author">Джефф Смарт, Рэнди Стрит</div><div class="book-desc">Как правильно нанимать сотрудников</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🌟</span><span>Литература для начинающих</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="book-item"><div class="book-title">«Стартап. Настольная книга основателя»</div><div class="book-author">Стив Бланк</div><div class="book-desc">Пошаговое руководство по созданию бизнеса</div></div>
+                        <div class="book-item"><div class="book-title">«Маленькая книга победителя»</div><div class="book-author">Глеб Архангельский</div><div class="book-desc">Тайм-менеджмент для начинающих</div></div>
+                        <div class="book-item"><div class="book-title">«Бизнес с нуля»</div><div class="book-author">Эрик Рис</div><div class="book-desc">Методология бережливого стартапа</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">👔</span><span>Офисный дресс-код</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="book-item"><div class="book-title">«Дресс-код. Бизнес-этикет»</div><div class="book-author">Татьяна Белоусова</div><div class="book-desc">Правила одежды для офиса</div></div>
+                        <div class="book-item"><div class="book-title">«Имидж делового человека»</div><div class="book-author">Александра Вертинская</div><div class="book-desc">Как выглядеть профессионально</div></div>
+                        <div class="book-item"><div class="book-title">«Стиль и этикет делового общения»</div><div class="book-author">Елена Бердникова</div><div class="book-desc">Полное руководство по офисному стилю</div></div>
                     </div>
                 </div>
             </div>
@@ -687,163 +550,117 @@
             <h2 class="main-title">🤝 Услуги для бизнеса</h2>
             <div class="subcategory-grid">
                 
-                <!-- Подраздел: Поиск сотрудников -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">👥</span>
-                            <span>Поиск сотрудников</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">👥</span><span>Поиск сотрудников</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://hh.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">HeadHunter (hh.ru)</div>
-                                <div class="service-desc">Крупнейший сайт по поиску работы и сотрудников</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://www.superjob.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">SuperJob</div>
-                                <div class="service-desc">Популярный сервис для поиска персонала</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://rabota.yandex.ru" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Работа на Яндекс</div>
-                                <div class="service-desc">Бесплатные объявления о вакансиях</div>
-                            </div>
-                            <div class="service-price">Бесплатно</div>
-                        </a>
-                        <a href="https://youdo.com" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">YouDo</div>
-                                <div class="service-desc">Поиск фрилансеров и исполнителей</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
+                        <a href="https://hh.ru" target="_blank" class="service-item"><div><div class="service-name">HeadHunter (hh.ru)</div><div class="service-desc">Крупнейший сайт поиска работы</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://www.superjob.ru" target="_blank" class="service-item"><div><div class="service-name">SuperJob</div><div class="service-desc">Поиск персонала</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://rabota.yandex.ru" target="_blank" class="service-item"><div><div class="service-name">Работа на Яндекс</div><div class="service-desc">Бесплатные объявления</div></div><div class="service-price">Бесплатно</div></a>
+                        <a href="https://youdo.com" target="_blank" class="service-item"><div><div class="service-name">YouDo</div><div class="service-desc">Поиск фрилансеров</div></div><div class="service-price">Freemium</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: Связь (Телефония) -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">📞</span>
-                            <span>Связь (Телефония)</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">📞</span><span>Связь (Телефония)</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://www.mango-office.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Mango Office</div>
-                                <div class="service-desc">Виртуальная АТС для бизнеса, запись разговоров</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://zadarma.com/ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Zadarma</div>
-                                <div class="service-desc">IP-телефония, SIP-номера по всему миру</div>
-                            </div>
-                            <div class="service-price">Freemium</div>
-                        </a>
-                        <a href="https://sipnet.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">SIPNET</div>
-                                <div class="service-desc">Российский оператор IP-телефонии</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.megafon.ru/business/telecom/cloud_ats" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">МегаФон.Виртуальная АТС</div>
-                                <div class="service-desc">Облачная АТС для бизнеса</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://www.mango-office.ru/" target="_blank" class="service-item"><div><div class="service-name">Mango Office</div><div class="service-desc">Виртуальная АТС для бизнеса</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://zadarma.com/ru/" target="_blank" class="service-item"><div><div class="service-name">Zadarma</div><div class="service-desc">IP-телефония</div></div><div class="service-price">Freemium</div></a>
+                        <a href="https://sipnet.ru/" target="_blank" class="service-item"><div><div class="service-name">SIPNET</div><div class="service-desc">Российский оператор IP-телефонии</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: Банки -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🏦</span>
-                            <span>Банки</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🏦</span><span>Банки</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://www.tinkoff.ru/business/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Тинькофф Бизнес</div>
-                                <div class="service-desc">Расчётный счёт, эквайринг, зарплатные проекты</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://modulbank.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Модульбанк</div>
-                                <div class="service-desc">Банк для предпринимателей</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.tochka.com/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Точка Банк</div>
-                                <div class="service-desc">Расчётно-кассовое обслуживание малого бизнеса</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.sberbank.ru/ru/legal" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">СберБанк Бизнес</div>
-                                <div class="service-desc">РКО, эквайринг, кредитование бизнеса</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://www.tinkoff.ru/business/" target="_blank" class="service-item"><div><div class="service-name">Тинькофф Бизнес</div><div class="service-desc">Расчётный счёт, эквайринг</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://modulbank.ru/" target="_blank" class="service-item"><div><div class="service-name">Модульбанк</div><div class="service-desc">Банк для предпринимателей</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.tochka.com/" target="_blank" class="service-item"><div><div class="service-name">Точка Банк</div><div class="service-desc">РКО для малого бизнеса</div></div><div class="service-price">Платная</div></a>
                     </div>
                 </div>
 
-                <!-- Подраздел: Клининг -->
                 <div class="subcategory">
-                    <div class="subcategory-header">
-                        <div class="subcategory-title">
-                            <span class="subcategory-icon">🧹</span>
-                            <span>Клининг</span>
-                        </div>
-                    </div>
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🧹</span><span>Клининг</span></div></div>
                     <div class="subcategory-content">
-                        <a href="https://clean-express.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Clean Express</div>
-                                <div class="service-desc">Профессиональная уборка офисов и помещений</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://klinika-service.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Клиника Сервис</div>
-                                <div class="service-desc">Федеральная сеть клининга для бизнеса</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://yandex.ru/maps/org/klinningovaya_kompaniya_osnova/172704334434/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Основа Клининг</div>
-                                <div class="service-desc">Уборка офисов, после ремонта, химчистка ковров</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
-                        <a href="https://www.cleaning-master.ru/" target="_blank" class="service-item">
-                            <div>
-                                <div class="service-name">Cleaning Master</div>
-                                <div class="service-desc">Уборка помещений любой сложности</div>
-                            </div>
-                            <div class="service-price">Платная</div>
-                        </a>
+                        <a href="https://clean-express.ru/" target="_blank" class="service-item"><div><div class="service-name">Clean Express</div><div class="service-desc">Профессиональная уборка офисов</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://klinika-service.ru/" target="_blank" class="service-item"><div><div class="service-name">Клиника Сервис</div><div class="service-desc">Федеральная сеть клининга</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.cleaning-master.ru/" target="_blank" class="service-item"><div><div class="service-name">Cleaning Master</div><div class="service-desc">Уборка любой сложности</div></div><div class="service-price">Платная</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== РАЗДЕЛ 5: ТЕХНИЧЕСКИЙ РАЗДЕЛ ==================== -->
+        <div class="main-section">
+            <h2 class="main-title">🖥️ Технический раздел</h2>
+            <div class="subcategory-grid">
+                
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">💻</span><span>Оборудование</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="service-item"><div><div class="service-name">Регистрация техники в реестре Минпромторга</div><div class="service-desc">Проверка соответствия требованиям</div></div><div class="service-price">Бесплатно</div></div>
+                        <a href="https://www.dns-shop.ru" target="_blank" class="service-item"><div><div class="service-name">DNS</div><div class="service-desc">Компьютерная техника для бизнеса</div></div><div class="service-price">Розница</div></a>
+                        <a href="https://www.citilink.ru" target="_blank" class="service-item"><div><div class="service-name">Ситилинк</div><div class="service-desc">Оборудование и электроника</div></div><div class="service-price">Розница</div></a>
+                        <a href="https://www.regard.ru/" target="_blank" class="service-item"><div><div class="service-name">Регард</div><div class="service-desc">ИТ-оборудование для юрлиц</div></div><div class="service-price">Опт/Розница</div></a>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🔒</span><span>Безопасность</span></div></div>
+                    <div class="subcategory-content">
+                        <a href="https://www.kaspersky.ru" target="_blank" class="service-item"><div><div class="service-name">Kaspersky</div><div class="service-desc">Антивирусная защита бизнеса</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.drweb.ru" target="_blank" class="service-item"><div><div class="service-name">Dr.Web</div><div class="service-desc">Антивирус для организаций</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.ptsecurity.com/ru-ru/" target="_blank" class="service-item"><div><div class="service-name">Positive Technologies</div><div class="service-desc">Анализ защищённости</div></div><div class="service-price">Платная</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== РАЗДЕЛ 6: ВСЁ ДЛЯ ОФИСА ==================== -->
+        <div class="main-section">
+            <h2 class="main-title">🏢 Всё для офиса</h2>
+            <div class="subcategory-grid">
+                
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">✏️</span><span>Канцелярия</span></div></div>
+                    <div class="subcategory-content">
+                        <a href="https://www.komus.ru" target="_blank" class="service-item"><div><div class="service-name">Комус</div><div class="service-desc">Канцелярские товары для офиса</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.office-magazin.ru" target="_blank" class="service-item"><div><div class="service-name">Офис-Магазин</div><div class="service-desc">Канцелярия, оргтехника, мебель</div></div><div class="service-price">Платная</div></a>
+                        <a href="https://www.pilfix.ru" target="_blank" class="service-item"><div><div class="service-name">ПильФикс</div><div class="service-desc">Доставка канцтоваров по России</div></div><div class="service-price">Платная</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== РАЗДЕЛ 7: ШАБЛОНЫ ДОКУМЕНТОВ ==================== -->
+        <div class="main-section">
+            <h2 class="main-title">📄 Шаблоны документов</h2>
+            <div class="subcategory-grid">
+                
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">⚖️</span><span>Договора</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="template-item"><div class="template-title">Договор оказания услуг</div><div class="template-desc">Типовая форма для ИП и ООО</div></div>
+                        <div class="template-item"><div class="template-title">Договор поставки товаров</div><div class="template-desc">Образец договора купли-продажи</div></div>
+                        <div class="template-item"><div class="template-title">Трудовой договор</div><div class="template-desc">С сотрудником (стандартная форма)</div></div>
+                        <div class="template-item"><div class="template-title">Договор аренды офиса</div><div class="template-desc">Шаблон для аренды нежилого помещения</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">📦</span><span>Акт передачи имущества</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="template-item"><div class="template-title">Акт приёма-передачи основных средств</div><div class="template-desc">ОС-1 стандартная форма</div></div>
+                        <div class="template-item"><div class="template-title">Акт передачи товара</div><div class="template-desc">Приложение к договору поставки</div></div>
+                        <div class="template-item"><div class="template-title">Акт возврата товара</div><div class="template-desc">При возврате от покупателя</div></div>
+                    </div>
+                </div>
+
+                <div class="subcategory">
+                    <div class="subcategory-header"><div class="subcategory-title"><span class="subcategory-icon">🤐</span><span>Акт о неразглашении персональных данных</span></div></div>
+                    <div class="subcategory-content">
+                        <div class="template-item"><div class="template-title">Соглашение о конфиденциальности (NDA)</div><div class="template-desc">Для сотрудников и подрядчиков</div></div>
+                        <div class="template-item"><div class="template-title">Политика обработки персональных данных</div><div class="template-desc">Документ для оператора ПД</div></div>
+                        <div class="template-item"><div class="template-title">Согласие на обработку персональных данных</div><div class="template-desc">Для клиентов и контрагентов</div></div>
                     </div>
                 </div>
             </div>
@@ -861,7 +678,7 @@
 </main>
 
 <footer class="footer">
-    <div class="container" style="max-width: 1300px;">
+    <div class="container" style="max-width: 1400px;">
         <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
             <div>
                 <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>

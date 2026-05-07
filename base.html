@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Справочник | Все статьи базы знаний My-Business CRM</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Полный справочник статей базы знаний My-Business CRM. Все инструкции, руководства и ответы на частые вопросы в одном месте." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #28a745;
+        }
+
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .sitemap-section {
+            background: #f8fafc;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            border: 1px solid #e2edf2;
+            transition: all 0.2s;
+        }
+
+        .sitemap-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #1e6f9f;
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e6f9f;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2edf2;
+        }
+
+        .article-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .article-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-list a {
+            color: #4a627a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.3rem 0;
+            transition: all 0.2s;
+        }
+
+        .article-list a:hover {
+            color: #1e6f9f;
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: #f0f4f8;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e6f9f;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6c8a9e;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Справочник
+        </div>
+
+        <h1 class="page-title">📚 Справочник статей базы знаний</h1>
+        
+        <div class="content-card">
+            <p>Полный список всех статей, инструкций и руководств по работе с My-Business CRM. Используйте этот справочник для быстрого поиска нужной информации.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">статей</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">разделов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">доступ</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>🔍 Как пользоваться справочником:</strong> Просто нажмите на название статьи — вы перейдёте к подробной инструкции. Все статьи открываются в этой же вкладке.
+            </div>
+
+            <!-- Сетка со ссылками -->
+            <div class="sitemap-grid">
+                
+                <!-- Раздел 1: Установка и настройка -->
+                <div class="sitemap-section">
+                    <div class="section-icon">📥</div>
+                    <div class="section-title">Установка и настройка</div>
+                    <ul class="article-list">
+                        <li><a href="SQLiteVer.html">📌 Установка версии с SQLite</a></li>
+                        <li><a href="MySQLVer.html">📌 Установка версии с MySQL</a></li>
+                        <li><a href="PSH.html">📌 Первые шаги после установки</a></li>
+                        <li><a href="updatever.html">📌 Обновление программы до новой версии</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 2: Телефония -->
+                <div class="sitemap-section">
+                    <div class="section-icon">📞</div>
+                    <div class="section-title">Телефония</div>
+                    <ul class="article-list">
+                        <li><a href="mango.html">📌 Настройка Mango Talker</a></li>
+                        <li><a href="MicroSIP.html">📌 Настройка MicroSIP</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 3: Мессенджеры -->
+                <div class="sitemap-section">
+                    <div class="section-icon">💬</div>
+                    <div class="section-title">Мессенджеры</div>
+                    <ul class="article-list">
+                        <li><a href="message.html">📌 Интеграция Telegram и WhatsApp</a></li>
+                        <li><a href="tgerr.html">📌 Почему не открывается чат в Telegram?</a></li>
+                        <li><a href="WhatsAppq.html">📌 WhatsApp Web: продление сессии и повторная авторизация</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 4: Базы данных -->
+                <div class="sitemap-section">
+                    <div class="section-icon">🗄️</div>
+                    <div class="section-title">Базы данных</div>
+                    <ul class="article-list">
+                        <li><a href="vigruzka.html">📌 Выгрузка карточек в Microsoft Excel</a></li>
+                        <li><a href="DBMANAGER.html">📌 Менеджер баз данных SQLite (DBMANAGER)</a></li>
+                        <li><a href="rversion.html">📌 SQLite vs MySQL: какую версию выбрать?</a></li>
+                        <li><a href="setmysql.html">📌 Настройка MySQL Server для совместной работы</a></li>
+                        <li><a href="dumpdb.html">📌 Резервное копирование данных</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 5: Отчёты -->
+                <div class="sitemap-section">
+                    <div class="section-icon">📊</div>
+                    <div class="section-title">Отчёты</div>
+                    <ul class="article-list">
+                        <li><a href="fastreports.html">📌 Дизайнер отчётов Fast Reports</a></li>
+                        <li><a href="vigruzka.html">📌 Выгрузка в Excel</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 6: Лицензия и активация -->
+                <div class="sitemap-section">
+                    <div class="section-icon">⭐</div>
+                    <div class="section-title">Лицензия и активация</div>
+                    <ul class="article-list">
+                        <li><a href="LIC.html">📌 Что даёт лицензия?</a></li>
+                        <li><a href="opokupke.html">📌 Как приобрести лицензию?</a></li>
+                        <li><a href="aktivation.html">📌 Активация лицензионного ключа</a></li>
+                        <li><a href="license-activation.html">📌 Лицензия и активация (полная версия)</a></li>
+                        <li><a href="downver/LICENSE.pdf">📌 Лицензионное соглашение (PDF)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 7: Справочник -->
+                <div class="sitemap-section">
+                    <div class="section-icon">📋</div>
+                    <div class="section-title">Справочник</div>
+                    <ul class="article-list">
+                        <li><a href="sitemap.html">📌 Справочник статей (текущая страница)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Раздел 8: Интеграции -->
+                <div class="sitemap-section">
+                    <div class="section-icon">🔌</div>
+                    <div class="section-title">Интеграции</div>
+                    <ul class="article-list">
+                        <li><a href="message.html">📌 Telegram и WhatsApp</a></li>
+                        <li><a href="mango.html">📌 Mango Talker</a></li>
+                        <li><a href="MicroSIP.html">📌 MicroSIP</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Статистика и полезные ссылки -->
+            <hr>
+
+            <div class="info-box">
+                <strong>💡 Не нашли нужную статью?</strong><br>
+                • Воспользуйтесь поиском по базе знаний на <a href="faq.html">главной странице базы знаний</a><br>
+                • Задайте вопрос в техническую поддержку: <strong>company@mybusiness-crm.ru</strong><br>
+                • Владельцы лицензии получают приоритетную поддержку
+            </div>
+
+            <div class="button-group">
+                <a href="faq.html" class="download-button">📚 База знаний</a>
+                <a href="index.html" class="download-button btn-outline">🏠 На главную</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Поддерживаемые операционные системы | My-Business CRM — требования к системе</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Какие операционные системы поддерживает My-Business CRM. Только Windows 64-bit (Windows 7, 8, 10, 11). Работа через WINE не гарантирует полноценную работу программы." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .danger-box {
+            background: #ffe0e0;
+            border-left: 4px solid #dc3545;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .os-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .os-card {
+            background: #f8fafc;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            border: 1px solid #e2edf2;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .os-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #28a745;
+        }
+
+        .os-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .os-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin-bottom: 0.5rem;
+        }
+
+        .os-status {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .status-supported {
+            background: #d4edda;
+            color: #28a745;
+        }
+
+        .status-unsupported {
+            background: #ffe0e0;
+            color: #dc3545;
+        }
+
+        .status-limited {
+            background: #fff3e0;
+            color: #e6a017;
+        }
+
+        .os-desc {
+            font-size: 0.85rem;
+            color: #4a627a;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Поддерживаемые ОС
+        </div>
+
+        <h1 class="page-title">💻 Поддерживаемые операционные системы</h1>
+        
+        <div class="content-card">
+            <p>My-Business CRM разработана для операционной системы <strong>Microsoft Windows 64-bit (x64)</strong>. Это единственная платформа, на которой гарантируется полноценная и стабильная работа программы.</p>
+            
+            <div class="danger-box">
+                <strong>❗ Важно!</strong> Программа <strong>не поддерживает 32-битные (x86) версии Windows</strong>. Установка возможна только на 64-битные системы.
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Официально поддерживается:</strong><br>
+                Microsoft Windows 7 (x64), Windows 8 (x64), Windows 10 (x64), Windows 11 (x64). Версии Windows Server не тестировались, но работоспособность возможна.
+            </div>
+
+            <h2>🪟 Поддерживаемые версии Windows (только 64-bit)</h2>
+            
+            <div class="os-grid">
+                <div class="os-card">
+                    <div class="os-icon">🪟</div>
+                    <div class="os-name">Windows 7</div>
+                    <div class="os-status status-supported">Поддерживается (x64)</div>
+                    <div class="os-desc">Только 64-битная версия с установленным Service Pack 1. 32-битная версия не поддерживается.</div>
+                </div>
+                <div class="os-card">
+                    <div class="os-icon">🪟</div>
+                    <div class="os-name">Windows 8 / 8.1</div>
+                    <div class="os-status status-supported">Поддерживается (x64)</div>
+                    <div class="os-desc">Только 64-битная версия. 32-битная не поддерживается.</div>
+                </div>
+                <div class="os-card">
+                    <div class="os-icon">🪟</div>
+                    <div class="os-name">Windows 10</div>
+                    <div class="os-status status-supported">Поддерживается (x64)</div>
+                    <div class="os-desc">Рекомендуемая версия. Требуется 64-битная система (Home, Pro, Enterprise).</div>
+                </div>
+                <div class="os-card">
+                    <div class="os-icon">🪟</div>
+                    <div class="os-name">Windows 11</div>
+                    <div class="os-status status-supported">Поддерживается (x64)</div>
+                    <div class="os-desc">Полностью совместима, только 64-битная версия.</div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 32-битные системы (x86) НЕ ПОДДЕРЖИВАЮТСЯ!</strong><br>
+                Если у вас установлена 32-битная версия Windows, вы не сможете установить My-Business CRM. Для работы программы требуется 64-битная архитектура.
+            </div>
+
+            <h2>⚠️ Другие операционные системы</h2>
+            
+            <div class="danger-box">
+                <strong>❗ Важно!</strong> My-Business CRM <strong>не поддерживает</strong> macOS, Linux, Android, iOS и другие операционные системы, отличные от Windows 64-bit.
+            </div>
+
+            <div class="os-grid">
+                <div class="os-card">
+                    <div class="os-icon">🍎</div>
+                    <div class="os-name">macOS</div>
+                    <div class="os-status status-unsupported">Не поддерживается</div>
+                    <div class="os-desc">Программа не работает на macOS. Запуск через Parallels или Boot Camp не гарантируется.</div>
+                </div>
+                <div class="os-card">
+                    <div class="os-icon">🐧</div>
+                    <div class="os-name">Linux</div>
+                    <div class="os-status status-unsupported">Не поддерживается</div>
+                    <div class="os-desc">Нативная версия для Linux отсутствует. Работа через WINE не гарантирует полноценную работу.</div>
+                </div>
+                <div class="os-card">
+                    <div class="os-icon">📱</div>
+                    <div class="os-name">Android / iOS</div>
+                    <div class="os-status status-unsupported">Не поддерживается</div>
+                    <div class="os-desc">Мобильная версия не планируется. Программа разработана только для настольных ПК.</div>
+                </div>
+            </div>
+
+            <h2>🍷 О работе через WINE (Linux / macOS)</h2>
+            
+            <div class="warning-box">
+                <strong>⚠️ WINE не гарантирует полноценную работу программы!</strong><br>
+                Теоретически возможен запуск My-Business CRM через WINE на Linux или macOS, однако:
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li>Не все функции могут работать корректно</li>
+                    <li>Возможны проблемы с отображением интерфейса</li>
+                    <li>Интеграция с SIP-клиентами может не работать</li>
+                    <li>Мессенджеры (Telegram, WhatsApp) могут открываться некорректно</li>
+                    <li>Техническая поддержка не оказывается для пользователей WINE</li>
+                </ul>
+                <div class="danger-box" style="margin-top: 0.5rem;">
+                    <strong>Рекомендация:</strong> Используйте программу только на официально поддерживаемой платформе — Windows 64-bit.
+                </div>
+            </div>
+
+            <h2>⚙️ Системные требования</h2>
+            
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>Операционная система:</strong> Windows 7/8/10/11 (только x64, 64-bit)</li>
+                    <li><strong>Процессор:</strong> 1 ГГц или быстрее (x64)</li>
+                    <li><strong>Оперативная память:</strong> от 2 ГБ (рекомендуется 4 ГБ)</li>
+                    <li><strong>Свободное место на диске:</strong> от 200 МБ для установки + место для базы данных</li>
+                    <li><strong>Разрядность:</strong> только 64-bit (x64)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 Как узнать разрядность вашей Windows?</strong><br>
+                Панель управления → Система → Тип системы (64-разрядная или 32-разрядная). Если написано «32-разрядная» — установка программы невозможна.
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="downver/SetupPSQLite.exe" class="download-button">⬇️ Скачать версию (SQLite)</a>
+                <a href="downver/SetupPMySQL.exe" class="download-button btn-outline">⬇️ Скачать версию (MySQL)</a>
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

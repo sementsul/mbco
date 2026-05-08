@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Поддержать проект | My-Business CRM — добровольная помощь разработчику</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Поддержать разработку My-Business CRM. Вы можете перевести любую сумму в знак благодарности за бесплатную программу. Все средства идут на развитие проекта." />
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108501312', 'ym');
+        ym(108501312, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108501312" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3RYQDZDEY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D3RYQDZDEY');
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .donate-card {
+            background: linear-gradient(135deg, #fff8e8, #fef7e0);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            border: 1px solid #f5b042;
+        }
+
+        .donate-amount {
+            font-size: 0.9rem;
+            color: #6c8a9e;
+            margin-bottom: 0.5rem;
+        }
+
+        .donate-input-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .donate-input {
+            padding: 0.8rem 1rem;
+            font-size: 1.2rem;
+            border: 2px solid #e2edf2;
+            border-radius: 0.75rem;
+            width: 150px;
+            text-align: center;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .donate-input:focus {
+            border-color: #f5b042;
+        }
+
+        .donate-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .suggest-btn {
+            background: #f0f4f8;
+            border: 1px solid #e2edf2;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .suggest-btn:hover {
+            background: #f5b042;
+            border-color: #f5b042;
+            color: white;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-icon {
+            background: #f0f4f8;
+            border-radius: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            color: #4a627a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background-color: #f5b042;
+            color: #1a2c3e;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(245, 176, 66, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #ffaa2a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+            transform: translateY(-2px);
+        }
+
+        .donate-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c8a9e;
+            margin-top: 1.5rem;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .donate-input {
+                width: 120px;
+            }
+            .btn-primary, .btn-secondary, .btn-outline {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / Поддержать проект
+        </div>
+
+        <h1 class="page-title">🙏 Поддержать проект</h1>
+        
+        <div class="content-card">
+            <p>My-Business CRM — это бесплатная программа, которую мы разрабатываем и поддерживаем благодаря вашей добровольной поддержке. Если программа приносит вам пользу и вы хотите сказать «спасибо» — вы можете перевести любую сумму, которую считаете справедливой.</p>
+            
+            <div class="success-box">
+                <strong>💡 Зачем поддерживать проект?</strong><br>
+                Ваши пожертвования идут на:<br>
+                • Разработку новых функций<br>
+                • Техническую поддержку пользователей<br>
+                • Обновления и исправление ошибок<br>
+                • Серверы и инфраструктуру<br>
+                • Создание инструкций и базы знаний
+            </div>
+
+            <div class="donate-card">
+                <h2>💝 Добровольное пожертвование</h2>
+                <p class="donate-amount">Выберите или введите любую сумму</p>
+                
+                <div class="donate-suggestions">
+                    <button class="suggest-btn" data-amount="100">100 ₽</button>
+                    <button class="suggest-btn" data-amount="300">300 ₽</button>
+                    <button class="suggest-btn" data-amount="500">500 ₽</button>
+                    <button class="suggest-btn" data-amount="1000">1 000 ₽</button>
+                    <button class="suggest-btn" data-amount="3000">3 000 ₽</button>
+                    <button class="suggest-btn" data-amount="5000">5 000 ₽</button>
+                </div>
+                
+                <div class="donate-input-group">
+                    <input type="number" id="customAmount" class="donate-input" placeholder="Своя сумма" min="1" step="1" value="500">
+                    <span style="font-size: 1.2rem; font-weight: 600;">₽</span>
+                </div>
+                
+                <div class="payment-methods">
+                    <span class="payment-icon">💳 Банковская карта</span>
+                    <span class="payment-icon">💵 ЮMoney</span>
+                    <span class="payment-icon">📱 СБП</span>
+                </div>
+                
+                <!-- Форма оплаты ЮKassa -->
+                <form method="POST" action="https://yoomoney.ru/quickpay/confirm" id="donateForm">
+                    <input type="hidden" name="receiver" value="410016980665287"/>
+                    <input type="hidden" name="label" value="Добровольное пожертвование My-Business CRM"/>
+                    <input type="hidden" name="quickpay-form" value="button"/>
+                    <input type="hidden" name="paymentType" value="PC"/>
+                    <input type="hidden" name="sum" id="sumField" value="500"/>
+                    <input type="hidden" name="successURL" value="https://mybusiness-crm.ru/thanks.html"/>
+                    
+                    <button type="submit" class="btn-primary" id="donateBtn">💝 Поддержать на 500 ₽</button>
+                </form>
+                
+                <p class="donate-footer">
+                    🔒 Все платежи защищены. Платёжный шлюз — ЮKassa (Яндекс.Касса)<br>
+                    После оплаты вы не получаете лицензию — это исключительно добровольное пожертвование.
+                </p>
+            </div>
+            
+            <div class="info-box">
+                <strong>📌 Важно понимать:</strong><br>
+                • Пожертвование — это не покупка лицензии, а добровольная помощь разработчику<br>
+                • Вы можете продолжать пользоваться программой бесплатно даже без пожертвований<br>
+                • Все функции программы остаются бесплатными для всех пользователей<br>
+                • Если вы хотите получить лицензию с дополнительными преимуществами — перейдите на <a href="kupit.html" style="color:#1e6f9f;">страницу покупки лицензии</a>
+            </div>
+
+            <h2>💬 Другие способы помочь проекту</h2>
+            
+            <div class="step-box">
+                <div class="step-title">⭐ Оставить отзыв</div>
+                <p>Расскажите о программе в соцсетях, на форумах или в отзывах. Это помогает другим предпринимателям узнать о My-Business CRM.</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-title">🐛 Сообщить об ошибке</div>
+                <p>Если вы нашли ошибку или у вас есть идея по улучшению — напишите нам. Это помогает делать программу лучше.</p>
+                <p>📧 <strong>company@mybusiness-crm.ru</strong></p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-title">📢 Рассказать коллегам</div>
+                <p>Если вам нравится программа — порекомендуйте её своим партнёрам, клиентам или знакомым предпринимателям.</p>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="index.html" class="btn-secondary">🏠 На главную</a>
+                <a href="kupit.html" class="btn-outline">💰 Приобрести лицензию</a>
+                <a href="faq.html" class="btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">Спасибо, что поддерживаете проект! ❤️</p>
+    </div>
+</footer>
+
+<script>
+    // Предложенные суммы
+    const suggestBtns = document.querySelectorAll('.suggest-btn');
+    const customAmount = document.getElementById('customAmount');
+    const sumField = document.getElementById('sumField');
+    const donateBtn = document.getElementById('donateBtn');
+
+    // Обработка нажатия на предложенную сумму
+    suggestBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const amount = btn.getAttribute('data-amount');
+            customAmount.value = amount;
+            sumField.value = amount;
+            donateBtn.textContent = `💝 Поддержать на ${amount} ₽`;
+        });
+    });
+
+    // Обработка ввода своей суммы
+    customAmount.addEventListener('input', () => {
+        let amount = parseInt(customAmount.value);
+        if (isNaN(amount) || amount < 1) {
+            amount = 1;
+            customAmount.value = 1;
+        }
+        sumField.value = amount;
+        donateBtn.textContent = `💝 Поддержать на ${amount} ₽`;
+    });
+</script>
+
+</body>
+</html>

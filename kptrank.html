@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Как подключить SIP-транк к CRM | My-Business CRM — настройка телефонии</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Инструкция по подключению SIP-транка к My-Business CRM. Для подключения нужно использовать SIP-клиент с поддержкой протокола tel://. MicroSIP, Zoiper, X-Lite и другие." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0f2b3d;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a627a;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .code-block {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .protocol-box {
+            background: #1e2a3a;
+            color: #e2edf7;
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Подключение SIP-транка
+        </div>
+
+        <h1 class="page-title">🔌 Как подключить SIP-транк к CRM</h1>
+        
+        <div class="content-card">
+            <p>Для того чтобы совершать звонки из My-Business CRM, необходимо подключить SIP-транк (канал IP-телефонии). Это делается не через саму CRM, а через <strong>SIP-клиент</strong> — программу, которая устанавливается на ваш компьютер и регистрируется в системе оператора связи.</p>
+            
+            <div class="success-box">
+                <strong>✅ Кратко о процессе:</strong><br>
+                1. Вы приобретаете SIP-транк у оператора связи (Zadarma, SIPNET, Тинькофф и др.)<br>
+                2. Устанавливаете на компьютер SIP-клиент (MicroSIP, Zoiper, X-Lite, Linphone и др.)<br>
+                3. Настраиваете SIP-клиент с данными, предоставленными оператором<br>
+                4. CRM автоматически передаёт номер в SIP-клиент по протоколу <code>tel://</code><br>
+                5. SIP-клиент совершает звонок через ваш SIP-транк
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Что такое SIP-транк?</strong><br>
+                SIP-транк — это канал IP-телефонии, который позволяет совершать и принимать звонки через интернет. Оператор предоставляет вам SIP-аккаунт (логин, пароль, адрес сервера), который вы настраиваете в SIP-клиенте. CRM не работает с SIP-транком напрямую — всё взаимодействие происходит через SIP-клиент.
+            </div>
+
+            <div class="protocol-box">
+                Механизм работы: CRM → tel://номер → SIP-клиент → SIP-транк → звонок
+            </div>
+
+            <h2>📞 Шаг 1. Выбор оператора SIP-телефонии</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Популярные операторы IP-телефонии</div>
+                <ul class="step-list">
+                    <li><strong>Zadarma</strong> — международный оператор, есть бесплатные тарифы для тестирования</li>
+                    <li><strong>SIPNET</strong> — российский оператор, надёжная связь</li>
+                    <li><strong>Тинькофф Бизнес.Телефония</strong> — IP-телефония от Тинькофф</li>
+                    <li><strong>МТС.Виртуальная АТС</strong> — облачная АТС от МТС</li>
+                    <li><strong>Билайн.Виртуальная АТС</strong> — облачная АТС от Билайн</li>
+                </ul>
+            </div>
+
+            <h2>🖥️ Шаг 2. Установка и настройка SIP-клиента</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Какой SIP-клиент выбрать?</div>
+                <ul class="step-list">
+                    <li><strong>MicroSIP</strong> — бесплатный легковесный клиент. Требует ручного ввода SIP-данных</li>
+                    <li><strong>Zoiper</strong> — популярный клиент с удобным интерфейсом, есть бесплатная версия</li>
+                    <li><strong>X-Lite</strong> — профессиональный SIP-клиент</li>
+                    <li><strong>Linphone</strong> — бесплатный SIP-клиент с открытым исходным кодом</li>
+                    <li><strong>3CX</strong> — профессиональный SIP-клиент для бизнеса</li>
+                </ul>
+                <div class="warning-box" style="margin-top: 0.8rem;">
+                    <strong>⚠️ Важно!</strong> SIP-клиент должен поддерживать протокол <code>tel://</code> и быть зарегистрирован в системе как обработчик этого протокола. Большинство популярных клиентов поддерживают это автоматически.
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Настройка SIP-клиента (общая схема)</div>
+                <ul class="step-list">
+                    <li>Получите данные для подключения у вашего оператора:<br>
+                        — SIP-сервер (домен или IP-адрес)<br>
+                        — Имя пользователя (логин)<br>
+                        — Пароль<br>
+                        — Порт (обычно 5060)</li>
+                    <li>Откройте настройки SIP-клиента (Account / Настройки аккаунта)</li>
+                    <li>Введите полученные данные</li>
+                    <li>Сохраните настройки и дождитесь регистрации (обычно зелёный индикатор)</li>
+                </ul>
+                <div class="code-block">
+                    Пример данных для настройки SIP-клиента:<br>
+                    SIP Server: sip.zadarma.com (или IP вашего оператора)<br>
+                    Username: 74951234567<br>
+                    Password: ваш_пароль
+                </div>
+            </div>
+
+            <h2>🔗 Шаг 3. Как CRM взаимодействует с SIP-клиентом</h2>
+            
+            <div class="info-box">
+                <strong>📌 Важно понимать:</strong> CRM не настраивается для работы с SIP-транком напрямую. Вся магия происходит через протокол <code>tel://</code>:
+                <div class="protocol-box" style="margin-top: 0.8rem;">
+                    При нажатии на иконку телефона в карточке клиента<br>
+                    CRM создаёт ссылку вида <strong>tel://+79991234567</strong><br>
+                    Windows передаёт эту ссылку программе, зарегистрированной для протокола TEL<br>
+                    SIP-клиент получает номер и совершает звонок через ваш SIP-транк
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Вам НЕ нужно:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li>Настраивать SIP-транк в CRM</li>
+                    <li>Указывать путь к SIP-клиенту в настройках CRM</li>
+                    <li>Настраивать порты или IP-адреса в CRM</li>
+                </ul>
+            </div>
+
+            <h2>🧪 Шаг 4. Проверка работоспособности</h2>
+            
+            <div class="step-box">
+                <div class="step-title">Как проверить, что всё работает?</div>
+                <ul class="step-list">
+                    <li>Убедитесь, что SIP-клиент запущен и авторизован (индикатор зелёный, статус Registered)</li>
+                    <li>Проверьте протокол <code>tel://</code> в командной строке:<br>
+                        <code>start tel://+79001234567</code> — должен открыться SIP-клиент с набором номера</li>
+                    <li>В CRM откройте любую карточку клиента и нажмите на иконку телефона</li>
+                    <li>SIP-клиент должен активироваться и начать звонок</li>
+                </ul>
+                <div class="success-box" style="margin-top: 0.8rem;">
+                    <strong>✅ Готово!</strong> Если звонок пошёл — всё настроено правильно.
+                </div>
+            </div>
+
+            <h2>⚠️ Частые проблемы и решения</h2>
+
+            <div class="step-box">
+                <div class="step-title">SIP-клиент не зарегистрирован</div>
+                <ul class="step-list">
+                    <li>Проверьте правильность введённых данных (сервер, логин, пароль)</li>
+                    <li>Убедитесь, что на счёте достаточно средств (для платных операторов)</li>
+                    <li>Проверьте, что ваш брандмауэр или антивирус не блокирует SIP-порт (5060)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Звонок из CRM не начинает набор</div>
+                <ul class="step-list">
+                    <li>Проверьте, что SIP-клиент является обработчиком протокола <code>tel://</code></li>
+                    <li>Проверьте, что в карточке клиента номер указан в международном формате: <code>+79991234567</code></li>
+                    <li>Убедитесь, что SIP-клиент запущен и авторизован</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Нет звука или слышно только одну сторону</div>
+                <ul class="step-list">
+                    <li>Проверьте настройки звука в SIP-клиенте (выбор микрофона и динамиков)</li>
+                    <li>Проверьте настройки брандмауэра — порты RTP (обычно 10000-20000) должны быть открыты</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Не могу зарегистрироваться у оператора</div>
+                <ul class="step-list">
+                    <li>Обратитесь в поддержку вашего оператора — возможно, требуется привязка IP-адреса</li>
+                    <li>Убедитесь, что используете правильный тип аккаунта (SIP, а не IAX)</li>
+                </ul>
+            </div>
+
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Нужно ли настраивать CRM для работы с SIP-транком?</div>
+                <p><strong>Нет.</strong> CRM не имеет настроек для SIP-транка. Она работает через протокол <code>tel://</code>, передавая номер в SIP-клиент. Вся настройка производится в SIP-клиенте.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Какой SIP-клиент лучше всего подходит?</div>
+                <p>Рекомендуем <strong>MicroSIP</strong> — это бесплатный легковесный клиент, который не требует установки и хорошо работает с протоколом <code>tel://</code>. Также можно использовать Zoiper, X-Lite или Linphone.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли использовать один SIP-транк на нескольких компьютерах?</div>
+                <p>Это зависит от вашего оператора. Некоторые разрешают одновременную регистрацию с нескольких устройств, некоторые — нет. Уточните у вашего провайдера.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что делать, если оператор просит настроить SIP-транк в CRM?</div>
+                <p>Объясните оператору, что CRM не работает напрямую с SIP-транком. Вы используете SIP-клиент, который регистрируется у оператора. Все настройки производятся в этом клиенте. CRM лишь передаёт номер в SIP-клиент.</p>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="sip-clients.html" class="download-button">📞 Какие SIP-клиенты поддерживаются?</a>
+                <a href="MicroSIP.html" class="download-button btn-outline">📞 Настройка MicroSIP</a>
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

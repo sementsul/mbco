@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Максимальное количество клиентов в базе | My-Business CRM — ограничения по объёму данных</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Какое максимальное количество клиентов можно хранить в My-Business CRM. Ограничения SQLite и MySQL версий. Рекомендации по оптимизации и производительности." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #60a5fa20;
+            border-color: white;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ffc107;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e2edf2;
+        }
+
+        .comparison-table th {
+            background: #f0f4f8;
+            font-weight: 600;
+            color: #0f2b3d;
+        }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .check-list li {
+            padding: 0.4rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .step-list li:before {
+            content: "➡️";
+            position: absolute;
+            left: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+            <a href="kupit.html" class="back-link">💰 Купить лицензию</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / <a href="faq.html">База знаний</a> / Максимальное количество клиентов в базе
+        </div>
+
+        <h1 class="page-title">📊 Максимальное количество клиентов в базе</h1>
+        
+        <div class="content-card">
+            <p>My-Business CRM <strong>не имеет искусственных ограничений</strong> на количество клиентов, сделок или звонков. Вы можете хранить столько данных, сколько позволяет ваше оборудование и выбранная версия базы данных.</p>
+            
+            <div class="success-box">
+                <strong>✅ Главное: никаких лимитов!</strong><br>
+                Программа не ограничивает количество клиентов, сделок, звонков или комментариев. Вы можете работать с любым объёмом данных — хоть 10, хоть 100 000+ клиентов.
+            </div>
+
+            <div class="info-box">
+                <strong>📌 Единственное ограничение — техническое:</strong><br>
+                Максимальный объём данных зависит от выбранной версии базы данных (SQLite или MySQL) и производительности вашего компьютера или сервера.
+            </div>
+
+            <h2>🔄 Сравнение версий по объёму данных</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>Характеристика</th>
+                        <th>SQLite версия</th>
+                        <th>MySQL версия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Максимальный размер базы данных</td>
+                        <td>до 140 ТБ (теоретически)</td>
+                        <td>зависит от сервера (практически не ограничен)</td>
+                    </tr>
+                    <tr>
+                        <td>Максимальное количество клиентов (примерно)</td>
+                        <td>до 10-20 млн записей</td>
+                        <td>более 50 млн записей</td>
+                    </tr>
+                    <tr>
+                        <td>Рекомендуемый объём для комфортной работы</td>
+                        <td>до 500 000 клиентов</td>
+                        <td>более 1 000 000 клиентов</td>
+                    </tr>
+                    <tr>
+                        <td>Зависимость от ОЗУ</td>
+                        <td>средняя</td>
+                        <td>зависит от сервера</td>
+                    </tr>
+                    <tr>
+                        <td>Совместная работа нескольких пользователей</td>
+                        <td>не рекомендуется (только через сетевую папку)</td>
+                        <td>да, без ограничений</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>🗄️ SQLite версия</h2>
+            
+            <div class="info-box">
+                <strong>Технические ограничения SQLite:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li><strong>Максимальный размер базы данных:</strong> 140 ТБ (при настройке page_size=65536)</li>
+                    <li><strong>Максимальное количество записей в таблице:</strong> 2^64 записей (практически неограниченно)</li>
+                    <li><strong>Максимальный размер одной записи:</strong> ≈ 1 ГБ (для BLOB полей)</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Рекомендации для SQLite версии</div>
+                <ul class="step-list">
+                    <li>При базе более <strong>100 000 клиентов</strong> может потребоваться больше оперативной памяти</li>
+                    <li>При базе более <strong>500 000 клиентов</strong> может замедлиться работа фильтров и поиска</li>
+                    <li>Рекомендуется регулярно делать резервные копии и оптимизировать базу данных</li>
+                    <li>Используйте фильтры для работы с большими объёмами данных</li>
+                    <li>Не используйте SQLite версию для командной работы (есть риск повреждения файла)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Важно для SQLite:</strong><br>
+                При большом объёме данных файл базы данных может занимать несколько гигабайт. Рекомендуется размещать базу на быстром накопителе (SSD, а не HDD), чтобы обеспечить комфортную скорость работы.
+            </div>
+
+            <h2>🐬 MySQL версия</h2>
+            
+            <div class="info-box">
+                <strong>Технические ограничения MySQL:</strong>
+                <ul class="check-list" style="margin-top: 0.5rem;">
+                    <li><strong>Максимальный размер таблицы:</strong> зависит от файловой системы ОС (десятки терабайт)</li>
+                    <li><strong>Максимальное количество записей:</strong> 2^64 записей (практически неограниченно)</li>
+                    <li><strong>Ограничения определяются мощностью сервера:</strong> ОЗУ, CPU, дисковая подсистема</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Рекомендации для MySQL версии</div>
+                <ul class="step-list">
+                    <li>Настраивайте сервер MySQL с учётом объёма данных (размер буферов, кэшей)</li>
+                    <li>Используйте индексы на часто фильтруемых полях (по ФИО, дате создания)</li>
+                    <li>Регулярно обновляйте статистику таблиц (OPTIMIZE TABLE)</li>
+                    <li>Для больших баз (1 млн+) используйте сервер минимум с 8 ГБ ОЗУ</li>
+                    <li>При очень больших базах (10 млн+) — используйте партиционирование таблиц</li>
+                </ul>
+            </div>
+
+            <h2>⚙️ Факторы, влияющие на производительность</h2>
+            
+            <div class="step-box">
+                <div class="step-title">1. Объём оперативной памяти (ОЗУ)</div>
+                <ul class="step-list">
+                    <li>Чем больше ОЗУ на компьютере/сервере, тем быстрее работают запросы</li>
+                    <li>Для SQLite базы до 100 000 клиентов достаточно 4 ГБ ОЗУ</li>
+                    <li>Для MySQL базы с миллионами клиентов рекомендуется от 8 ГБ ОЗУ</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">2. Скорость диска (SSD vs HDD)</div>
+                <ul class="step-list">
+                    <li>SSD значительно быстрее обрабатывает большие файлы баз данных</li>
+                    <li>При использовании жесткого диска (HDD) могут возникать задержки при поиске</li>
+                    <li>Особенно критично для SQLite версии, где вся база в одном файле</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">3. Наличие индексов в MySQL</div>
+                <ul class="step-list">
+                    <li>Индексы на полях ФИО, телефон, дата создания ускоряют поиск в десятки раз</li>
+                    <li>В SQLite индексы также поддерживаются и создаются автоматически</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">4. Сетевые задержки (только для MySQL)</div>
+                <ul class="step-list">
+                    <li>При удалённом подключении к MySQL серверу скорость зависит от качества интернет-канала</li>
+                    <li>Локальная сеть работает быстрее, чем подключение через интернет</li>
+                </ul>
+            </div>
+
+            <h2>📌 Реальные цифры из практики</h2>
+            
+            <div class="info-box">
+                <ul class="check-list">
+                    <li><strong>500 клиентов</strong> — обе версии работают мгновенно</li>
+                    <li><strong>5 000 клиентов</strong> — поиск и фильтры работают менее секунды</li>
+                    <li><strong>50 000 клиентов</strong> — фильтры могут работать 1-2 секунды</li>
+                    <li><strong>500 000 клиентов</strong> — рекомендуется MySQL, поиск — 2-5 секунд</li>
+                    <li><strong>5 000 000+ клиентов</strong> — только MySQL с оптимизированным сервером</li>
+                </ul>
+            </div>
+
+            <h2>📈 Как оптимизировать работу с большим количеством клиентов</h2>
+
+            <div class="step-box">
+                <div class="step-title">Для SQLite версии</div>
+                <ul class="step-list">
+                    <li><strong>Используйте фильтры</strong> — не загружайте весь список целиком</li>
+                    <li><strong>Удаляйте неактуальные данные</strong> — старых клиентов можно архивировать</li>
+                    <li><strong>Разбивайте базу на несколько файлов</strong> — используйте DBMANAGER для переключения между базами</li>
+                    <li><strong>Регулярно делайте VACUUM</strong> — команда оптимизирует файл базы данных</li>
+                </ul>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Для MySQL версии</div>
+                <ul class="step-list">
+                    <li><strong>Настройте MySQL буферы</strong> (innodb_buffer_pool_size, query_cache_size)</li>
+                    <li><strong>Используйте партиционирование таблиц</strong> — разбиение таблицы по дате</li>
+                    <li><strong>Добавьте индексы</strong> на поля, по которым часто идут фильтры</li>
+                    <li><strong>Архивируйте исторические данные</strong> — переносите старые записи в отдельные таблицы</li>
+                    <li><strong>Используйте репликацию</strong> для распределения нагрузки</li>
+                </ul>
+            </div>
+
+            <h2>❓ Частые вопросы</h2>
+
+            <div class="step-box">
+                <div class="step-title">Есть ли лимит по количеству клиентов в бесплатной версии?</div>
+                <p><strong>Нет.</strong> Бесплатная версия не имеет никаких ограничений по количеству клиентов, сделок или звонков.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что быстрее — SQLite или MySQL?</div>
+                <p>Для одного пользователя на одном компьютере — SQLite обычно быстрее. Для нескольких пользователей и больших баз (50 000+) — MySQL предпочтительнее.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Можно ли перенести базу SQLite в MySQL если стало много клиентов?</div>
+                <p>Да. Выгрузите данные в CSV (Инструменты → Экспорт), установите MySQL версию и импортируйте CSV-файл.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-title">Что делать, если программа стала тормозить?</div>
+                <ul class="step-list">
+                    <li>Проверьте, сколько клиентов в базе</li>
+                    <li>Используйте фильтры для уменьшения отображаемого списка</li>
+                    <li>Рассмотрите переход на MySQL версию (если используете SQLite)</li>
+                    <li>Удалите или архивируйте неактуальных клиентов</li>
+                    <li>Оптимизируйте сервер (для MySQL)</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="rversion.html" class="download-button">🔄 SQLite vs MySQL: какую версию выбрать?</a>
+                <a href="DBMANAGER.html" class="download-button btn-outline">🗄️ Управление базами данных (DBMANAGER)</a>
+                <a href="faq.html" class="download-button btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением.</p>
+    </div>
+</footer>
+
+</body>
+</html>

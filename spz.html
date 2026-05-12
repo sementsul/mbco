@@ -230,6 +230,35 @@
             transform: translateY(-2px);
         }
 
+        /* Кнопка подарка */
+        .gift-link {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f5b042, #ff6b35);
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 176, 66, 0.4);
+            margin-top: 0.5rem;
+        }
+
+        .gift-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 176, 66, 0.5);
+            background: linear-gradient(135deg, #ffaa2a, #ff5520);
+        }
+
+        .gift-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
         hr {
             margin: 1.5rem 0;
             border: none;
@@ -262,7 +291,7 @@
             .header .container {
                 flex-direction: column;
             }
-            .btn-primary, .btn-outline {
+            .btn-primary, .btn-outline, .gift-link {
                 padding: 0.7rem 1.2rem;
                 font-size: 0.9rem;
             }
@@ -298,6 +327,14 @@
             <div class="thank-icon">🎉❤️🙏</div>
             <h2>Спасибо за поддержку!</h2>
             <p>Ваше пожертвование помогает проекту My-Business CRM развиваться. Мы искренне ценим каждого, кто поддерживает разработку бесплатной CRM.</p>
+
+            <!-- Кнопка Вам подарок -->
+            <div style="margin: 20px 0;">
+                <a href="https://flocktory.com/interchange/14793c94-ebd6-4bd9-aa89-b9ab314458bb?utm_campaign=exchange&utm_medium=referral&utm_source=mybusiness-crm.ru" target="_blank" class="gift-link">
+                    🎁 Вам подарок
+                </a>
+                <p class="gift-note">Перейдите по ссылке, чтобы получить подарок</p>
+            </div>
             
             <div class="success-box">
                 <strong>✅ Что дальше?</strong><br>

@@ -7,6 +7,26 @@
     <title>Спасибо за покупку | My-Business CRM</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <meta name="description" content="Спасибо за приобретение лицензии My-Business CRM. Скачайте лицензионный ключ и активируйте программу." />
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108501312', 'ym');
+        ym(108501312, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108501312" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3RYQDZDEY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D3RYQDZDEY');
+    </script>
     <style>
         * {
             box-sizing: border-box;
@@ -103,7 +123,7 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* Кнопка */
+        /* Кнопка скачивания ключа */
         .download-link {
             display: inline-block;
             padding: 12px 28px;
@@ -123,6 +143,29 @@
             background-color: #218838;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Кнопка подарка */
+        .gift-link {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f5b042, #ff6b35);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(245, 176, 66, 0.4);
+        }
+
+        .gift-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 176, 66, 0.5);
+            background: linear-gradient(135deg, #ffaa2a, #ff5520);
         }
 
         /* Дополнительные кнопки */
@@ -207,6 +250,10 @@
             h2 {
                 font-size: 1.5rem;
             }
+            .gift-link, .download-link {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -236,6 +283,14 @@
         📥 Скачать лицензионный ключ (.txt)
     </a>
     
+    <!-- Кнопка Вам подарок -->
+    <div>
+        <a href="https://flocktory.com/interchange/14793c94-ebd6-4bd9-aa89-b9ab314458bb?utm_campaign=exchange&utm_medium=referral&utm_source=mybusiness-crm.ru" target="_blank" class="gift-link">
+            🎁 Вам подарок
+        </a>
+        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Перейдите по ссылке, чтобы получить подарок</p>
+    </div>
+    
     <div class="button-group">
         <a href="index.html" class="download-link button-secondary">🏠 На главную</a>
         <a href="downver/SetupPSQLite.exe" class="download-link button-outline">💿 Скачать CRM</a>
@@ -253,7 +308,7 @@
 <footer>
     <p>&copy; <span id="year"></span> My-Business CRM. Все права защищены. ИНН: 381616884622</p>
     <div itemscope itemtype="http://schema.org/Organization">
-        <span itemprop="name">НПД Семенцул Максим Геннадиевич</span>
+        <span itemprop="name">НДП Семенцул Максим Геннадиевич</span>
         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             <span itemprop="streetAddress">Москва, Петровско-разумовский проезд 25 к2</span>
             <span itemprop="addressLocality">г. Москва</span>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Политика конфиденциальности | My-Business CRM</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Политика конфиденциальности My-Business CRM. Какие данные собираются, как используются и защищаются." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header {
+            background: #0f2b3d;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 43, 61, 0.92);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF, #b9e2ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            background: none;
+            color: #9bb7d0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e2edf7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f2b3d;
+            margin: 2rem 0 0.5rem;
+        }
+
+        .breadcrumb {
+            color: #6c8a9e;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #1e6f9f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #1e6f9f;
+            font-size: 1.6rem;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2edf2;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #0f2b3d;
+            font-size: 1.3rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            color: #4a627a;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #1e6f9f;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.75rem;
+        }
+
+        .date {
+            color: #6c8a9e;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: transparent;
+            border: 1.5px solid #1e6f9f;
+            color: #1e6f9f;
+            border-radius: 60px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: #eef4fc;
+            transform: translateY(-2px);
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: none;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .footer {
+            background: #0a1e2c;
+            color: #bcd0e0;
+            padding: 2rem 0 3rem;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: #ffaa66;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.5rem;
+            }
+            .content-card {
+                padding: 1.5rem;
+            }
+            .header .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">My-Business <span>(Offline CRM)</span></div>
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="faq.html">База знаний</a>
+            <a href="downver/LICENSE.pdf">Лицензия</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> / Политика конфиденциальности
+        </div>
+
+        <h1 class="page-title">Политика конфиденциальности</h1>
+        <div class="date">Дата последнего обновления: 30 мая 2026 г.</div>
+        
+        <div class="content-card">
+            <p>Настоящая Политика конфиденциальности описывает, какие данные собираются при использовании программного обеспечения «My-Business (Offline CRM)» и сайта https://mybusiness-crm.ru, как эти данные используются и защищаются.</p>
+            
+            <div class="info-box">
+                <strong>📌 Главное, что нужно знать:</strong><br>
+                • My-Business CRM работает полностью офлайн — ваши данные о клиентах хранятся только на вашем компьютере<br>
+                • Мы не имеем доступа к вашей базе клиентов, сделкам и звонкам<br>
+                • Сайт и программа не передают ваши персональные данные третьим лицам без вашего согласия
+            </div>
+
+            <h2>1. Общие положения</h2>
+            <p>1.1. Настоящая Политика конфиденциальности (далее — Политика) действует в отношении всей информации, которую Лицензиар (НДП Семенцул Максим Геннадиевич) может получить о Пользователе при использовании программного обеспечения «My-Business (Offline CRM)» и сайта https://mybusiness-crm.ru.</p>
+            <p>1.2. Использование программы и сайта означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки его персональной информации.</p>
+            <p>1.3. В случае несогласия с условиями Политики Пользователь должен воздержаться от использования программы и сайта.</p>
+
+            <h2>2. Какие данные собираются</h2>
+            <h3>2.1. При использовании программы (My-Business CRM)</h3>
+            <p>Программа работает полностью офлайн и <strong>не передаёт никакие данные на внешние серверы</strong>. Все данные о клиентах, сделках, звонках и комментариях хранятся исключительно на устройстве Пользователя в файле базы данных (SQLite) или на сервере MySQL, указанном Пользователем.</p>
+            <p><strong>Программа НЕ собирает и НЕ передаёт:</strong></p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">✓ Данные о клиентах (ФИО, телефоны, email, адреса)</li>
+                <li style="margin-bottom: 0.3rem;">✓ Историю звонков и переписку</li>
+                <li style="margin-bottom: 0.3rem;">✓ Информацию о сделках и воронках продаж</li>
+                <li style="margin-bottom: 0.3rem;">✓ Личные файлы и документы Пользователя</li>
+            </ul>
+            <p><strong>Программа может собирать техническую информацию (остаётся на вашем устройстве):</strong></p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• Логи работы программы (для диагностики ошибок)</li>
+                <li style="margin-bottom: 0.3rem;">• Информацию о версии программы и операционной системы</li>
+            </ul>
+
+            <h3>2.2. При использовании сайта</h3>
+            <p>При посещении сайта https://mybusiness-crm.ru могут собираться следующие данные:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• IP-адрес</li>
+                <li style="margin-bottom: 0.3rem;">• Тип браузера и операционной системы</li>
+                <li style="margin-bottom: 0.3rem;">• Данные о просмотренных страницах и времени посещения</li>
+                <li style="margin-bottom: 0.3rem;">• Файлы cookie и аналогичные технологии</li>
+            </ul>
+            <p>Эти данные собираются автоматически сервисами веб-аналитики (Яндекс.Метрика и Google Analytics) и используются для улучшения работы сайта.</p>
+
+            <h3>2.3. При оплате лицензии или пожертвовании</h3>
+            <p>При оплате лицензии или добровольном пожертвовании через платёжный шлюз ЮKassa (YooMoney) могут обрабатываться:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• Имя и фамилия (при указании)</li>
+                <li style="margin-bottom: 0.3rem;">• Адрес электронной почты (для отправки лицензионного ключа)</li>
+                <li style="margin-bottom: 0.3rem;">• Платёжные данные (обрабатываются ЮKassa, мы не храним данные банковских карт)</li>
+            </ul>
+            <div class="info-box">
+                <strong>🔒 Платёжные данные:</strong> Все платежи обрабатываются через защищённый шлюз <strong>ЮKassa (YooMoney)</strong>. Мы не получаем и не храним данные ваших банковских карт, номера счетов или другую платёжную информацию.
+            </div>
+
+            <h2>3. Как используются данные</h2>
+            <p>3.1. Данные, собранные при использовании сайта, используются для:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• Анализа посещаемости и улучшения работы сайта</li>
+                <li style="margin-bottom: 0.3rem;">• Выявления и устранения технических проблем</li>
+                <li style="margin-bottom: 0.3rem;">• Защиты от мошеннических действий</li>
+            </ul>
+            <p>3.2. Данные, полученные при оплате, используются для:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• Обработки платежа</li>
+                <li style="margin-bottom: 0.3rem;">• Отправки лицензионного ключа на электронную почту</li>
+                <li style="margin-bottom: 0.3rem;">• Взаимодействия с Пользователем по вопросам лицензии</li>
+            </ul>
+
+            <h2>4. Передача данных третьим лицам</h2>
+            <p>4.1. Мы не передаём персональные данные Пользователей третьим лицам, за исключением случаев, прямо предусмотренных законодательством Российской Федерации.</p>
+            <p>4.2. Платёжная информация передаётся сервису ЮKassa (ООО «Яндекс.Деньги») для обработки платежа. Обработка данных осуществляется в соответствии с политикой конфиденциальности ЮKassa.</p>
+            <p>4.3. Данные веб-аналитики передаются сервисам Яндекс.Метрика и Google Analytics. Они используются в обезличенном виде.</p>
+
+            <h2>5. Как мы защищаем данные</h2>
+            <p>5.1. Данные о клиентах в программе хранятся локально на устройстве Пользователя. Пользователь самостоятельно отвечает за их сохранность и защиту.</p>
+            <p>5.2. Сайт использует HTTPS-шифрование для защиты передаваемых данных.</p>
+            <p>5.3. Платежи обрабатываются через защищённый платёжный шлюз ЮKassa, который соответствует международным стандартам безопасности PCI DSS.</p>
+            <p>5.4. Мы принимаем разумные меры для защиты персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+
+            <h2>6. Cookies</h2>
+            <p>6.1. Сайт использует файлы cookie для обеспечения корректной работы и сбора аналитической информации.</p>
+            <p>6.2. Пользователь может отключить cookie в настройках своего браузера, однако это может повлиять на корректную работу сайта.</p>
+            <p>6.3. Программа My-Business CRM не использует файлы cookie.</p>
+
+            <h2>7. Хранение данных</h2>
+            <p>7.1. Данные о клиентах, введённые в программу, хранятся на устройстве Пользователя неограниченное время, пока Пользователь не удалит их самостоятельно.</p>
+            <p>7.2. Данные об оплатах и выданных лицензиях хранятся в зашифрованном виде и используются для подтверждения лицензии и технической поддержки.</p>
+            <p>7.3. Данные веб-аналитики хранятся в сервисах Яндекс.Метрика и Google Analytics в соответствии с их политиками.</p>
+
+            <h2>8. Права Пользователя</h2>
+            <p>Пользователь имеет право:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• Получить информацию о том, какие персональные данные о нём хранятся</li>
+                <li style="margin-bottom: 0.3rem;">• Потребовать исправления неточных персональных данных</li>
+                <li style="margin-bottom: 0.3rem;">• Потребовать удаления персональных данных (в случаях, предусмотренных законом)</li>
+                <li style="margin-bottom: 0.3rem;">• Отозвать согласие на обработку персональных данных</li>
+            </ul>
+            <p>Для реализации этих прав свяжитесь с нами по адресу <strong>company@mybusiness-crm.ru</strong>.</p>
+
+            <h2>9. Изменения Политики конфиденциальности</h2>
+            <p>9.1. Мы оставляем за собой право вносить изменения в настоящую Политику конфиденциальности.</p>
+            <p>9.2. Новая редакция Политики вступает в силу с момента её публикации на сайте, если иное не предусмотрено новой редакцией.</p>
+            <p>9.3. Продолжение использования программы и сайта после изменений означает принятие Пользователем обновлённой Политики.</p>
+
+            <h2>10. Контактная информация</h2>
+            <p>По всем вопросам, связанным с настоящей Политикой конфиденциальности, вы можете обратиться:</p>
+            <ul class="check-list" style="list-style: none; padding-left: 1.5rem;">
+                <li style="margin-bottom: 0.3rem;">• По электронной почте: <strong>company@mybusiness-crm.ru</strong></li>
+                <li style="margin-bottom: 0.3rem;">• По телефону: <strong>+79655544200</strong></li>
+                <li style="margin-bottom: 0.3rem;">• По почте: г. Москва, Петровско-разумовский проезд 25 к2</li>
+            </ul>
+
+            <hr>
+
+            <div class="button-group">
+                <a href="index.html" class="btn-outline">🏠 На главную</a>
+                <a href="faq.html" class="btn-outline">📚 База знаний</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container" style="max-width: 1200px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+            <div>
+                <div class="logo" style="color:white; background: none; -webkit-background-clip: unset;">My-Business CRM</div>
+                <p style="margin-top:0.5rem;">© НДП Семенцул Максим Геннадиевич<br>Все права защищены.</p>
+            </div>
+            <div>
+                <p><strong>Полезные ссылки</strong></p>
+                <p><a href="index.html#license">Преимущества лицензии</a></p>
+                <p><a href="faq.html">База знаний</a></p>
+                <p><a href="downver/LICENSE.pdf">Лицензионное соглашение</a></p>
+                <p><a href="privacy.html">Политика конфиденциальности</a></p>
+            </div>
+            <div>
+                <p><strong>Контакты</strong></p>
+                <p>📧 company@mybusiness-crm.ru</p>
+                <p>📞 +79655544200</p>
+            </div>
+        </div>
+        <hr style="margin: 1.5rem 0; border-color:#2b4b68;">
+        <p style="text-align: center; font-size:0.75rem;">ПО предоставляется «как есть». Используя программу, вы подтверждаете согласие с Лицензионным соглашением и Политикой конфиденциальности.</p>
+    </div>
+</footer>
+
+</body>
+</html>
